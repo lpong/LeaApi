@@ -21,7 +21,7 @@ ThinkPHP 5.1
  + 导出html，pdf
 
 
-> 安装方法：运行环境要求PHP5.6以上。使用 git 将代码clone到本地，进入目录后 `composer update `，在`config/database.php`配置好数据库即可。可以参考thinkphp5.1部署方式
+> 安装方法：运行环境要求PHP5.6以上，mysql5.7以上。使用 git 将代码clone到本地，进入目录后 `composer update `，在`config/database.php`配置好数据库即可。可以参考thinkphp5.1部署方式
 
 
 ## 注意
