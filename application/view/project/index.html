@@ -1,0 +1,70 @@
+<div class="layui-card" style="max-width:980px;min-width: 520px;">
+    <div class="layui-card-body">
+        <div class="layui-tab layui-tab-brief" lay-filter="*">
+            <ul class="layui-tab-title">
+                <li class="layui-this">进行中的项目</li>
+                <li>我的项目</li>
+                <li>我参与的项目</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <div class="data-list" data-url="{:url('project/project')}">
+                        <div class="data">
+                            <p>
+                                <i class="fa fa-spinner fa-spin"></i> 加载中...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="data-list" data-url="{:url('project/my')}">
+                        <form action="">
+                            <button class="layui-btn layui-btn-sm layui-btn-primary ajax-edit-api" data-url="{:url('project/add')}" title="新增">
+                                <i class="layui-icon">&#xe608;</i> 添加
+                            </button>
+                            <button class="layui-btn layui-btn-sm layui-btn-primary ajax-edit-api" data-url="{:url('project/import')}" title="从Postman导入">
+                                <i class="layui-icon">&#xe608;</i> 导入
+                            </button>
+                            <button class="layui-btn layui-btn-sm layui-btn-primary  ajax-set-api" update="all" param data-url="{:url('project/delete')}"
+                                title="删除该项目">
+                                <i class="layui-icon">&#xe640;</i> 删除
+                            </button>
+                            <hr>
+                        </form>
+                        <div class="data layui-form">
+                            <p>
+                                <i class="fa fa-spinner fa-spin"></i> 加载中...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="data-list" data-url="{:url('project/myJoin')}">
+                        <form action="">
+                            <button class="layui-btn layui-btn-sm layui-btn-primary ajax-set-api" update="all" param data-url="{:url('project/projectUserStatus',['status'=>1])}"
+                                title="显示该项目">
+                                <i class="layui-icon">&#xe6af;</i> 显示
+                            </button>
+                            <button class="layui-btn layui-btn-sm layui-btn-primary ajax-set-api" update="all" param data-url="{:url('project/projectUserStatus',['status'=>0])}"
+                                title="隐藏该项目">
+                                <i class="layui-icon">&#xe69c;</i> 隐藏
+                            </button>
+                            <button class="layui-btn layui-btn-sm layui-btn-primary ajax-set-api" update="all" param data-url="{:url('project/projectUserStatus',['status'=>2])}"
+                                title="退出该项目">
+                                <i class="layui-icon">&#xe64d;</i> 退出
+                            </button>
+                            <hr>
+                        </form>
+                        <div class="data layui-form">
+                            <p>
+                                <i class="fa fa-spinner fa-spin"></i> 加载中...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('.data-list').each(function () {
+        $(this).getList()
+    });
+</script>

@@ -1,0 +1,39 @@
+<?php
+// +----------------------------------------------------------------------
+// | ThinkPHP [ WE CAN DO IT JUST THINK ]
+// +----------------------------------------------------------------------
+// | Copyright (c) 2006~2018 http://thinkphp.cn All rights reserved.
+// +----------------------------------------------------------------------
+// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
+// +----------------------------------------------------------------------
+// | Author: liu21st <liu21st@gmail.com>
+// +----------------------------------------------------------------------
+
+return [
+    // 数据库类型
+    'type'     => '\think\mongo\Connection',
+    // 设置查询类
+    'query'    => '\think\mongo\Query',
+
+    // Builder类
+    'builder'  => '\think\mongo\Builder',
+    // 服务器地址
+    'hostname' => '127.0.0.1',
+    // 集合名
+    'database' => 'api',
+    // 用户名
+    'username' => '',
+    // 密码
+    'password' => '',
+    // 端口
+    'hostport' => '',
+
+    //编码
+    'charset'  => 'utf8mb4',
+
+    'pk_convert_id'  => false,
+
+    //自动写入时间戳
+    'auto_timestamp' => 'datetime',
+
+];

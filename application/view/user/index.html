@@ -1,0 +1,127 @@
+<div class="layui-card">
+    <div class="layui-card-body">
+        <div class="layui-tab layui-tab-brief" lay-filter="*">
+            <ul class="layui-tab-title">
+                <li class="layui-this">我的资料</li>
+                <li><gt name="count" value="0"><span class="layui-badge-dot" style="margin-right: 10px;"></span></gt><span>我的消息</span></li>
+                <li>头像</li>
+                <li>密码</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <div class="layui-form layui-form-pane layui-tab-item layui-show">
+                        <form method="post" action="{:url('user/editInfo')}">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">邮箱</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="email" readonly value="{$user.email}" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">昵称</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="nickname" value="{$user.nickname}" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">上次登录时间</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly value="{$user.last_login_time}" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">上次登录IP</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" readonly value="{$user.last_login_ip}" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <button class="layui-btn" lay-submit lay-filter="layform">确认修改</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="data-list" data-url="{:url('user/msg')}">
+                        <div class="data layui-form">
+                            <p>
+                                <i class="fa fa-spinner fa-spin"></i> 加载中...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="layui-form layui-form-pane">
+                        <div class="layui-form-item">
+                            <div class="avatar-add">
+                                <p>建议尺寸168*168，支持jpg、png、gif，最大不能超过50KB</p>
+                                <button type="button" class="layui-btn upload-img" id="face">
+                                    <i class="layui-icon">&#xe67c;</i>上传头像
+                                </button>
+                                <img src="https://tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg">
+                                <span class="loading"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="layui-form layui-form-pane">
+                        <form action="{:url('user/editPassword')}" method="post">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">当前密码</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" name="nowpass" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">新密码</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" name="pass" class="layui-input">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">6到16个字符</div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">确认密码</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" name="repass" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <button class="layui-btn" lay-submit lay-filter="layform">确认修改</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('.data-list').each(function () {
+        $(this).getList()
+    });
+    layui.use(['upload', 'layer'], function () {
+        var upload = layui.upload;
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#face',
+            url: '{:url("file/upload",["type"=>"image"])}',
+            done: function (res) {
+                var input = '#face';
+                $(input).closest('.avatar-add').find('.loading').hide();
+                if (res.code == 1) {
+                    $.post("{:url('updateFace')}", 'face=' + res.data.src, function (data) {
+                        if (data.code == 1) {
+                            $(input).closest('.avatar-add').find('img').attr('src', res.data
+                                .src);
+                        } else {
+                            layer.msg(data.msg);
+                        }
+                    });
+                } else {
+                    layer.msg(res.msg);
+                }
+            }
+
+        });
+    });
+</script>

@@ -1,0 +1,16 @@
+<ul class="mine-msg">
+    <volist name="list" id="vo">
+        <li>
+            <blockquote class="layui-elem-quote">{$vo.msg|raw}
+                <br>
+                <i style="color:#999">发布人：</i>{$vo.sender.nickname}</blockquote>
+            <p>
+                <span>{$vo.create_time}</span>
+                <!-- <a href="javascript:;" class="layui-btn layui-btn-sm layui-btn-danger fly-delete">删除</a> -->
+            </p>
+        </li>
+    </volist>
+</ul>
+<div class="right">
+    {$list|raw}
+</div>

@@ -1,0 +1,274 @@
+<div class="layui-card-body">
+    <form class="layui-form layui-form-pane" action="{:url('add')}" style="width: 960px">
+        <div class="layui-form-item">
+            <label class="layui-form-label">接口名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" value="{$api.name}" lay-verify="name" autocomplete="off" placeholder="请输入标题" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">所述分类</label>
+            <div class="layui-input-inline">
+                <select name="category_id" lay-filter="aihao">
+                    <option value=""></option>
+                    <volist name="category" id="vo">
+                        <option value="{$vo.id}" <eq name="vo.id" value="$api['category_id']">selected="selected"</eq> >{$vo.title}</option>
+                    </volist>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">接口描述</label>
+            <div class="layui-input-block">
+                <textarea placeholder="" name="remark" class="layui-textarea">{$api.remark}</textarea>
+            </div>
+        </div>
+        <blockquote class="layui-elem-quote">请求地址</blockquote>
+        <div class="layui-form-item">
+            <div class="layui-input-inline">
+                <select name="method">
+                    <volist name=":config('param.request_mothod')" id="vo">
+                        <option value="{$vo}" <eq name="vo" value="$api['method']">selected="selected"</eq> >{$vo}</option>
+                    </volist>
+                </select>
+            </div>
+            <div class="layui-input-block" style="margin-left: 200px">
+                <input type="text" name="url" value="{$api.url}" placeholder="请输入请求地址" class="layui-input">
+            </div>
+        </div>
+        <blockquote class="layui-elem-quote">Params
+            <a href="javascript:;" class="right add-field" data-num="{:count($api['params'])}">
+                <i class="layui-icon">&#xe608;</i>
+            </a>
+        </blockquote>
+        <table class="layui-table" data-field="params">
+            <colgroup>
+                <col width="33.333%">
+                <col width="33.333%">
+                <col>
+                <col width="10">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <volist name="api.params" id="vo">
+                    <tr>
+                        <td>
+                            <input type="text" name="params[{$i}]['key']" value="{$vo.key}" placeholder="New Key" class="layui-input">
+                        </td>
+                        <td>
+                            <input type="text" name="params[{$i}]['value']" value="{$vo.value}" placeholder="Value" class="layui-input">
+                        </td>
+                        <td>
+                            <input type="text" name="params[{$i}]['description']" value="{$vo.description}" placeholder="Description" class="layui-input">
+                        </td>
+                        <td>
+                            <a href="javascript:;" class="delete">
+                                <i class="layui-icon">&#x1006;</i>
+                            </a>
+                        </td>
+                    </tr>
+                </volist>
+            </tbody>
+        </table>
+        <blockquote class="layui-elem-quote">HEADERS
+            <a href="javascript:;" class="right add-field" data-num="{:count($api['headers'])}">
+                <i class="layui-icon">&#xe608;</i>
+            </a>
+        </blockquote>
+        <table class="layui-table" data-field="headers">
+            <colgroup>
+                <col width="33.333%">
+                <col width="33.333%">
+                <col>
+                <col width="10">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <volist name="api.headers" id="vo">
+                    <tr>
+                        <td>
+                            <input type="text" name="headers[{$i}]['key']" value="{$vo.key|default=''}" placeholder="New Key" class="layui-input">
+                        </td>
+                        <td>
+                            <input type="text" name="headers[{$i}]['value']" value="{$vo.value|default=''}" placeholder="Value" class="layui-input">
+                        </td>
+                        <td>
+                            <input type="text" name="headers[{$i}]['description']" value="{$vo.description|default=''}" placeholder="Description" class="layui-input">
+                        </td>
+                        <td>
+                            <a href="javascript:;" class="delete">
+                                <i class="layui-icon">&#x1006;</i>
+                            </a>
+                        </td>
+                    </tr>
+                </volist>
+            </tbody>
+        </table>
+        <blockquote class="layui-elem-quote">BODY
+            <a href="javascript:;" class="right add-field" data-num="1000">
+                <i class="layui-icon">&#xe608;</i>
+            </a>
+        </blockquote>
+        <div class="layui-form-item">
+            <div class="layui-input-inline" style="width: 420px">
+                <volist name=":config('param.request_model')" id="vo">
+                    <input type="radio" name="model" lay-filter="table-radio" value="{$key}" title="{$vo}" <eq name="key" value="$api['model']"> checked</eq> >
+                </volist>
+            </div>
+            <div class="layui-input-inline" <neq name="api.model" value="raw"> style="display: none;"</neq> id="model_header">
+                <select name="model_header" lay-filter="model_header">
+                    <volist name=":config('param.request_header')" id="vo">
+                    <option value="{$key}" <eq name="api.model_header" value="{$key}"> selected="selected"</eq>>{$vo}</option>
+                    </volist>
+                </select>
+            </div>
+        </div>
+        <hr>
+        <table class="layui-table request-data" id="formdata" data-field="formdata" <neq name="api.model" value="formdata">style="display: none;"</neq> >
+            <colgroup>
+                <col width="33.333%">
+                <col width="33.333%">
+                <col>
+                <col width="10">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <volist name="api.formdata" id="vo">
+                    <tr>
+                        <td>
+                            <input type="text" name="formdata[{$i}]['key']" value="{$vo.key|default=''}" placeholder="New Key" class="layui-input">
+                        </td>
+                        <td>
+                            <input type="text" name="formdata[{$i}]['value']" value="{$vo.value|default=''}" placeholder="Value" class="layui-input">
+                        </td>
+                        <td>
+                            <input type="text" name="formdata[{$i}]['description']" value="{$vo.description|default=''}" placeholder="Description" class="layui-input">
+                        </td>
+                        <td>
+                            <a href="javascript:;" class="delete">
+                                <i class="layui-icon">&#x1006;</i>
+                            </a>
+                        </td>
+                    </tr>
+                </volist>
+            </tbody>
+        </table>
+        <table class="layui-table request-data" id="urlencoded" data-field="urlencoded" <neq name="api.model" value="urlencoded">style="display: none;"</neq> >
+            <colgroup>
+                <col width="33.333%">
+                <col width="33.333%">
+                <col>
+                <col width="10">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <volist name="api.urlencoded" id="vo">
+                    <tr>
+                        <td>
+                            <input type="text" name="urlencoded[{$i}]['key']" value="{$vo.key|default=''}" placeholder="New Key" class="layui-input">
+                        </td>
+                        <td>
+                            <input type="text" name="urlencoded[{$i}]['value']" value="{$vo.value|default=''}" placeholder="Value" class="layui-input">
+                        </td>
+                        <td>
+                            <input type="text" name="urlencoded[{$i}]['description']" value="{$vo.description|default=''}" placeholder="Description" class="layui-input">
+                        </td>
+                        <td>
+                            <a href="javascript:;" class="delete">
+                                <i class="layui-icon">&#x1006;</i>
+                            </a>
+                        </td>
+                    </tr>
+                </volist>
+            </tbody>
+        </table>
+        <div class="layui-form-item request-data layui-form-text" id="raw" <neq name="api.model" value="raw">style="display: none;"</neq> >
+            <label class="layui-form-label">请求内容</label>
+            <div class="layui-input-block">
+                <textarea name="raw" class="layui-textarea">{$api.raw}</textarea>
+            </div>
+        </div>
+    </form>
+</div>
+<script id="addfield" type="text/html">
+    <tr>
+        <td>
+            <input type="text" name="{{d.field}}[{{d.num}}][key]" placeholder="New Key" class="layui-input">
+        </td>
+        <td>
+            <input type="text" name="{{d.field}}[{{d.num}}][value]" placeholder="Value" class="layui-input">
+        </td>
+        <td>
+            <input type="text" name="{{d.field}}[{{d.num}}][description]" placeholder="Description" class="layui-input">
+        </td>
+        <td>
+            <a href="javascript:;" class="delete">
+                <i class="layui-icon">&#x1006;</i>
+            </a>
+        </td>
+    </tr>
+</script>
+<script type="text/javascript">
+    layui.use(['layer', 'form', 'laytpl'], function () {
+        var layer = layui.layer,
+            form = layui.form;
+        var laytpl = layui.laytpl;
+
+        $('.add-field').click(function (event) {
+            var self = $(this);
+            var data = {
+                "field": self.closest('blockquote').nextAll('table:visible').first().data('field'),
+                "num": self.data('num')
+            }
+            laytpl($('#addfield').html()).render(data, function (html) {
+                self.closest('blockquote').nextAll('table:visible').first().find('tbody').append(
+                    html);
+                self.data('num', parseInt(data.num) + 1);
+            });
+            return false;
+        });
+        $('.layui-table').on('click', '.delete', function (event) {
+            event.preventDefault();
+            $(this).closest('tr').remove();
+            return false;
+        });
+        form.on('radio(table-radio)', function (data) {
+            var obj = $(data.elem).closest('.layui-form-item');
+            $('.request-data').hide();
+            $('#' + data.value).show();
+            if (data.value == 'raw') {
+                $('#model_header').show();
+            }else{
+                $('#model_header').hide();
+            }
+        });
+    });
+</script>

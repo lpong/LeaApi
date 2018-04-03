@@ -1,0 +1,45 @@
+<div class="layui-card-body">
+    <form class="layui-form" action="{:url()}" style="width: 640px;" method="post">
+        <div class="layui-form-item">
+            <label class="layui-form-label">名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" placeholder="名称" value="{$info.name|default=''}" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">封面图</label>
+            <div class="layui-input-inline">
+                {:widget('upload/image',['field'=>'cover','value'=>isset($info['cover'])?$info['cover']:''])}
+            </div>
+            <div class="layui-form-mid layui-word-aux"></div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">状态</label>
+            <div class="layui-input-block">
+                <input type="radio" name="status" value="1" title="启用" <php>if(!isset($info)||$info['status']==1):echo 'checked';endif</php>
+                >
+                <input type="radio" name="status" value="0" title="禁用" <php>if(isset($info)&&$info['status']==0):echo 'checked';endif</php>
+                >
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">接口说明</label>
+            <div class="layui-input-block">
+                <textarea name="remark" class="layui-textarea" placeholder="接口说明">{$info.remark|default=''}</textarea>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">项目描述</label>
+            <div class="layui-input-block">
+                <textarea name="description" class="layui-textarea" placeholder="项目描述">{$info.description|default=''}</textarea>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">自定义脚本</label>
+            <div class="layui-input-block">
+                <textarea name="script" class="layui-textarea" placeholder="自定义脚本">{$info.script|default=''}</textarea>
+            </div>
+        </div>
+        <input type="hidden" name="_id" value="{$Think.get._id}">
+    </form>
+</div>

@@ -1,0 +1,26 @@
+<ul class="fly-case-list">
+    <volist name="list" id="vo">
+        <li>
+            <a class="fly-case-img" href="/p/{$vo.id|encrypt}" rel="nofollow">
+                <img src="{$vo.cover}" alt="{$vo.name}">
+            </a>
+            <h2>
+                <a href="/p/{$vo.id|encrypt}" rel="nofollow">{$vo.name}</a>
+            </h2>
+            <p class="fly-case-desc">{$vo.description}</p>
+            <div class="fly-case-info">
+                <a href="javascript:;" class="fly-case-user">
+                    <img src="{$vo.face}">
+                </a>
+                <p class="layui-elip" style="font-size: 12px;">
+                    <span style="color: #666;">{$vo.nickname}</span> 2小时前</p>
+                <p>获得
+                    <a class="fly-case-nums fly-case-active" href="javascript:;" data-type="showPraise" style=" padding:0 5px; color: #01AAED;">0</a>个赞</p>
+                <button class="layui-btn layui-btn-primary fly-case-active" data-type="praise">点赞</button>
+            </div>
+        </li>
+    </volist>
+</ul>
+<div class="right">
+    {$list|raw}
+</div>

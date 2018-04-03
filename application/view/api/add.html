@@ -1,0 +1,211 @@
+<div class="layui-card-body">
+    <form class="layui-form layui-form-pane" action="{:url('add')}" style="width: 960px">
+        <div class="layui-form-item">
+            <label class="layui-form-label">接口名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="name" lay-verify="name" autocomplete="off" placeholder="请输入标题" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">所述分类</label>
+            <div class="layui-input-inline">
+                <select name="category_id" lay-filter="aihao">
+                    <option value=""></option>
+                    <volist name="category" id="vo">
+                        <option value="{$vo.id}">{$vo.title}</option>
+                    </volist>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">接口描述</label>
+            <div class="layui-input-block">
+                <textarea placeholder="请输入内容" name="remark" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <blockquote class="layui-elem-quote">请求地址</blockquote>
+        <div class="layui-form-item">
+            <div class="layui-input-inline">
+                <select name="method">
+                    <option value="GET" selected="selected">GET</option>
+                    <option value="POST">POST</option>
+                    <option value="PUT">PUT</option>
+                    <option value="PATCH">PATCH</option>
+                    <option value="DELETE">DELETE</option>
+                    <option value="COPY">COPY</option>
+                    <option value="HEAD">HEAD</option>
+                    <option value="OPTIONS">OPTIONS</option>
+                    <option value="LINK">LINK</option>
+                    <option value="UNLINK">UNLINK</option>
+                    <option value="PUAGE">PUAGE</option>
+                    <option value="LOCK">LOCK</option>
+                    <option value="UNLOCK">UNLOCK</option>
+                    <option value="PROPFIND">PROPFIND</option>
+                    <option value="VIEW">VIEW</option>
+                </select>
+            </div>
+            <div class="layui-input-block" style="margin-left: 200px">
+                <input type="text" name="url" placeholder="请输入请求地址" class="layui-input">
+            </div>
+        </div>
+        <blockquote class="layui-elem-quote">Params
+            <a href="{:url('')}" class="right add-field" data-num="0">
+                <i class="layui-icon">&#xe608;</i>
+            </a>
+        </blockquote>
+        <table class="layui-table" data-field="params">
+            <colgroup>
+                <col width="33.333%">
+                <col width="33.333%">
+                <col>
+                <col width="10">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <blockquote class="layui-elem-quote">HEADERS
+            <a href="javascript:;" class="right add-field" data-num="0">
+                <i class="layui-icon">&#xe608;</i>
+            </a>
+        </blockquote>
+        <table class="layui-table" data-field="headers">
+            <colgroup>
+                <col width="33.333%">
+                <col width="33.333%">
+                <col>
+                <col width="10">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <blockquote class="layui-elem-quote">BODY
+            <a href="javascript:;" class="right add-field" data-num="0">
+                <i class="layui-icon">&#xe608;</i>
+            </a>
+        </blockquote>
+        <div class="layui-form-item">
+            <div class="layui-input-inline" style="width: 420px">
+                <volist name=":config('param.request_model')" id="vo">
+                    <input type="radio" name="model" lay-filter="table-radio" value="{$key}" title="{$vo}" <eq name="i" value="1"> checked</eq> >
+                </volist>
+            </div>
+            <div class="layui-input-inline" style="display: none;" id="model_header">
+                <select name="model_header" lay-filter="model_header">
+                    <volist name=":config('param.request_header')" id="vo">
+                        <option value="{$key}">{$vo}</option>
+                    </volist>
+                </select>
+            </div>
+        </div>
+        <hr>
+        <table class="layui-table request-data" id="formdata" data-field="formdata">
+            <colgroup>
+                <col width="33.333%">
+                <col width="33.333%">
+                <col>
+                <col width="10">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <table class="layui-table request-data" id="urlencoded" data-field="urlencoded" style="display: none;">
+            <colgroup>
+                <col width="33.333%">
+                <col width="33.333%">
+                <col>
+                <col width="10">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th>Key</th>
+                    <th>Value</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div class="layui-form-item request-data layui-form-text" id="raw" style="display: none;">
+            <label class="layui-form-label">请求内容</label>
+            <div class="layui-input-block">
+                <textarea name="raw" class="layui-textarea"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+<script id="addfield" type="text/html">
+    <tr>
+        <td>
+            <input type="text" name="{{d.field}}[{{d.num}}][key]" placeholder="New Key" class="layui-input">
+        </td>
+        <td>
+            <input type="text" name="{{d.field}}[{{d.num}}][value]" placeholder="Value" class="layui-input">
+        </td>
+        <td>
+            <input type="text" name="{{d.field}}[{{d.num}}][description]" placeholder="Description" class="layui-input">
+        </td>
+        <td>
+            <a href="javascript:;" class="delete"><i class="layui-icon">&#x1006;</i></a>
+        </td>
+    </tr>
+</script>
+<script type="text/javascript">
+    layui.use(['layer', 'form', 'laytpl'], function () {
+        var layer = layui.layer,
+            form = layui.form;
+        var laytpl = layui.laytpl;
+
+        $('.add-field').click(function (event) {
+            var self = $(this);
+            var data = {
+                "field": self.closest('blockquote').nextAll('table:visible').first().data('field'),
+                "num": self.data('num')
+            }
+            laytpl($('#addfield').html()).render(data, function (html) {
+                self.closest('blockquote').nextAll('table:visible').first().find('tbody').append(html);
+                self.data('num', parseInt(data.num) + 1);
+            });
+            return false;
+        });
+        $('.layui-table').on('click', '.delete', function (event) {
+            event.preventDefault();
+            $(this).closest('tr').remove();
+            return false;
+        });
+        form.on('radio(table-radio)', function (data) {
+            var obj = $(data.elem).closest('.layui-form-item');
+            $('.request-data').hide();
+            $('#' + data.value).show();
+            if (data.value == 'raw') {
+                $('#model_header').show();
+            }else{
+                $('#model_header').hide();
+            }
+        });
+    });
+</script>

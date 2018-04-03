@@ -1,0 +1,118 @@
+<div class="layui-card">
+    <div class="layui-card-body">
+        <div class="layui-tab layui-tab-brief" lay-filter="*">
+            <ul class="layui-tab-title">
+                <li class="layui-this">登录</li>
+                <li>注册</li>
+                <li>找回密码</li>
+            </ul>
+            <div class="layui-tab-content">
+                <div class="layui-tab-item layui-show">
+                    <div class="layui-form layui-form-pane layui-tab-item layui-show">
+                        <form method="post" action="{:url('public/login')}">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">邮箱</label>
+                                <div class="layui-input-inline">
+                                    <input type="email" name="email" value="{:cookie('email')}" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">密码</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" name="password" value="" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <button class="layui-btn" lay-submit lay-filter="layform">登录</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="layui-form layui-form-pane">
+                        <form method="post" action="{:url('public/reg')}">
+                            <div class="layui-form-item">
+                                <label for="L_email" class="layui-form-label">邮箱</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="email" required="" lay-verify="email" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">将会成为您唯一的登入名</div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label for="L_username" class="layui-form-label">昵称</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="nickname" required="" lay-verify="required" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label for="L_pass" class="layui-form-label">密码</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" name="password" required="" lay-verify="required" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">6到16个字符</div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label for="L_repass" class="layui-form-label">确认密码</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" id="L_repass" name="re_password" required="" lay-verify="required" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label for="L_vercode" class="layui-form-label">人类验证</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="captcha" required="" lay-verify="required" placeholder="请回答后面的验证码" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-form-mid" style="padding: 0!important">
+                                    <img src="" id="captcha" style="height: 40px;">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <button class="layui-btn" lay-submit lay-filter="layform">立即注册</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="layui-tab-item">
+                    <div class="layui-form layui-form-pane">
+                        <form action="/user/repass" method="post">
+                            <div class="layui-form-item">
+                                <label for="L_pass" class="layui-form-label">密码</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" name="pass" required lay-verify="required" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux">6到16个字符</div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label for="L_repass" class="layui-form-label">确认密码</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" name="repass" required lay-verify="required" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label for="L_vercode" class="layui-form-label">人类验证</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="vercode" required lay-verify="required" placeholder="请回答后面的问题" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-form-mid">
+                                    <span style="color: #c00;">{{d.vercode}}</span>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <input type="hidden" name="username" value="{{d.username}}">
+                                <input type="hidden" name="email" value="{{d.email}}">
+                                <button class="layui-btn" alert="1" lay-filter="*" lay-submit>提交</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#captcha').click(function (event) {
+        var src = '{:captcha_src()}"' + '?' + Math.random();
+        $(this).attr('src', src)
+    });
+    $('#captcha').click();
+</script>

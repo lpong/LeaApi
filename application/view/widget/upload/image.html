@@ -1,0 +1,43 @@
+<div>
+    <php>$upload_id = uniqid();</php>
+    <button type="button" class="layui-btn layui-btn-primary" id="upload-{$upload_id}">
+        <i class="layui-icon">&#xe67c;</i>上传头像
+    </button>
+    <div class="layui-upload-list" id="upload-list-{$upload_id}">
+        <notempty name="value">
+            <div>
+                <img class="layui-upload-img" src="{$value}">
+                <input type="hidden" name="{$field}" value="{$value}">
+            </div>
+        </notempty>
+    </div>
+    <script type="text/javascript">
+        layui.use(['layer', 'upload'], function () {
+            var layer = layui.layer,
+                upload = layui.upload;
+
+            upload.render({
+                elem: '#upload-{$upload_id}',
+                url: "{:url('file/upload')}",
+                before: function (obj) {
+                    layer.load();
+                },
+                done: function (res) {
+                    if (res.code == 1) {
+                        var str = '<div><img class="layui-upload-img" src="' + res.data.src +
+                            '"><input type="hidden" name="{$field}" value="' + res.data.src +
+                            '" /></div>';
+                        $('#upload-list-{$upload_id}').html(str);
+                    } else {
+                        layer.msg(res.msg);
+                    }
+                    layer.closeAll('loading');
+                },
+                error: function (index, upload) {
+                    layer.msg('上传失败');
+                    layer.closeAll('loading');
+                }
+            });
+        });
+    </script>
+</div>

@@ -1,0 +1,19 @@
+<div class="layui-card">
+    <div class="layui-card-body">
+        <form class="layui-form" action="{:url()}">
+            <div class="layui-form-item">
+                <label class="layui-form-label">选择导入源</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="v" value="p-2.1" title="Collection v2.1 (recommended)">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">接口内容</label>
+                <div class="layui-input-block">
+                    {:widget('upload/file',['field'=>'file','exts'=>'json'])}
+                    <div class="layui-form-mid layui-word-aux">JSON格式˝</div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<table class="layui-table  text-center" lay-size="sm">
+    <tbody>
+        <tr>
+            <th style="width: 48px;text-align:center">#</th>
+            <th>昵称</th>
+            <th>头像</th>
+            <th>人员状态</th>
+            <th>加入时间</th>
+            <th>权限</th>
+            <th>操作</th>
+        </tr>
+        <notempty name="list">
+            <volist name="list" id="vo">
+                <tr>
+                    <td>
+                        {$i}
+                    </td>
+                    <td>
+                        {$vo.nickname}
+                    </td>
+                    <td>
+                        <img src="{$vo.face}" alt="{$vo.nickname}">
+                    </td>
+                    <td>
+                        <span <in name="vo.astatus" value="2,9">style="color:#ccc"</in>> {$status[$vo['astatus']]|default='未知'}</span>
+                    </td>
+                    <td>
+                        {$vo.join_time}
+                    </td>
+                    <td>{$auth[$vo['auth']]|default=''}</td>
+                    <td>
+                        <a href="{:url('project/auth',['id'=>$vo['id']])}"  class="layui-btn layui-btn-sm layui-btn-primary ajax-edit-api">权限</a>
+                        <a href="{:url('project/pUnlink',['id'=>$vo['id']])}" class="layui-btn layui-btn-sm layui-btn-primary ajax-set-api" title="踢出该用户">踢出</a>
+                    </td>
+                </tr>
+            </volist>
+        </notempty>
+    </tbody>
+</table>
+<div class="right">
+    {$list|raw}
+</div>

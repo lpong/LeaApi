@@ -1,0 +1,30 @@
+<div class="layui-card" style="max-width:980px;min-width: 520px;">
+    <div class="layui-card-body">
+        <div class="data-list" data-url="{$Request.url}">
+            <form action="">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <div class="layui-input-inline" style="width: 200px;">
+                            <input type="text" name="email" placeholder="请输入用户邮箱进行邀请" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-input-inline">
+                            <button class="layui-btn layui-btn-primary  ajax-ask-api" data-url="{:url('project/ask',['_id'=>$_GET['_id']])}">
+                                邀请
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </form>
+            <div class="data layui-form">
+                <p>
+                    <i class="fa fa-spinner fa-spin"></i> 加载中...</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('.data-list').each(function () {
+        $(this).getList()
+    });
+</script>

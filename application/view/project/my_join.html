@@ -1,0 +1,35 @@
+<table class="layui-table  text-center" lay-size="sm">
+    <tbody>
+        <tr>
+            <th style="width: 48px;text-align:center">#</th>
+            <th>项目名称</th>
+            <th>发布人</th>
+            <th>状态</th>
+            <th>加入时间</th>
+            <th>更新时间</th>
+        </tr>
+        <notempty name="list">
+            <volist name="list" id="vo">
+                <tr>
+                    <td>
+                        <input type="checkbox" name="_id" value="{$vo.id|encrypt}" lay-skin="primary" title="">
+                    </td>
+                    <td>
+                        <div style="text-align:left;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;width:250px;" title="{$vo.name}">{$vo.name}</div>
+                    </td>
+                    <td>{$vo.nickname}</td>
+                    <td>
+                        <span>{$vo.astatus==1?'显示':'<span style="color:#ccc">隐藏</span>'}</span>
+                    </td>
+                    <td>
+                        {$vo.join_time}
+                    </td>
+                    <td>{$vo.update_time}</td>
+                </tr>
+            </volist>
+        </notempty>
+    </tbody>
+</table>
+<div class="right">
+    {$list|raw}
+</div>

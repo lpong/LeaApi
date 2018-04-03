@@ -1,0 +1,44 @@
+<table class="layui-table  text-center" lay-size="sm">
+    <tbody>
+        <tr>
+            <th style="width: 48px;text-align:center">#</th>
+            <th>项目名称</th>
+            <th>状态</th>
+            <th>发布时间</th>
+            <th>更新时间</th>
+            <th>操作</th>
+        </tr>
+        <notempty name="list">
+            <volist name="list" id="vo">
+                <tr>
+                    <td>
+                        <input type="checkbox" name="_id" value="{$vo.id|encrypt}" lay-skin="primary" title="">
+                    </td>
+                    <td>
+                        <div style="text-align:left;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;width:250px;" title="{$vo.name}">{$vo.name}</div>
+                    </td>
+                    <td>
+                        <span>{$vo.status==1?'启用':'禁用'}</span>
+                    </td>
+                    <td>
+                        {$vo.create_time}
+                    </td>
+                    <td>{$vo.update_time}</td>
+                    <td>
+                        <button class="layui-btn layui-btn-sm layui-btn-primary ajax-edit-api" update="all" data-url="{:url('project/edit',['_id'=>encrypt($vo['id'])])}"
+                            title="修改">
+                            <i class="layui-icon">&#xe639;</i> 修改
+                        </button>
+                        <button class="layui-btn layui-btn-sm layui-btn-primary  ajax-open" data-url="{:url('project/users',['_id'=>encrypt($vo['id'])])}"
+                            title="项目成员">
+                            <i class="layui-icon">&#xe613;</i> 项目成员
+                        </button>
+                    </td>
+                </tr>
+            </volist>
+        </notempty>
+    </tbody>
+</table>
+<div class="right">
+    {$list|raw}
+</div>

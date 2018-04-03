@@ -1,0 +1,34 @@
+<div class="layui-card-body">
+    <form class="layui-form" action="{:url()}" style="width: 640px;" method="post">
+        <div class="layui-form-item">
+            <label class="layui-form-label">分类名称</label>
+            <div class="layui-input-block">
+                <input type="text" name="title" placeholder="分类名称" value="{$category.title|default=''}" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">排序</label>
+                <div class="layui-input-inline">
+                    <input type="number" name="sort" value="{$category.sort|default='0'}" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">状态</label>
+            <div class="layui-input-block">
+                <input type="radio" name="status" value="1" title="启用" <php>if(!isset($category)||$category['status']==1):echo 'checked';endif</php>
+                >
+                <input type="radio" name="status" value="0" title="禁用" <php>if(isset($category)&&$category['status']==0):echo 'checked';endif</php>
+                >
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">描述</label>
+            <div class="layui-input-block">
+                <textarea name="remark" class="layui-textarea" placeholder="这个规则的说明">{$category.remark|default=''}</textarea>
+            </div>
+        </div>
+        <input type="hidden" name="id" value="{$category.id|default=''}">
+    </form>
+</div>

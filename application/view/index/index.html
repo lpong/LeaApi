@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>{$meta_title}</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/jquery.json-viewer.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/style.css">
+    <style>
+        .notice {
+            width: 600px;
+            margin: 30px auto;
+            padding: 30px 15px;
+            border-top: 5px solid #009688;
+            line-height: 30px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 300;
+            background-color: #f2f2f2;
+        }
+
+        @media screen and (max-width: 750px) {
+            html body {
+                margin-top: 0;
+            }
+
+            .notice {
+                width: auto;
+                margin: 20px 15px;
+                padding: 30px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="fly-none" style="">
+    <i class="layui-icon">&#xe60c;</i>
+</div>
+
+<div class="notice layui-text">
+    {$msg|default='欢迎使用 <span style="color: #FF5722" class="code">LeaApi</span> 接口管理系统'|raw}
+    <br>
+    <if condition="!session('user')">
+        <a href="{:url('public/auth')}" class="ajax-open">登录 & 注册</a>
+        <span style="padding:0 5px;"></span>
+    </if>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/jquery-2.2.3.min.js"></script>
+<script src="__PUBLIC__/layui/layui.js"></script>
+<script type="application/javascript" src="__PUBLIC__/js/jquery.json-viewer.js"></script>
+<script type="application/javascript" src="__PUBLIC__/js/clipboard.min.js"></script>
+<script>
+    layui.config({
+        base: '__PUBLIC__/mods/'
+    }).use('edit');
+</script>
+</body>
+
+</html>
