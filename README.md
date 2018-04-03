@@ -1,4 +1,4 @@
-ThinkPHP 5.1
+LeaApi 管理工具 
 ===============
 
 ### 基于 ThinkPHP5.1+layui2.2 的一款api管理工具，其主要特性包括：
