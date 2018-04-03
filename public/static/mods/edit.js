@@ -95,7 +95,7 @@ layui.define(['layer', 'form', 'element', 'code', 'util'], function (exports) {
         var url = self.attr('href') || self.data('url');
         if (!url) return;
 
-        $.get(url, '_pid=' + _pId || '', function (html) {
+        $.get(url, '_pid=' + (_pId || ''), function (html) {
             if (typeof html === 'object') {
                 layer.msg(html.msg);
                 if (html.url == 'reload') {
