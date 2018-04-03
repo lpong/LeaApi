@@ -1,0 +1,492 @@
+::-webkit-scrollbar-track {
+    border-radius: 12px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    -webkit-box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    border: 2px solid transparent;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, .2) inset;
+}
+
+::-webkit-scrollbar-thumb {
+    min-height: 20px;
+    background-clip: content-box;
+    box-shadow: 0 0 0 5px rgba(0, 0, 0, .2) inset;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+html,
+body {
+    background: #f2f2f2;
+}
+
+.text-center {
+    text-align: center
+}
+
+.text-right {
+    text-align: right
+}
+
+.text-left {
+    text-align: left
+}
+
+.code {
+    font-family: Monaco, console, MicroSoft YaHei;
+}
+
+.main {
+    width: 1300px;
+    margin: 0 auto;
+}
+
+.site-tree {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    min-height: 0;
+    overflow: auto;
+    z-index: 1000;
+    width: 280px;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 2px;
+}
+
+.site-content {
+    float: right;
+    width: 1020px;
+    min-height: 0px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.layui-form-pane .layui-form-label {
+    width: 160px;
+}
+
+.layui-form-pane .layui-input-block {
+    margin-left: 160px
+}
+
+.layui-tab-title li {
+    padding: 0 25px
+}
+
+.site-tree {
+    border-right: 1px solid #eee;
+}
+
+.site-tree .layui-tree {
+    line-height: 32px;
+}
+
+.site-tree .layui-tree li i {
+    position: relative;
+    font-size: 22px;
+    color: #000
+}
+
+.site-tree .layui-tree li a cite {
+    padding: 0 8px;
+}
+
+.site-tree .layui-tree li a.right {
+    float: right;
+}
+
+.site-tree .layui-tree .site-tree-noicon a cite {
+    padding-left: 15px;
+}
+
+.site-tree .layui-tree li a em {
+    font-size: 12px;
+    color: #FF5722;
+    padding-right: 5px;
+    font-style: normal;
+    font-weight: 900;
+    font-family: Monaco, console, MicroSoft YaHei;
+}
+
+.site-tree .layui-tree li h2 {
+    line-height: 36px;
+    border-left: 5px solid #009E94;
+    margin: 15px 0 5px;
+    padding: 0 10px;
+    font-weight: 400;
+    background-color: #f2f2f2;
+}
+
+.site-tree .layui-tree li h2 a {
+    display: inline-block;
+    font-size: 20px;
+}
+
+.site-tree .layui-tree li ul {
+    margin-left: 27px;
+    line-height: 28px;
+}
+
+.site-tree .layui-tree li ul a,
+.site-tree .layui-tree li ul a i {
+    color: #777;
+}
+
+.site-tree .layui-tree li ul a:hover {
+    color: #333;
+}
+
+.site-tree .layui-tree li ul li {
+    margin-left: 25px;
+    overflow: visible;
+    list-style-type: disc;
+    /*list-style-position: inside;*/
+}
+
+.site-tree .layui-tree li ul li cite,
+.site-tree .layui-tree .site-tree-noicon ul li cite {
+    padding-left: 0;
+}
+
+.site-tree .layui-tree .layui-this a {
+    color: #01AAED;
+}
+
+.site-tree .layui-tree .layui-this .layui-icon {
+    color: #01AAED;
+}
+
+.site-h1 {
+    margin-bottom: 20px;
+    height: 60px;
+    line-height: 60px;
+    color: #393D49;
+    border-bottom: 1px solid #eee;
+    font-size: 25px;
+    font-weight: 300;
+    vertical-align: middle;
+}
+
+.site-h1 i {
+    position: relative;
+    bottom: 2px;
+    font-size: 20px;
+    margin-right: 2px;
+}
+
+.layui-logo {
+    padding: 10px 20px;
+    color: #fff;
+    color: rgba(255, 255, 255, .7);
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.layui-badge-no {
+    background: #fff
+}
+
+.right {
+    float: right;
+}
+
+.fly-none .iconfont {
+    line-height: 300px;
+    font-size: 300px;
+    color: #393D49;
+}
+
+.fly-none .icon-tishilian {
+    display: inline-block;
+    margin: 30px 0 20px;
+}
+
+.fly-none p {
+    margin-top: 50px;
+    padding: 0 15px;
+    font-size: 20px;
+    color: #999;
+    font-weight: 300;
+}
+
+.fly-none {
+    margin-top: 100px;
+    text-align: center;
+    color: #999;
+    min-height: 0;
+    padding: 0;
+}
+
+.fly-none i {
+    line-height: 300px;
+    font-size: 300px;
+    color: #393D49;
+}
+
+.fly-none .icon-tishilian {
+    display: inline-block;
+    margin: 30px 0 20px;
+}
+
+.fly-none p {
+    margin-top: 50px;
+    padding: 0 15px;
+    font-size: 20px;
+    color: #999;
+    font-weight: 300;
+}
+
+.fly-list-one .fly-none {
+    min-height: 70px;
+}
+
+/* 设置 */
+
+.avatar-add {
+    position: relative;
+    width: 100%;
+    height: 373px;
+    background-color: #F2F2F5;
+}
+
+.avatar-add .upload-img {
+    position: absolute;
+    left: 50%;
+    top: 35px;
+    margin: 0 0 0 -56px;
+}
+
+.avatar-add img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 168px;
+    height: 168px;
+    margin: -50px 0 0 -84px;
+    border-radius: 100%;
+}
+
+.avatar-add .loading {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    padding: 0;
+    background-color: #000;
+    opacity: 0.5;
+    filter: Alpha(opacity=50);
+}
+
+.avatar-add p {
+    position: absolute;
+    top: 70px;
+    width: 100%;
+    margin-top: 10px;
+    ;
+    font-size: 12px;
+    text-align: center;
+    color: #999;
+}
+
+.app-bind li {
+    margin-bottom: 10px;
+    line-height: 30px;
+    color: #999;
+}
+
+.app-bind li .iconfont {
+    position: relative;
+    top: 3px;
+    margin-right: 5px;
+    font-size: 28px;
+}
+
+.app-bind .app-havebind {
+    color: #333;
+}
+
+.app-bind .app-havebind .icon-qq {
+    color: #7CA9C9
+}
+
+.app-bind .app-havebind .icon-weibo {
+    color: #E6162D
+}
+
+/**  项目管理 **/
+
+.fly-case-list {
+    font-size: 0;
+    width: 100%;
+}
+
+.fly-case-list li,
+.layer-ext-ul li {
+    display: inline-block;
+    vertical-align: middle;
+    *display: inline;
+    *zoom: 1;
+    font-size: 14px;
+    background-color: #fff;
+}
+
+.fly-case-list li {
+    width: 200px;
+    margin: 4px 6px;
+    padding: 10px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+}
+
+.fly-case-list li:hover {
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, .1);
+}
+
+.fly-case-img {
+    position: relative;
+    display: block;
+}
+
+.fly-case-img img {
+    width: 200px;
+    height: 120px;
+}
+
+.fly-case-img .layui-btn {
+    display: none;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    margin-left: -29px;
+}
+
+.fly-case-img:hover .layui-btn {
+    display: inline-block;
+}
+
+.fly-case-list li h2 {
+    padding: 10px 0 5px;
+    line-height: 22px;
+    font-size: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+}
+
+.fly-case-desc {
+    height: 60px;
+    line-height: 20px;
+    font-size: 12px;
+    color: #666;
+    overflow: hidden;
+}
+
+.fly-case-info {
+    position: relative;
+    margin: 10px 0 0;
+    padding: 10px 65px 0 45px;
+    border-top: 1px dotted #eee;
+}
+
+.fly-case-info p {
+    height: 24px;
+    line-height: 24px;
+}
+
+.fly-case-user {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    width: 35px;
+    height: 35px;
+}
+
+.fly-case-user img {
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+}
+
+.fly-case-info .layui-btn {
+    position: absolute;
+    right: 0;
+    top: 15px;
+    padding: 0 15px;
+}
+
+.layer-ext-ul {
+    margin: 10px;
+    max-height: 500px;
+}
+
+.layer-ext-ul img {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+
+.layer-ext-ul li {
+    margin: 8px;
+}
+
+.layer-ext-case .layui-layer-title {
+    border: none;
+    background-color: #009688;
+    color: #fff;
+}
+
+.layui-card {
+    box-shadow: none
+}
+
+/*上传*/
+
+.layui-upload-list .layui-upload-img {
+    max-height: 100px;
+}
+
+.layui-table tr th {
+    text-align: center
+}
+
+.layui-table img {
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+}
+
+.mine-msg blockquote a {
+    color: #01AAED
+}
+
+.layui-badge-dot.none {
+    background: none;
+}
