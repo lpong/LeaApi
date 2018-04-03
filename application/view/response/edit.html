@@ -3,21 +3,22 @@
         <div class="layui-form-item">
             <label class="layui-form-label">名称</label>
             <div class="layui-input-block">
-                <input type="text" name="name" value="{$category.name|default=''}" class="layui-input">
+                <input type="text" name="name" value="{$response.name|default=''}" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">内容</label>
             <div class="layui-input-block">
-                <textarea name="body" placeholder="响应内容" class="layui-textarea" style="min-height:200px">{$category.body|default=''}</textarea>
+                <textarea name="body" placeholder="响应内容" class="layui-textarea" style="min-height:200px">{$response.body|default=''}</textarea>
             </div>
         </div>
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">描述</label>
             <div class="layui-input-block">
-                <textarea name="remark" class="layui-textarea" style="min-height:250px">{$category.remark|default=''}</textarea>
+                <textarea name="remark" class="layui-textarea" style="min-height:250px">{$response.remark|default=''}</textarea>
             </div>
         </div>
         <input type="hidden" name="api_id" value="{$Think.get.id|default=''}">
+        <input type="hidden" name="id" value="{$response.id|default=''}">
     </form>
 </div>

@@ -15,6 +15,7 @@ use app\model\ApiRead;
 use app\model\ApiResponse;
 use app\model\Category;
 use app\model\Project;
+use app\model\ProjectUser;
 use think\Db;
 use think\Request;
 
@@ -58,7 +59,13 @@ class ApiController extends BaseController
         //获取已读
         $read            = ApiRead::where('project_id', $id)->where('user_id', session('user.id'))->column('api_id');
         $project['read'] = $read;
-        $this->assign('meta_title', $project['name']);
+
+        //获取权限
+        $auth                 = ProjectUser::where('project_id', $id)->where('user_id', session('user.id'))->where('status', 1)->value('auth');
+        $project['edit_auth'] = in_array($auth, ['write', 'self']);
+
+        $project['is_self'] = $project['user_id'] === session('user.id');
+
         return $this->fetch('index', $project);
     }
 
@@ -103,6 +110,29 @@ class ApiController extends BaseController
     public function edit()
     {
         if ($this->request->isPost()) {
+            $post     = $this->request->post();
+            $validate = new \app\validate\Api();
+            if (!$validate->check($post)) {
+                $this->error($validate->getError());
+            }
+
+            if (empty($post['params'])) {
+                $post['params'] = array_values($post['params']);
+            }
+            if (!empty($post['headers'])) {
+                $post['headers'] = array_values($post['headers']);
+            }
+            if (!empty($post['formdata'])) {
+                $post['formdata'] = array_values($post['formdata']);
+            }
+            if (!empty($post['urlencode'])) {
+                $post['urlencode'] = array_values($post['urlencode']);
+            }
+            $api                = new Api();
+            if ($api->allowField(true)->save($post, ['id' => $post['id']]) > 0) {
+                $this->success('发布成功');
+            }
+            $this->error('发布失败');
 
         } else {
             $id  = $this->request->get('id', 0);

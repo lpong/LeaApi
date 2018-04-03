@@ -18,7 +18,7 @@ class Msg extends Model
     //发消息
     public static function send($user_id, $msg)
     {
-        if (self::create(['user_id' => $user_id, 'msg' => $msg])) {
+        if (self::create(['user_id' => $user_id, 'msg' => $msg, 'send_id' => session('user.id')])) {
             return true;
         }
         return false;

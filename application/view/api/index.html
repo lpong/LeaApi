@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>故障公告页</title>
+    <title>{$name}|{:config('app_name')}</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -33,7 +33,11 @@
                                 <li>
                                     <a href="#api-{$vo.id}" data-id="{$vo.id}">
                                         <cite>
-                                            <notin name="vo.id" value="$read"><span class="layui-badge-dot"></span><else /><span class="layui-badge-dot none"></span></notin> {$vo.name}
+                                            <notin name="vo.id" value="$read">
+                                                <span class="layui-badge-dot"></span>
+                                                <else />
+                                                <span class="layui-badge-dot none"></span>
+                                            </notin> {$vo.name}
                                         </cite>
                                         <em>{$vo.method}</em>
                                     </a>
@@ -45,7 +49,7 @@
             </ul>
         </div>
         <div class="site-content">
-            <if condition="session('user.id')==$user_id">
+            <if condition="$edit_auth">
                 <div class="layui-card">
                     <div class="layui-card-body">
                         <a href="{:url('category/add')}" class="layui-btn layui-btn-primary ajax-edit-api">
@@ -78,7 +82,7 @@
                             <div class="layui-card-body">
                                 <h1 class="site-h1">
                                     <i class="layui-icon">&#xe600;</i> {$item.title|highLight|raw}
-                                    <if condition="session('user.id')==$user_id">
+                                    <if condition="$edit_auth">
                                         <div class="layui-btn-group right">
                                             <a href="{:url('category/edit',['id'=>$item['id']])}" class="layui-btn layui-btn-primary layui-btn-sm ajax-edit-api" title="编辑：{$item.title|default=''}">
                                                 <i class="layui-icon">&#xe642;</i>
@@ -101,7 +105,7 @@
                                         <a href="#api-{$vo.id}">
                                             <i class="layui-icon">&#xe600;</i>
                                         </a> {$vo.name|highLight|raw}
-                                        <if condition="session('user.id')==$user_id">
+                                        <if condition="$edit_auth">
                                             <div class="layui-btn-group right">
                                                 <a href="{:url('response/add',['id'=>$vo['id']])}" class="layui-btn layui-btn-primary layui-btn-sm ajax-edit-api" title="添加响应内容">
                                                     <i class="layui-icon">&#xe654;</i>
@@ -150,8 +154,8 @@
                                         <fieldset class="layui-elem-field layui-field-title">
                                             <legend> BODY</legend>
                                         </fieldset>
-                                        <notempty name="vo.formdata">
-                                            <php>$formdata = json_decode($vo['formdata'],true);</php>
+                                        <php>$formdata = json_decode($vo['formdata'],true);</php>
+                                        <notempty name="formdata">
                                             <p style="margin-top: 20px" class="code">form-data:</p>
                                             <table class="layui-table" lay-size="sm">
                                                 <colgroup>
@@ -186,8 +190,8 @@
                                                 </tbody>
                                             </table>
                                         </notempty>
-                                        <notempty name="vo.urlencoded">
-                                            <php>$urlencoded = json_decode($vo['urlencoded'],true);</php>
+                                        <php>$urlencoded = json_decode($vo['urlencoded'],true);</php>
+                                        <notempty name="urlencoded">
                                             <p style="margin-top: 20px" class="code">x-www-form-urlencode:</p>
                                             <table class="layui-table" lay-size="sm">
                                                 <colgroup>
@@ -223,6 +227,7 @@
                                             </table>
                                         </notempty>
                                         <notempty name="vo.raw">
+                                            <p style="margin-top: 20px" class="code">raw:</p>
                                             <div class="response" style="margin-top: 20px">
                                                 <pre class="code"></pre>
                                                 <textarea style="height: 1px;width: 1px;">
@@ -230,7 +235,6 @@
                                                 </textarea>
                                             </div>
                                         </notempty>
-
                                         <!-- 响应内容 -->
                                         <notempty name="vo.response">
                                             <fieldset class="layui-elem-field layui-field-title">
@@ -240,19 +244,26 @@
                                             </div>
                                             <ul class="layui-tab-title">
                                                 <volist name="vo.response" id="v">
-                                                    <li lay-id="{$v.id}" <eq name="i" value="1">class="layui-this"</eq>
-                                                        > {$v.name|highLight}
+                                                    <li lay-id="{$v.id}" <eq name="i" value="1">class="layui-this"</eq> > {$v.name|highLight}
                                                         <span class="copy layui-badge layui-bg-black" data-clipboard-action="copy" data-clipboard-target="#res-{$v.id}">复制</span>
+                                                        <if ($edit_auth) AND ($is_self)>
+                                                            &nbsp;
+                                                            <span class="layui-badge-rim ajax-edit-api" data-url="{:url('response/edit',['id'=>$v['id']])}"> 编辑 </span>
+                                                            <span class="layui-badge-rim ajax-set-api" data-url="{:url('response/delete',['id'=>$v['id']])}"> 删除 </span>
+                                                        </if>
                                                     </li>
                                                 </volist>
                                             </ul>
                                             <div class="layui-tab-content">
                                                 <volist name="vo.response" id="v">
-                                                    <div class="layui-tab-item  <eq name='i' value='1'>layui-show</eq>">
+                                                    <div class="layui-tab-item <eq name='i' value='1'>layui-show</eq>">
                                                         <div class="response">
                                                             <pre class="code"></pre>
                                                             <textarea style="height: 1px;width: 1px;" id="res-{$v.id}"> {$v.body|default=''|raw}</textarea>
                                                         </div>
+                                                        <notempty name="v.remark">
+                                                            <blockquote class="layui-elem-quote">{$v.remark|highLight|raw}</blockquote>
+                                                        </notempty>
                                                     </div>
                                                 </volist>
                                             </div>

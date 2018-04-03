@@ -14,6 +14,17 @@
                     <div class="layui-form-mid layui-word-aux">JSON格式˝</div>
                 </div>
             </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">导入到</label>
+                <div class="layui-input-block">
+                    <select name="project_id" lay-verify="required">
+                        <option value="">新项目</option>
+                        <volist name="list" id="vo">
+                            <option value="{$vo.id|encrypt}">{$vo.name}</option>
+                        </volist>
+                    </select>
+                </div>
+            </div>
         </form>
     </div>
 </div>

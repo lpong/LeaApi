@@ -17,6 +17,7 @@ class ProjectUser extends Model
 
 
     public static $auth = [
+        'self'  => '所有',
         'read'  => '读',
         'write' => '读，写',
     ];

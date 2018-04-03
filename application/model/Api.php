@@ -13,6 +13,11 @@ use think\Model;
 class Api extends Model
 {
 
+    protected $readonly = [
+        'project_id',
+        'user_id',
+    ];
+
 
     /**
      * 所属项目

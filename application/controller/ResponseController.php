@@ -11,7 +11,9 @@ namespace app\controller;
 use app\library\Auth;
 use app\library\Y;
 use app\model\Api;
+use app\model\ApiRead;
 use app\model\ApiResponse;
+use think\Db;
 use think\Request;
 
 class ResponseController extends BaseController
@@ -28,10 +30,17 @@ class ResponseController extends BaseController
             if (!$validate->check($post)) {
                 $this->error($validate->getError());
             }
-            $post['project_id'] = session('project_id');
-            $post['user_id']    = session('user.id');
+            $post['project_id'] = $request->post('_pid', '', 'decrypt');
+            if (!$post['project_id']) {
+                $this->error('参数异常，请刷新页面重试');
+            }
+            if (!$this->isCanWithProjectId($post['project_id'])) {
+                $this->error('您没有权限发布内容');
+            }
+            $post['user_id'] = session('user.id');
             if ((new ApiResponse())->save($post) !== false) {
-                $this->success('添加成功');
+                ApiRead::where('api_id', $post['api_id'])->delete();
+                $this->success('添加成功', '/reload');
             }
             $this->error('添加失败');
         } else {
@@ -46,23 +55,24 @@ class ResponseController extends BaseController
     public function edit(Request $request)
     {
         if ($request->isPost()) {
-            $post     = $request->only(['title', 'sort', 'status', 'remark', 'id']);
+            $post     = $request->only(['name', 'body', 'remark', 'id']);
             $validate = new \app\validate\ApiResponse();
             if (!$validate->check($post)) {
                 $this->error($validate->getError());
             }
-            if ((new ApiResponse())->save($post, ['id' => $post['id'], 'user_id' => session('user.id')]) !== false) {
-                $this->success('更新成功');
+            if ((new ApiResponse())->save($post, ['id' => $post['id'], 'user_id' => $this->user_id]) !== false) {
+                ApiRead::where('api_id', ApiResponse::where('id', $post['id'])->value('api_id'))->delete();
+                $this->success('更新成功', '/reload');
             }
             $this->error('更新失败');
         } else {
             $id       = $request->get('id', 0);
-            $category = ApiResponse::get($id);
-            if (!$category || $category->user_id != session('user.id')) {
-                $this->error('该分类不存在');
+            $response = ApiResponse::get($id);
+            if (!$response || $response->user_id != $this->user_id) {
+                $this->error('该内容不存在');
             }
             return view('edit', [
-                'category' => $category
+                'response' => $response
             ]);
         }
     }
@@ -71,8 +81,9 @@ class ResponseController extends BaseController
     {
         $id = $request->get('id', 0);
 
-        if (ApiResponse::where('id', $id)->where('user_id', session('user.id'))->delete()) {
-            $this->success('删除成功');
+        if (ApiResponse::where('id', $id)->where('user_id', $this->user_id)->delete()) {
+            ApiRead::where('api_id', ApiResponse::where('id', $id)->value('api_id'))->delete();
+            $this->success('删除成功', '/reload');
         }
         $this->error('删除失败');
 

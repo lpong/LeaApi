@@ -209,7 +209,7 @@ class ProjectController extends BaseController
     {
         $id   = $this->request->get('id', 0);
         $info = ProjectUser::get($id);
-        if (!$info || $info['status'] == 2) {
+        if (!$info || $info['status'] == 2 || $info['user_id'] == $this->user_id) {
             $this->error('当前信息无法操作');
         }
         $project = Project::get($info['project_id']);
@@ -230,7 +230,7 @@ class ProjectController extends BaseController
     {
         $id   = $this->request->get('id', 0);
         $info = ProjectUser::get($id);
-        if (!$info || $info['status'] == 2) {
+        if (!$info || $info['status'] == 2 || $info['user_id'] == $this->user_id) {
             $this->error('当前信息无法操作');
         }
         $project = Project::get($info['project_id']);
@@ -308,11 +308,29 @@ class ProjectController extends BaseController
     public function import()
     {
         if ($this->request->isGet()) {
-            return view();
+            $list = Db::name('project_user')->alias('a')
+                ->field('p.id,p.name')
+                ->leftJoin('project p', 'a.project_id=p.id')
+                ->leftJoin('user u', 'u.id=p.user_id')
+                ->where('a.user_id', $this->user_id)
+                ->where('a.status', 'in', '0,1')//看 不看
+                ->where('a.auth', 'in', 'self,write')
+                ->where('p.status', 'in', '0,1')
+                ->order('a.id desc')
+                ->select();
+
+            return view('import', [
+                'list' => $list
+            ]);
         }
 
-        $v    = $this->request->post('v', '');
-        $file = $this->request->post('file', '');
+        $v          = $this->request->post('v', '');
+        $project_id = $this->request->post('project_id');
+        if (!empty($project_id)) {
+            $project_id = decrypt($project_id);
+        }
+        $project_id = is_numeric($project_id) && $project_id > 0 ? $project_id : 0;
+        $file       = $this->request->post('file', '');
 
         if ($v != 'p-2.1') {
             $this->error('版本不支持');
@@ -326,42 +344,55 @@ class ProjectController extends BaseController
         }
 
 
-        Db::transaction(function () use ($data) {
+        Db::transaction(function () use ($data, $project_id) {
             if ($data) {
                 $user_id = session('user.id');
                 //项目信息
-                $project = Project::create([
-                    'user_id' => $user_id,
-                    'name'    => $data['info']['name'],
-                    'remark'  => $data['info']['description'],
-                    'sort'    => 0,
-                    'status'  => 1
-                ]);
-
-                ProjectUser::create([
-                    'user_id'    => $user_id,
-                    'project_id' => $project->id,
-                    'auth'       => 'self',
-                    'status'     => 1
-                ]);
+                if ($project_id > 0) {
+                    (new Project())->save([
+                        'remark' => $data['info']['description'],
+                    ], ['id' => $project_id]);
+                } else {
+                    $project = Project::create([
+                        'user_id' => $user_id,
+                        'name'    => $data['info']['name'],
+                        'remark'  => $data['info']['description'],
+                        'sort'    => 0,
+                        'status'  => 1
+                    ]);
+                    ProjectUser::create([
+                        'user_id'    => $user_id,
+                        'project_id' => $project->id,
+                        'auth'       => 'self',
+                        'status'     => 1
+                    ]);
+                    $project_id = $project->id;
+                }
 
                 //添加分类
                 if ($data['item']) {
                     foreach ($data['item'] as $ca) {
-                        $category = Category::create([
-                            'project_id' => $project->id,
-                            'user_id'    => $user_id,
-                            'title'      => $ca['name'],
-                            'remark'     => $ca['description'],
-                            'sort'       => 0
-                        ]);
+                        $cate = Category::where('title', $ca['name'])->find();
+                        if (!$cate) {
+                            $category    = Category::create([
+                                'project_id' => $project_id,
+                                'user_id'    => $user_id,
+                                'title'      => $ca['name'],
+                                'remark'     => $ca['description'],
+                                'sort'       => 0
+                            ]);
+                            $category_id = $category->id;
+                        } else {
+                            $category_id = $cate['id'];
+                        }
+
                         if (!empty($ca['item'])) {
                             foreach ($ca['item'] as $val) {
                                 $request = $val['request'];
                                 $temp    = [
                                     'user_id'      => $user_id,
-                                    'project_id'   => $project->id,
-                                    'category_id'  => $category->id,
+                                    'project_id'   => $project_id,
+                                    'category_id'  => $category_id,
                                     'method'       => $request['method'],
                                     'name'         => $val['name'],
                                     'remark'       => empty($request['description']) ? '' : $request['description'],
@@ -374,18 +405,28 @@ class ProjectController extends BaseController
                                     'model'        => isset($request['body']['mode']) ? $request['body']['mode'] : '',
                                     'model_header' => '',
                                 ];
-                                $api     = Api::create($temp);
+
+                                $a = Api::where('url', $temp['url'])->where('project_id', $project_id)->where('method', $temp['method'])->where('name', $val['name'])->find();
+
+                                if (!$a) {
+                                    $api    = Api::create($temp);
+                                    $api_id = $api->id;
+                                } else {
+                                    $api_id = $a['id'];
+                                }
                                 if ($val['response']) {
                                     foreach ($val['response'] as $v) {
-                                        ApiResponse::create([
-                                            'api_id'     => $api->id,
-                                            'project_id' => $project->id,
-                                            'user_id'    => $user_id,
-                                            'name'       => $v['name'],
-                                            'status'     => $v['status'],
-                                            'remark'     => '',
-                                            'body'       => $v['body']
-                                        ]);
+                                        if (!ApiResponse::where('api_id', $api_id)->where('name', $v['name'])->count()) {
+                                            ApiResponse::create([
+                                                'api_id'     => $api_id,
+                                                'project_id' => $project_id,
+                                                'user_id'    => $user_id,
+                                                'name'       => $v['name'],
+                                                'status'     => $v['status'],
+                                                'remark'     => '',
+                                                'body'       => $v['body']
+                                            ]);
+                                        }
                                     }
                                 }
                             }

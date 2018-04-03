@@ -29,8 +29,12 @@
                     </td>
                     <td>{$auth[$vo['auth']]|default=''}</td>
                     <td>
-                        <a href="{:url('project/auth',['id'=>$vo['id']])}"  class="layui-btn layui-btn-sm layui-btn-primary ajax-edit-api">权限</a>
-                        <a href="{:url('project/pUnlink',['id'=>$vo['id']])}" class="layui-btn layui-btn-sm layui-btn-primary ajax-set-api" title="踢出该用户">踢出</a>
+                        <neq name="vo.astatus" value="2">
+                            <if $vo[ 'user_id']!=session( 'user.id')>
+                                <a href="{:url('project/auth',['id'=>$vo['id']])}" class="layui-btn layui-btn-sm layui-btn-primary ajax-edit-api">权限</a>
+                                <a href="{:url('project/pUnlink',['id'=>$vo['id']])}" class="layui-btn layui-btn-sm layui-btn-primary ajax-set-api" title="踢出该用户">踢出</a>
+                            </if>
+                        </neq>
                     </td>
                 </tr>
             </volist>

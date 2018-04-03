@@ -1,0 +1,3422 @@
+{
+	"info": {
+		"_postman_id": "f6ed50a7-26d0-0244-dfc0-a1a597638252",
+		"name": "啪啪",
+		"description": "本地：\n    ip:192.168.33.10\n    port:817\n测试服务器：\n    ip:47.93.187.8\n    port:817\n身份传递方式：在请求 `header` 中加入 `Authorization` 项，值为 `Bearer {{access_token}}`",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "登陆注册和公共接口",
+			"description": "",
+			"item": [
+				{
+					"name": "注册（第一步）",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "mobile",
+									"value": "18210881589",
+									"type": "text",
+									"description": "手机号"
+								},
+								{
+									"key": "code",
+									"value": "e10adc3949ba59abbe56e057f20f883e",
+									"type": "text",
+									"description": "验证码md5"
+								},
+								{
+									"key": "step",
+									"value": "1",
+									"description": "第一步",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/auth/signUp",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"auth",
+								"signUp"
+							]
+						},
+						"description": "注册地域dsfsdfsdf"
+					},
+					"response": [
+						{
+							"id": "821705a9-9db9-4e7d-8dc9-71b25ae45575",
+							"name": "注册（第一步）",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"disabled": false
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "mobile",
+											"value": "18210881589",
+											"type": "text",
+											"description": "手机号"
+										},
+										{
+											"key": "code",
+											"value": "e10adc3949ba59abbe56e057f20f883e",
+											"type": "text",
+											"description": "验证码md5"
+										},
+										{
+											"key": "step",
+											"value": "1",
+											"description": "第一步",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://{{ip}}:{{port}}/v1/auth/signUp",
+									"protocol": "http",
+									"host": [
+										"{{ip}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"v1",
+										"auth",
+										"signUp"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 28 Mar 2018 10:29:54 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Server",
+									"value": "nginx/1.12.2",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.2",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60",
+									"name": "X-RateLimit-Limit",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "56",
+									"name": "X-RateLimit-Remaining",
+									"description": "Custom header"
+								}
+							],
+							"cookie": [],
+							"body": "{\"code\":0,\"msg\":\"success\",\"data\":{\"authorization\":\"eyJpdiI6IlJnUlpMSG56SVFBMDExb3VxZGl5dGc9PSIsInZhbHVlIjoidlVvTVwvbndiMHR5U3B4Tnc1WE55eVpnXC8xUTRJVEpIaHZiMThPd3c0TFBiQ2V4UStZNnFIWUR1SEY2T1pKRm80RDdCWU9VcVV2a0hOV1dWdVN2blhKYlF2c3FwbWQ1NXRUSHBOSmppVjFGTnJaeDFhZGdpeVdGTm5CNTNXRTAwTSIsIm1hYyI6ImIyNjllNDk4Yzg2MzA0ODFkNGUwODBhODkzMWU0OTI5ZTllM2ZkZmM0M2FjNjViNTI4Mzk1MWEyYTAxN2Q1NGUifQ==\"}}"
+						}
+					]
+				},
+				{
+					"name": "注册（第二步）",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "mobile",
+									"value": "18210881589",
+									"type": "text",
+									"description": "手机号"
+								},
+								{
+									"key": "nickname",
+									"value": "昵称",
+									"type": "text",
+									"description": "昵称"
+								},
+								{
+									"key": "password",
+									"value": "e10adc3949ba59abbe56e057f20f883e",
+									"type": "text",
+									"description": "密码 sha1"
+								},
+								{
+									"key": "step",
+									"value": "2",
+									"type": "text",
+									"description": ""
+								},
+								{
+									"key": "authorization",
+									"value": "eyJpdiI6IlJnUlpMSG56SVFBMDExb3VxZGl5dGc9PSIsInZhbHVlIjoidlVvTVwvbndiMHR5U3B4Tnc1WE55eVpnXC8xUTRJVEpIaHZiMThPd3c0TFBiQ2V4UStZNnFIWUR1SEY2T1pKRm80RDdCWU9VcVV2a0hOV1dWdVN2blhKYlF2c3FwbWQ1NXRUSHBOSmppVjFGTnJaeDFhZGdpeVdGTm5CNTNXRTAwTSIsIm1hYyI6ImIyNjllNDk4Yzg2MzA0ODFkNGUwODBhODkzMWU0OTI5ZTllM2ZkZmM0M2FjNjViNTI4Mzk1MWEyYTAxN2Q1NGUifQ==",
+									"description": "临时授权码",
+									"type": "text"
+								},
+								{
+									"key": "face",
+									"value": "",
+									"description": "头像",
+									"type": "text"
+								},
+								{
+									"key": "sex",
+									"value": "男",
+									"description": "男,女",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/auth/signUp",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"auth",
+								"signUp"
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "70a37368-a631-451e-8537-169b220c7cc4",
+							"name": "注册（第二步）",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"disabled": false
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "mobile",
+											"value": "18210881589",
+											"type": "text",
+											"description": "手机号"
+										},
+										{
+											"key": "nickname",
+											"value": "昵称",
+											"type": "text",
+											"description": "昵称"
+										},
+										{
+											"key": "password",
+											"value": "e10adc3949ba59abbe56e057f20f883e",
+											"type": "text",
+											"description": "密码 sha1"
+										},
+										{
+											"key": "step",
+											"value": "2",
+											"type": "text",
+											"description": ""
+										},
+										{
+											"key": "authorization",
+											"value": "eyJpdiI6IlJnUlpMSG56SVFBMDExb3VxZGl5dGc9PSIsInZhbHVlIjoidlVvTVwvbndiMHR5U3B4Tnc1WE55eVpnXC8xUTRJVEpIaHZiMThPd3c0TFBiQ2V4UStZNnFIWUR1SEY2T1pKRm80RDdCWU9VcVV2a0hOV1dWdVN2blhKYlF2c3FwbWQ1NXRUSHBOSmppVjFGTnJaeDFhZGdpeVdGTm5CNTNXRTAwTSIsIm1hYyI6ImIyNjllNDk4Yzg2MzA0ODFkNGUwODBhODkzMWU0OTI5ZTllM2ZkZmM0M2FjNjViNTI4Mzk1MWEyYTAxN2Q1NGUifQ==",
+											"description": "临时授权码",
+											"type": "text"
+										},
+										{
+											"key": "face",
+											"value": "",
+											"description": "头像",
+											"type": "text"
+										},
+										{
+											"key": "sex",
+											"value": "男",
+											"description": "男,女",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://{{ip}}:{{port}}/v1/auth/signUp",
+									"protocol": "http",
+									"host": [
+										"{{ip}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"v1",
+										"auth",
+										"signUp"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 28 Mar 2018 10:30:18 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Server",
+									"value": "nginx/1.12.2",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.2",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60",
+									"name": "X-RateLimit-Limit",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58",
+									"name": "X-RateLimit-Remaining",
+									"description": "Custom header"
+								}
+							],
+							"cookie": [],
+							"body": "{\"code\":0,\"msg\":\"success\",\"data\":{\"access_token\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTkyLjE2OC42Ni4xMDo4MTcvdjEvYXV0aC9zaWduVXAiLCJpYXQiOjE1MjIyMzMwMTgsImV4cCI6MTUyMzQ0MjYxOCwibmJmIjoxNTIyMjMzMDE4LCJqdGkiOiJvMWFmRHQxN3lET29qdVBVIiwic3ViIjoyMzE2ODUsInBydiI6ImY2YjcxNTQ5ZGI4YzJjNDJiNzU4MjdhYTQ0ZjAyYjdlZTUyOWQyNGQifQ.wmmVp1XnWgHM0YX4U0WDEdZdSV30qkqlff3NrqFuoYY\",\"token_type\":\"Bearer\",\"expires_in\":\"1209600\"}}"
+						}
+					]
+				},
+				{
+					"name": "登陆",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"description": "手机号/用户名",
+									"key": "mobile",
+									"type": "text",
+									"value": "18210881586"
+								},
+								{
+									"description": "密码，md5",
+									"key": "password",
+									"type": "text",
+									"value": "e10adc3949ba59abbe56e057f20f883e"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "app初始化配置",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"description": "手机号/用户名",
+									"key": "mobile",
+									"type": "text",
+									"value": "18210881586"
+								},
+								{
+									"description": "密码，md5",
+									"key": "password",
+									"type": "text",
+									"value": "e10adc3949ba59abbe56e057f20f883e"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/init",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"init"
+							]
+						},
+						"description": "html5： 相关html5\ngoods_category:商品分类\ncommunity_category:社区分类"
+					},
+					"response": [
+						{
+							"id": "e6bc9353-6509-4f9f-be09-a6e5cb893f2d",
+							"name": "app初始化配置",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"description": "手机号/用户名",
+											"key": "mobile",
+											"type": "text",
+											"value": "18210881586"
+										},
+										{
+											"description": "密码，md5",
+											"key": "password",
+											"type": "text",
+											"value": "e10adc3949ba59abbe56e057f20f883e"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://{{ip}}:{{port}}/v1/init",
+									"protocol": "http",
+									"host": [
+										"{{ip}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"v1",
+										"init"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 28 Mar 2018 10:30:37 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Server",
+									"value": "nginx/1.12.2",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.2",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60",
+									"name": "X-RateLimit-Limit",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57",
+									"name": "X-RateLimit-Remaining",
+									"description": "Custom header"
+								}
+							],
+							"cookie": [],
+							"body": "{\"code\":0,\"msg\":\"success\",\"data\":{\"html5\":{\"register_agreement\":\"http:\\/\\/192.168.66.10:817\\/html\\/1\",\"money_reward_agreement\":\"http:\\/\\/192.168.66.10:817\\/html\\/2\"},\"goods_category\":[{\"id\":\"1\",\"title\":\"SM\\u5957\\u88c5\",\"icon\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/category\\/1c8fd5hdti3d1trr12cn44913c56.png\"},{\"id\":\"2\",\"title\":\"\\u60c5\\u8da3\\u73a9\\u5177\",\"icon\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/category\\/1c8fd5sos1n1h1stcbt51feadn06.png\"},{\"id\":\"4\",\"title\":\"\\u539f\\u5473\\u5185\\u8863\",\"icon\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/category\\/1c8fd6g9h1loumv11t7m1gtq1acq6.png\"},{\"id\":\"5\",\"title\":\"\\u5ef6\\u65f6\\u55b7\\u5242\",\"icon\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/category\\/1c8fd71f01ekk1t04p061qs41jeh6.png\"},{\"id\":\"6\",\"title\":\"\\u6da6\\u6ed1\\u52a9\\u5174\",\"icon\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/category\\/1c8fd7hg2143s1re913oe10la1ba6.png\"},{\"id\":\"7\",\"title\":\"\\u7f8e\\u5f0f\\u8fdb\\u53e3\",\"icon\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/category\\/1c8fd81lrrdj1plq111l4u6uj6.png\"},{\"id\":\"8\",\"title\":\"\\u60c5\\u8da3\\u670d\\u9970\",\"icon\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/category\\/1c8fd9bnb11lphlv5521imhf4s6.png\"}],\"community_category\":[{\"id\":\"1\",\"name\":\"\\u60c5\\u8da3\\u4e70\\u5bb6\\u79c0\",\"cover\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/community\\/1.png\",\"model\":\"bbs\",\"remark\":\"\\u542c\\u8bf4\\u5c0f\\u5996\\u7cbe\\u4eec\\u90fd\\u5728\\u8fd9\\u91cc\"},{\"id\":\"2\",\"name\":\"\\u4e1d\\u4ee4\\u90e8\",\"cover\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/community\\/2.png\",\"model\":\"bbs\",\"remark\":\"\\u4e1d\\u889c\\u7f8e\\u817f\\u96c6\\u4e2d\\u8425\"},{\"id\":\"3\",\"name\":\"\\u5b64\\u7537\\u5be1\\u5973\",\"cover\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/community\\/3.png\",\"model\":\"bbs\",\"remark\":\"\\u60c5\\u611f\\u4ea4\\u53cb\"},{\"id\":\"4\",\"name\":\"\\u6743\\u5229\\u7684\\u6e38\\u620f\",\"cover\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/community\\/4.png\",\"model\":\"bbs\",\"remark\":\"SADOMASOCHISM\"},{\"id\":\"5\",\"name\":\"\\u6587\\u4eba\\u58a8\\u5ba2\",\"cover\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/community\\/5.png\",\"model\":\"bbs\",\"remark\":\"\\u98ce\\u82b1\\u96ea\\u6708\\u7684\\u6587\\u5b66\\u533a\"},{\"id\":\"6\",\"name\":\"\\u60c5\\u8da3\\u95e8\\u8bca\\u90e8\",\"cover\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/community\\/6.png\",\"model\":\"bbs\",\"remark\":\"\\u4e24\\u6027\\u5065\\u5eb7\\u95ee\\u9898\\u54a8\\u8be2\"},{\"id\":\"7\",\"name\":\"\\u5403\\u559d\\u73a9\\u4e50\",\"cover\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/community\\/7.png\",\"model\":\"bbs\",\"remark\":\"\\u82b1\\u8fb9\\u8da3\\u95fb \\u7f8e\\u98df\\u65c5\\u884c\"},{\"id\":\"8\",\"name\":\"\\u597d\\u83b1\\u575e\\u653e\\u6620\\u793e\",\"cover\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/community\\/8.png\",\"model\":\"video\",\"remark\":\"\\u5f00\\u542f\\u4f60\\u7684\\u5965\\u65af\\u5361\\u521b\\u4f5c\\u4e4b\\u65c5\"}],\"user_info\":{\"sexual\":[{\"key\":\"1\",\"value\":\"\\u7231\\u597d\\u7537\"},{\"key\":\"2\",\"value\":\"\\u7231\\u597d\\u5973\"},{\"key\":\"4\",\"value\":\"\\u53cc\\u6027\\u604b\"},{\"key\":\"8\",\"value\":\"\\u65e0\\u6027\\u604b\"}],\"friend_way\":[{\"key\":\"1\",\"value\":\"\\u6c42\\u64a9\"},{\"key\":\"2\",\"value\":\"\\u968f\\u7f18\"},{\"key\":\"4\",\"value\":\"\\u52ff\\u6270\"}],\"marriage\":[{\"key\":\"1\",\"value\":\"\\u5355\\u8eab\"},{\"key\":\"2\",\"value\":\"\\u604b\\u7231\\u4e2d\"},{\"key\":\"4\",\"value\":\"\\u5df2\\u5a5a\"},{\"key\":\"8\",\"value\":\"\\u79bb\\u5f02\\/\\u4e27\\u5076\\u4e2d\"}]},\"order_status\":[{\"status\":\"\",\"title\":\"\\u5168\\u90e8\"},{\"status\":\"10\",\"title\":\"\\u5f85\\u4ed8\\u6b3e\"},{\"status\":\"20\",\"title\":\"\\u5f85\\u53d1\\u8d27\"},{\"status\":\"30\",\"title\":\"\\u5f85\\u6536\\u8d27\"},{\"status\":\"40\",\"title\":\"\\u5f85\\u8bc4\\u4ef7\"}],\"sell_order_status\":[{\"status\":\"20,30,60\",\"title\":\"\\u5168\\u90e8\"},{\"status\":\"20\",\"title\":\"\\u5f85\\u53d1\\u8d27\"},{\"status\":\"30\",\"title\":\"\\u5df2\\u53d1\\u8d27\"},{\"status\":\"60\",\"title\":\"\\u4ea4\\u6613\\u6210\\u529f\"}],\"server\":{\"version\":\"0.3.1\",\"time\":\"1522233037\",\"datetime\":\"2018-03-28 18:30:37\",\"env\":\"local\"}}}"
+						}
+					]
+				},
+				{
+					"name": "发送短信验证码（登陆/修改密码/其他）",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "mobile",
+									"value": "18210881589",
+									"type": "text",
+									"description": "手机号"
+								},
+								{
+									"key": "mark",
+									"value": "signUp",
+									"type": "text",
+									"description": "login,signUp,editMobile,forgetPassword"
+								},
+								{
+									"key": "sign",
+									"value": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+									"type": "text",
+									"description": "签名"
+								},
+								{
+									"key": "rand_str",
+									"value": "e10adc3949ba59abbe56e057f20f883e",
+									"description": "32位随机字符串",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/sendSms",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"sendSms"
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "e4b92011-8dfa-49ad-8e48-32119c3c4629",
+							"name": "发送短信验证码（登陆/修改密码/其他）",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"disabled": false
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "mobile",
+											"value": "18210881589",
+											"type": "text",
+											"description": "手机号"
+										},
+										{
+											"key": "mark",
+											"value": "signUp",
+											"type": "text",
+											"description": "login,signUp,editMobile,forgetPassword"
+										},
+										{
+											"key": "sign",
+											"value": "7c4a8d09ca3762af61e59520943dc26494f8941b",
+											"type": "text",
+											"description": "签名"
+										},
+										{
+											"key": "rand_str",
+											"value": "e10adc3949ba59abbe56e057f20f883e",
+											"description": "32位随机字符串",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://{{ip}}:{{port}}/v1/sendSms",
+									"protocol": "http",
+									"host": [
+										"{{ip}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"v1",
+										"sendSms"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 28 Mar 2018 10:29:22 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Server",
+									"value": "nginx/1.12.2",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.2",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60",
+									"name": "X-RateLimit-Limit",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57",
+									"name": "X-RateLimit-Remaining",
+									"description": "Custom header"
+								}
+							],
+							"cookie": [],
+							"body": "{\"code\":0,\"msg\":\"\\u53d1\\u9001\\u6210\\u529f\",\"data\":{}}"
+						}
+					]
+				},
+				{
+					"name": "修改密码/忘记密码",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "mobile",
+									"value": "18210881586",
+									"description": "手机号/用户名",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "e10adc3949ba59abbe56e057f20f883e",
+									"description": "密码",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "code",
+									"value": "e10adc3949ba59abbe56e057f20f883e",
+									"description": "短信验证码，测试阶段为1234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/auth/forgetPassword",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"auth",
+								"forgetPassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取七牛云上传信息",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "mobile",
+									"value": "18210881586",
+									"description": "手机号/用户名",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456",
+									"description": "密码",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "1234",
+									"description": "短信验证码，测试阶段为1234",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/upload?type=image",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"upload"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "image"
+								}
+							]
+						},
+						"description": "获取的token仅能上传一张图片，多个将覆盖上一个，就是说当用户保存相关数据后应删除该token"
+					},
+					"response": []
+				},
+				{
+					"name": "上传测试样例",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "token",
+									"value": "QY9AgTB1DBPrgugun0DLZ0hM7VO0eJT5_lupBYi8:qpvMNq7RkFxycBB5XkB-GmNohYs=:eyJzY29wZSI6ImltYWdlIiwiZGVhZGxpbmUiOjE1MTk5NzQyMzB9",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "file",
+									"value": "",
+									"description": "",
+									"type": "file"
+								},
+								{
+									"key": "key",
+									"value": "",
+									"description": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://upload-z1.qiniup.com",
+							"protocol": "http",
+							"host": [
+								"upload-z1",
+								"qiniup",
+								"com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "刷新授权",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/auth/refresh",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"auth",
+								"refresh"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "退出登录",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/auth/logout",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"auth",
+								"logout"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "获取个人信息",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/auth/user",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"auth",
+								"user"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "广告列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/ad/1",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"ad",
+								"1"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "社区",
+			"description": "",
+			"item": [
+				{
+					"name": "获取社区分类",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/community/category",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"community",
+								"category"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "发布视频或帖子",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "video",
+									"value": "IMG_0381.MP4",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "工作的小伙伴们",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "postition",
+									"value": "金域国际",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "city_code",
+									"value": "010",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "234.2342323",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "234.234",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "cover",
+									"value": "2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "pictures",
+									"value": "234,234",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/community/publish",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"community",
+								"publish"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "视频列表或帖子列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "tag",
+									"value": "new",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/community/posts?tag=new&category_id=8",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"community",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "tag",
+									"value": "new"
+								},
+								{
+									"key": "category_id",
+									"value": "8"
+								}
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "更新帖子或视频浏览数量",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/community/updateView/2",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"community",
+								"updateView",
+								"2"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "更新帖子或视频分销数量",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/community/updateShare/2",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"community",
+								"updateShare",
+								"2"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "发布评论",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "content",
+									"value": "bbs",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/community/publishComment/2",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"community",
+								"publishComment",
+								"2"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "评论列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/community/comments/2",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"community",
+								"comments",
+								"2"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "点赞",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/community/zan/2",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"community",
+								"zan",
+								"2"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "转发",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/community/transmit/2",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"community",
+								"transmit",
+								"2"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "送礼物",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/communityzan/2",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"communityzan",
+								"2"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "获取一个帖子收到的礼物",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/community/gifts/20",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"community",
+								"gifts",
+								"20"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "礼物列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/gifts",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"gifts"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "赠送礼物",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "gift_id",
+									"value": "10000",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "post_id",
+									"value": "23",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/community/gift",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"community",
+								"gift"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "用户中心",
+			"description": "",
+			"item": [
+				{
+					"name": "修改个人信息",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nickname\":\"大少爷\",\n  \"face\":\"face-5a9678cfc02ed\",\n  \"sex\":\"女\",\n  \"birthday\":\"2018-01-01\",\n  \"introduce\":\"你牛逼你上\",\n  \"marriage\":\"1\",\n  \"friend_way\":\"2\",\n  \"sexual\":\"4\",\n  \"city\":\"北京\",\n  \"photos\":[\n    {\"image_key\":\"x.gif\",\"operate\":2,\"id\":116012},\n    {\"image_key\":\"sdfdasfasfdasf\",\"operate\":2,\"id\":86120}\n  ],\n  \"location_province\":\"12\",\n  \"location_city\":\"12\",\n  \"hometown_province\":\"10\",\n  \"hometown_city\":\"10\"\n}"
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/user/info",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"user",
+								"info"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "获取一个人的资料",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nickname\":\"大少爷\",\n  \"face\":\"face-5a9678cfc02ed\",\n  \"sex\":\"女\",\n  \"birthday\":\"2018-01-01\",\n  \"introduce\":\"你牛逼你上\",\n  \"marriage\":\"1\",\n  \"friend_way\":\"2\",\n  \"sexual\":\"4\",\n  \"city\":\"北京\",\n  \"photos\":[\n    {\"photo\":\"asfdadsfas\",\"status\":2,\"id\":142776},\n    {\"photo\":\"sdfdasfasfdasf\",\"status\":2,\"id\":142775}\n  ],\n  \"location_province\":\"12\",\n  \"location_city\":\"12\",\n  \"location_city_code\":\"010\",\n  \"hometown_province\":\"10\",\n  \"hometown_city\":\"10\"\n}"
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/user/info/5006",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"user",
+								"info",
+								"5006"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "添加、修改收货地址",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "郑鹏111",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "mobile",
+									"value": "18210881586",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "ad_code",
+									"value": "10001",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "city_code",
+									"value": "010",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "position",
+									"value": "北京市昌平区",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "position_detail",
+									"value": "金域国际中心",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "103.2342",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "34.23232",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "id",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/user/address",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"user",
+								"address"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "删除收货地址",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/user/address/1",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"user",
+								"address",
+								"1"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "收货地址列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/user/address",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"user",
+								"address"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "关注一个人",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "follow_user_id",
+									"value": "1011012",
+									"description": "要关注的人",
+									"type": "text"
+								},
+								{
+									"key": "is_cancel",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/user/follow",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"user",
+								"follow"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "关注列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/user/follow",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"user",
+								"follow"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "粉丝列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/user/fans",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"user",
+								"fans"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "好友",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/user/friend",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"user",
+								"friend"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "红包",
+			"description": "",
+			"item": [
+				{
+					"name": "发红包",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "bean",
+									"value": "10000",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "message",
+									"value": "孙子们，快来抢",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/redPacket/hand",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"redPacket",
+								"hand"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "抢红包",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "prid",
+									"value": "eyJpdiI6IjNYaTRETTVnaWMzdjVYeTlHRWNKc1E9PSIsInZhbHVlIjoia2dYNERXUjUrcERqWnByTUszemI3QT09IiwibWFjIjoiMmRlMjE4NjczNDVhMTFiMzkyNDRhZDk0ZDVjN2I2NGNjYWFkMjRmNzRmOTk4ZDI0MTc3ODZjNjk1OTQ5OWE3ZSJ9",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/redPacket/rob",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"redPacket",
+								"rob"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "商品",
+			"description": "",
+			"item": [
+				{
+					"name": "发布商品",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "时光情缘 蕾丝裙半身裙连衣裙修身显瘦性感包臀骚情趣内衣性感透明诱惑睡衣 新品 1053黑色 均码",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "时光情缘 蕾丝裙半身裙连衣裙修身显瘦性感包臀骚情趣内衣性感透明诱惑睡衣 新品 1053黑色 均码",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "8",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "picture[]",
+									"value": "goods/picture/1c95m57fpqp6vpt1nmnks528la.jpg",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "city_code",
+									"value": "010",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "longitude",
+									"value": "",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "latitude",
+									"value": "",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "10000",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "freight",
+									"value": "1000",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "picture[]",
+									"value": "FgQAs7qCkAQOv_rTSL-GT8k7C0do",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/goods/publish",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"goods",
+								"publish"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": [
+						{
+							"id": "f1a328dd-81fa-4dca-8fe2-948c5cdb237d",
+							"name": "发布商品",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "时光情缘 蕾丝裙半身裙连衣裙修身显瘦性感包臀骚情趣内衣性感透明诱惑睡衣 新品 1053黑色 均码",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "content",
+											"value": "时光情缘 蕾丝裙半身裙连衣裙修身显瘦性感包臀骚情趣内衣性感透明诱惑睡衣 新品 1053黑色 均码",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "category_id",
+											"value": "8",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "picture[]",
+											"value": "goods/picture/1c95m57fpqp6vpt1nmnks528la.jpg",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "city_code",
+											"value": "010",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "longitude",
+											"value": "",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "latitude",
+											"value": "",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "price",
+											"value": "0.01",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "freight",
+											"value": "10",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "picture[]",
+											"value": "FgQAs7qCkAQOv_rTSL-GT8k7C0do",
+											"description": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://{{ip}}:{{port}}/v1/goods/publish",
+									"protocol": "http",
+									"host": [
+										"{{ip}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"v1",
+										"goods",
+										"publish"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 28 Mar 2018 08:14:44 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Server",
+									"value": "nginx/1.12.2",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.2",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60",
+									"name": "X-RateLimit-Limit",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59",
+									"name": "X-RateLimit-Remaining",
+									"description": "Custom header"
+								}
+							],
+							"cookie": [],
+							"body": "{\"code\":0,\"msg\":\"\\u53d1\\u5e03\\u6210\\u529f\",\"data\":{}}"
+						}
+					]
+				},
+				{
+					"name": "添加购物车",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\"goods_id\":1001,\"num\":\"-300\",\"spec\":\"红色\",\"operate\":\"insert\"},\n\t{\"goods_id\":1001,\"num\":\"100\",\"spec\":\"绿色\"},\n\t{\"goods_id\":1001,\"num\":\"100\",\"spec\":\"\"}\t\n]"
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/cart",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"cart"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": [
+						{
+							"id": "bb424752-9ee5-46dc-ac86-073bdd6bcc47",
+							"name": "添加购物车",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n\t{\"goods_id\":1001,\"num\":\"-300\",\"spec\":\"红色\",\"operate\":\"delete\"},\n\t{\"goods_id\":1001,\"num\":\"100\",\"spec\":\"绿色\",\"operate\":\"delete\"},\n\t{\"goods_id\":1001,\"num\":\"100\",\"spec\":\"\"}\t\n]"
+								},
+								"url": {
+									"raw": "http://{{ip}}:{{port}}/v1/cart",
+									"protocol": "http",
+									"host": [
+										"{{ip}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"v1",
+										"cart"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 29 Mar 2018 07:19:12 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Server",
+									"value": "nginx/1.12.2",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.2",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60",
+									"name": "X-RateLimit-Limit",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59",
+									"name": "X-RateLimit-Remaining",
+									"description": "Custom header"
+								}
+							],
+							"cookie": [],
+							"body": "{\"code\":0,\"msg\":\"success\",\"data\":{}}"
+						}
+					]
+				},
+				{
+					"name": "购物车列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n\t{\"goods_id\":1001,\"num\":\"100\",\"spec\":\"红色\",\"operate\":\"insert\"},\n\t{\"goods_id\":1001,\"num\":\"100\",\"spec\":\"绿色\"},\n\t{\"goods_id\":1001,\"num\":\"100\",\"spec\":\"\"}\t\n]"
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/cart",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"cart"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "商品列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "prid",
+									"value": "eyJpdiI6IjNYaTRETTVnaWMzdjVYeTlHRWNKc1E9PSIsInZhbHVlIjoia2dYNERXUjUrcERqWnByTUszemI3QT09IiwibWFjIjoiMmRlMjE4NjczNDVhMTFiMzkyNDRhZDk0ZDVjN2I2NGNjYWFkMjRmNzRmOTk4ZDI0MTc3ODZjNjk1OTQ5OWE3ZSJ9",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/goods?is_platform=0&limit=20&sort=price asc&tag=r&page=20&q=sint",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"goods"
+							],
+							"query": [
+								{
+									"key": "category_id",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "is_platform",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "20"
+								},
+								{
+									"key": "sort",
+									"value": "price asc"
+								},
+								{
+									"key": "tag",
+									"value": "r"
+								},
+								{
+									"key": "page",
+									"value": "20"
+								},
+								{
+									"key": "q",
+									"value": "sint"
+								}
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "我发布的商品",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "prid",
+									"value": "eyJpdiI6IjNYaTRETTVnaWMzdjVYeTlHRWNKc1E9PSIsInZhbHVlIjoia2dYNERXUjUrcERqWnByTUszemI3QT09IiwibWFjIjoiMmRlMjE4NjczNDVhMTFiMzkyNDRhZDk0ZDVjN2I2NGNjYWFkMjRmNzRmOTk4ZDI0MTc3ODZjNjk1OTQ5OWE3ZSJ9",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/goods/my",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"goods",
+								"my"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": [
+						{
+							"id": "111be663-f72b-4039-b45f-cdccb286543d",
+							"name": "我发布的商品",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"disabled": false
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "prid",
+											"value": "eyJpdiI6IjNYaTRETTVnaWMzdjVYeTlHRWNKc1E9PSIsInZhbHVlIjoia2dYNERXUjUrcERqWnByTUszemI3QT09IiwibWFjIjoiMmRlMjE4NjczNDVhMTFiMzkyNDRhZDk0ZDVjN2I2NGNjYWFkMjRmNzRmOTk4ZDI0MTc3ODZjNjk1OTQ5OWE3ZSJ9",
+											"description": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://{{ip}}:{{port}}/v1/goods/my?status=1",
+									"protocol": "http",
+									"host": [
+										"{{ip}}"
+									],
+									"port": "{{port}}",
+									"path": [
+										"v1",
+										"goods",
+										"my"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private",
+									"name": "Cache-Control",
+									"description": "Tells all caching mechanisms from server to client whether they may cache this object. It is measured in seconds"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive",
+									"name": "Connection",
+									"description": "Options that are desired for the connection"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "The mime type of this content"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Mar 2018 06:06:39 GMT",
+									"name": "Date",
+									"description": "The date and time that the message was sent"
+								},
+								{
+									"key": "Server",
+									"value": "nginx/1.12.2",
+									"name": "Server",
+									"description": "A name for the server"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": "The form of encoding used to safely transfer the entity to the user. Currently defined methods are: chunked, compress, deflate, gzip, identity."
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/7.2.2",
+									"name": "X-Powered-By",
+									"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60",
+									"name": "X-RateLimit-Limit",
+									"description": "Custom header"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "56",
+									"name": "X-RateLimit-Remaining",
+									"description": "Custom header"
+								}
+							],
+							"cookie": [],
+							"body": "{\"code\":0,\"msg\":\"success\",\"data\":{\"list\":[{\"id\":\"51045\",\"user_id\":\"5002\",\"category_id\":\"4\",\"name\":\"A voluptatum sed quae fugiat consequatur mollitia et nemo.\",\"cover\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c95mjs421ntk7ko1in9q4n1pf1a.jpg\",\"tag\":\"\",\"stocks\":\"794\",\"price\":\"645.00\",\"freight\":\"3.00\",\"status\":\"1\",\"position\":\"\",\"city_code\":\"\",\"longitude\":\"\",\"latitude\":\"\",\"sales\":\"0\",\"view\":\"0\",\"zan\":\"0\",\"comment\":\"0\",\"created_at\":\"2018-03-22 10:16:40\",\"updated_at\":\"2018-03-22 10:16:40\",\"content\":\"Officiis sunt sapiente in quaerat autem. Et quis sed et amet voluptatibus odio aperiam. Non laboriosam temporibus est porro quibusdam unde qui. Quasi velit dolore molestias molestiae non accusamus. Beatae harum molestiae ipsum laborum. Quia voluptas nemo laudantium ipsum sunt et corrupti. Ipsum rerum laborum illum qui sint. Porro omnis deleniti vel voluptatibus. Et repellendus ut officia doloribus soluta voluptatem consequatur architecto. Et aspernatur est perspiciatis esse sint aliquid dolores. Tenetur debitis voluptatem est placeat consequatur sit. Voluptatem itaque fuga molestiae est illum provident. Ullam quia et dolorem beatae incidunt qui. Repudiandae quia et sunt consequatur voluptatem laudantium rerum dicta. Qui neque enim numquam. Eaque in aut nihil ut quo vero. Commodi id deleniti facilis ad. Quia saepe ut itaque. Voluptatem asperiores eos ut adipisci nobis ut. Iure repellendus accusamus hic et unde vitae ratione.\",\"pictures\":[\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c8cj14eb1bc314oacahe5q45m8.png\",\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c8cj14eospu11d1kkc1kv6ijva.png\",\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/FgQAs7qCkAQOv_rTSL-GT8k7C0do\"]},{\"id\":\"51044\",\"user_id\":\"5002\",\"category_id\":\"3\",\"name\":\"Et veritatis illum placeat reprehenderit minima quo.\",\"cover\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c95mjs421ntk7ko1in9q4n1pf1a.jpg\",\"tag\":\"\",\"stocks\":\"758\",\"price\":\"718.00\",\"freight\":\"3.00\",\"status\":\"1\",\"position\":\"\",\"city_code\":\"\",\"longitude\":\"\",\"latitude\":\"\",\"sales\":\"0\",\"view\":\"0\",\"zan\":\"0\",\"comment\":\"0\",\"created_at\":\"2018-03-22 10:16:40\",\"updated_at\":\"2018-03-22 10:16:40\",\"content\":\"Maxime aut eaque ea nostrum et omnis consectetur. Alias corporis sit ullam numquam quas in. Autem pariatur culpa assumenda mollitia inventore. Voluptatem aperiam sed voluptates provident ducimus soluta. Consequatur quia sed dicta dolor. Quam mollitia accusamus est voluptate nobis libero distinctio. Qui rerum non ipsa quia impedit nesciunt. Facilis et nulla hic animi et ut. Voluptas eum et aut atque dolor ullam explicabo. Quo dolore necessitatibus quasi. Sunt amet accusantium ut rerum. Qui ex delectus consequatur at qui. Tenetur sed earum asperiores eligendi quam debitis. Hic in sit eos voluptas quo. Quia eius beatae sint rerum. Et debitis aut incidunt. Et non ut labore eaque sit. Asperiores qui dolorem et nostrum velit eos veritatis. Animi facere eveniet hic nam modi optio. Alias repellat repudiandae quae ipsum quia architecto. Eaque aut excepturi et voluptas esse praesentium.\",\"pictures\":[\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c8cj14eb1bc314oacahe5q45m8.png\",\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c8cj14eospu11d1kkc1kv6ijva.png\",\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/FgQAs7qCkAQOv_rTSL-GT8k7C0do\"]},{\"id\":\"51036\",\"user_id\":\"5002\",\"category_id\":\"6\",\"name\":\"Nihil sit est perspiciatis eos.\",\"cover\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c95mjs421ntk7ko1in9q4n1pf1a.jpg\",\"tag\":\"\",\"stocks\":\"325\",\"price\":\"230.00\",\"freight\":\"3.00\",\"status\":\"1\",\"position\":\"\",\"city_code\":\"\",\"longitude\":\"\",\"latitude\":\"\",\"sales\":\"0\",\"view\":\"0\",\"zan\":\"0\",\"comment\":\"0\",\"created_at\":\"2018-03-22 10:16:40\",\"updated_at\":\"2018-03-22 10:16:40\",\"content\":\"Explicabo excepturi similique soluta commodi. Voluptatem in rerum molestias laboriosam error reprehenderit eaque. Facilis sed voluptas consequuntur dicta placeat a quos odio. Enim vel rerum magnam aut enim voluptatem. Voluptatibus magnam laudantium eum ut consectetur ullam eius rerum. Quia omnis est sed adipisci esse. Perferendis esse aut fuga voluptates ut nihil eum. Quia dolor cum dolores. Qui possimus vitae vel recusandae quis dolor. Quis omnis tempore id dicta repellat facilis sit. Sed sint eum corrupti. Consequatur et numquam voluptate in est aliquam eum nemo. Facilis illo esse perferendis voluptate delectus est. Sapiente quia aspernatur enim deleniti aperiam quidem eos vero. Error reiciendis recusandae quibusdam aut. Unde ut aut dolores unde omnis rerum sequi. Iusto nihil est perferendis architecto dolore et. Magni eius suscipit et sint aut.\",\"pictures\":[\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c8cj14eb1bc314oacahe5q45m8.png\",\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c8cj14eospu11d1kkc1kv6ijva.png\",\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/FgQAs7qCkAQOv_rTSL-GT8k7C0do\"]},{\"id\":\"51031\",\"user_id\":\"5002\",\"category_id\":\"2\",\"name\":\"Sit amet beatae aliquam aut animi.\",\"cover\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c95mjs421ntk7ko1in9q4n1pf1a.jpg\",\"tag\":\"\",\"stocks\":\"910\",\"price\":\"268.00\",\"freight\":\"10.00\",\"status\":\"1\",\"position\":\"\",\"city_code\":\"\",\"longitude\":\"\",\"latitude\":\"\",\"sales\":\"0\",\"view\":\"0\",\"zan\":\"0\",\"comment\":\"0\",\"created_at\":\"2018-03-22 10:16:40\",\"updated_at\":\"2018-03-22 10:16:40\",\"content\":\"Magni quo est minus voluptate minima. Debitis fugit earum rerum dolor et. Sequi soluta ut laboriosam illum sit. Et dolores sed blanditiis debitis. Animi excepturi numquam quas beatae eius soluta. Et maxime autem et ut. Rem voluptas numquam autem aut possimus. Nostrum tempore aliquam provident alias consequuntur necessitatibus. Rerum consectetur vitae molestiae nihil qui facilis. Totam consectetur incidunt totam et eum. Nobis sequi dolorem vitae pariatur dolores eos repellendus facere. Et vero neque voluptatem voluptatibus voluptatem molestiae. Facere soluta ipsam eligendi praesentium non voluptas harum nostrum. Culpa facilis iste voluptatum. Saepe placeat voluptates optio. Esse et corrupti temporibus iusto repellendus ad quas. Aut sequi totam dolore cum autem placeat alias. Similique nisi rerum rerum. Voluptates odit veniam voluptatem iste voluptatibus molestias sit illum. Numquam quis beatae nobis qui. Enim placeat ut asperiores esse minus. Quod rerum aut nobis est.\",\"pictures\":[\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c8cj14eb1bc314oacahe5q45m8.png\",\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c8cj14eospu11d1kkc1kv6ijva.png\",\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/FgQAs7qCkAQOv_rTSL-GT8k7C0do\"]},{\"id\":\"51017\",\"user_id\":\"5002\",\"category_id\":\"7\",\"name\":\"Aut esse est labore laudantium vel.\",\"cover\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c95mjs421ntk7ko1in9q4n1pf1a.jpg\",\"tag\":\"r\",\"stocks\":\"143\",\"price\":\"348.00\",\"freight\":\"8.00\",\"status\":\"1\",\"position\":\"\",\"city_code\":\"\",\"longitude\":\"\",\"latitude\":\"\",\"sales\":\"0\",\"view\":\"0\",\"zan\":\"0\",\"comment\":\"0\",\"created_at\":\"2018-03-22 10:16:40\",\"updated_at\":\"2018-03-22 10:16:40\",\"content\":\"Asperiores totam magnam id sit rerum quis enim. Laudantium et consequatur quibusdam nam saepe qui est illum. Eum doloribus est exercitationem excepturi quia maxime nobis voluptas. Qui molestiae consequatur molestias ab repellendus veritatis. Illum itaque rerum laborum nisi et mollitia sit suscipit. Pariatur neque veritatis voluptas commodi esse. Animi minus corporis ipsa quasi culpa dignissimos. Omnis et doloribus dolor vitae. Quia animi exercitationem rem consectetur suscipit numquam et. Reiciendis veritatis sed aut magnam. Voluptas sunt quia est itaque beatae possimus accusamus. Hic maxime eum perspiciatis fuga. Distinctio et adipisci porro assumenda ut ipsa ab dicta. Itaque officia est rerum minus nesciunt. Consequatur occaecati adipisci minus aut hic qui qui. Tempore officia aut vero. Quia dolor voluptate aut. In qui molestiae nihil. Asperiores quis deserunt sit voluptatum.\",\"pictures\":[\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c8cj14eb1bc314oacahe5q45m8.png\",\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c8cj14eospu11d1kkc1kv6ijva.png\",\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/FgQAs7qCkAQOv_rTSL-GT8k7C0do\"]},{\"id\":\"51014\",\"user_id\":\"5002\",\"category_id\":\"4\",\"name\":\"Earum et laborum quo perspiciatis.\",\"cover\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c95mjs421ntk7ko1in9q4n1pf1a.jpg\",\"tag\":\"r\",\"stocks\":\"525\",\"price\":\"615.00\",\"freight\":\"3.00\",\"status\":\"1\",\"position\":\"\",\"city_code\":\"\",\"longitude\":\"\",\"latitude\":\"\",\"sales\":\"0\",\"view\":\"0\",\"zan\":\"0\",\"comment\":\"0\",\"created_at\":\"2018-03-22 10:16:40\",\"updated_at\":\"2018-03-22 10:16:40\",\"content\":\"Nisi est sequi et minima nihil quas. Dignissimos sunt nesciunt qui possimus et rerum. Non quas et nihil cumque inventore rem. Qui consectetur harum dolore dolorem alias eveniet. Necessitatibus eveniet voluptas quia. Quaerat mollitia distinctio eum et. Error ut ipsa ut neque. Deleniti laboriosam iusto impedit ex suscipit. Eos reiciendis quae consequatur. Amet possimus perferendis minus non doloremque praesentium. Vel nam sed placeat est commodi molestiae aut. Earum aut dolorem quia voluptatem. Et temporibus odit libero. Et quia reiciendis quis sed. Modi quaerat velit incidunt sit debitis incidunt. Minima excepturi repellat dolorem quos aut. Iste maxime blanditiis consequatur voluptate eveniet. Aperiam pariatur voluptas incidunt est numquam aut. Et dicta eum reiciendis officiis in illum natus. Eum laboriosam molestiae est sit. Ut accusantium aspernatur autem totam quo id praesentium quae. Accusamus voluptatum reprehenderit et.\",\"pictures\":[\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c8cj14eb1bc314oacahe5q45m8.png\",\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c8cj14eospu11d1kkc1kv6ijva.png\",\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/FgQAs7qCkAQOv_rTSL-GT8k7C0do\"]},{\"id\":\"51011\",\"user_id\":\"5002\",\"category_id\":\"5\",\"name\":\"Voluptas at nihil labore.\",\"cover\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c95mjs421ntk7ko1in9q4n1pf1a.jpg\",\"tag\":\"\",\"stocks\":\"414\",\"price\":\"508.00\",\"freight\":\"4.00\",\"status\":\"1\",\"position\":\"\",\"city_code\":\"\",\"longitude\":\"\",\"latitude\":\"\",\"sales\":\"0\",\"view\":\"0\",\"zan\":\"0\",\"comment\":\"0\",\"created_at\":\"2018-03-22 10:16:40\",\"updated_at\":\"2018-03-22 10:16:40\",\"content\":\"Qui et dolore magni aut. Nobis minima dolorum laborum sequi quasi. Rerum non incidunt sit id molestiae ipsam enim. Molestias tempore modi laboriosam. Cum assumenda qui et. Cupiditate autem cumque aut debitis ab qui ab. Blanditiis ut eos itaque voluptas dolorem non odio ullam. Nam nihil saepe occaecati ex tempore. Asperiores consequuntur fuga mollitia blanditiis non. Magnam fugit nihil qui ratione et ut laborum. Nihil sint et dolore est laborum voluptatem. Voluptate a asperiores quod incidunt at error aperiam. Quae aliquam dicta minima sit sit accusantium. Ut fuga voluptatem voluptatem neque vel consequatur. Rerum ut rerum quis suscipit magnam sint. Nihil dolor quisquam aut perferendis. Aspernatur magni ullam magnam sit dolorem. Sit vero molestiae sed et deleniti accusantium ea. Dolorum modi reiciendis qui totam molestias. Sint recusandae possimus praesentium velit asperiores. Sint animi possimus dignissimos sit atque porro.\",\"pictures\":[\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c8cj14eb1bc314oacahe5q45m8.png\",\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c8cj14eospu11d1kkc1kv6ijva.png\",\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/FgQAs7qCkAQOv_rTSL-GT8k7C0do\"]},{\"id\":\"51010\",\"user_id\":\"5002\",\"category_id\":\"7\",\"name\":\"Quo omnis ut corrupti iure ut aut.\",\"cover\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c95mjs421ntk7ko1in9q4n1pf1a.jpg\",\"tag\":\"\",\"stocks\":\"179\",\"price\":\"441.00\",\"freight\":\"3.00\",\"status\":\"1\",\"position\":\"\",\"city_code\":\"\",\"longitude\":\"\",\"latitude\":\"\",\"sales\":\"0\",\"view\":\"0\",\"zan\":\"0\",\"comment\":\"0\",\"created_at\":\"2018-03-22 10:16:40\",\"updated_at\":\"2018-03-22 10:16:40\",\"content\":\"Tempora reprehenderit excepturi suscipit quidem earum. Ullam odio voluptas dolorem eum. Laboriosam voluptas temporibus eaque architecto. Ipsam ratione esse qui velit nulla. Natus mollitia quisquam esse porro quisquam. Corporis provident et eius et impedit esse autem. Laudantium nulla minus provident optio. Unde tenetur et sint excepturi rerum. Neque minus voluptas autem et. Officiis perferendis ut suscipit illo quod praesentium suscipit laboriosam. Quas maxime velit voluptatem debitis ipsa tenetur doloremque. Sit enim ab est ipsam. Cum placeat enim soluta provident sed omnis. Quibusdam incidunt velit quibusdam veritatis harum. Optio et itaque voluptas. Natus qui expedita perspiciatis neque sed nobis unde. Accusamus odio vel magnam omnis deserunt doloremque. Rerum deleniti laudantium blanditiis. Consequatur amet architecto ut et voluptatem velit quisquam. Perferendis doloribus provident ipsum tempora enim qui maiores id. Rerum explicabo aut itaque est.\",\"pictures\":[\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c8cj14eb1bc314oacahe5q45m8.png\",\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c8cj14eospu11d1kkc1kv6ijva.png\",\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/FgQAs7qCkAQOv_rTSL-GT8k7C0do\"]},{\"id\":\"51001\",\"user_id\":\"5002\",\"category_id\":\"8\",\"name\":\"Reiciendis voluptatem dolor et qui.\",\"cover\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c95mjs421ntk7ko1in9q4n1pf1a.jpg\",\"tag\":\"\",\"stocks\":\"830\",\"price\":\"90.00\",\"freight\":\"2.00\",\"status\":\"1\",\"position\":\"\",\"city_code\":\"\",\"longitude\":\"\",\"latitude\":\"\",\"sales\":\"0\",\"view\":\"0\",\"zan\":\"0\",\"comment\":\"0\",\"created_at\":\"2018-03-22 10:16:40\",\"updated_at\":\"2018-03-22 10:16:40\",\"content\":\"Qui iusto voluptatem expedita vitae. Explicabo et rerum illo vero voluptatibus. Odio sint consectetur soluta dolor perferendis nostrum placeat. Repellat molestiae voluptatem eos distinctio a doloremque. Voluptatem est illum aliquid. Voluptas nesciunt impedit facere maiores. Debitis occaecati iure dicta maxime doloribus omnis aut. Quo excepturi reprehenderit architecto expedita quisquam excepturi distinctio. Labore veritatis pariatur consequuntur. Doloremque iusto aliquid minima quaerat enim. Non et veniam ipsa voluptatibus nihil quo consequuntur qui. Officia ut harum qui tempora voluptas. Maiores culpa nam illo nihil nihil omnis et. Quidem amet qui maxime pariatur nostrum facilis. Ab delectus ut ea nesciunt vitae. Et quisquam praesentium et modi exercitationem. Debitis tempora officiis sed enim aspernatur amet ullam. Enim optio rerum distinctio accusamus eum corporis recusandae.\",\"pictures\":[\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c8cj14eb1bc314oacahe5q45m8.png\",\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c8cj14eospu11d1kkc1kv6ijva.png\",\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/FgQAs7qCkAQOv_rTSL-GT8k7C0do\"]},{\"id\":\"50992\",\"user_id\":\"5002\",\"category_id\":\"7\",\"name\":\"Voluptates quae id expedita nihil nemo aspernatur.\",\"cover\":\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c95mjs421ntk7ko1in9q4n1pf1a.jpg\",\"tag\":\"\",\"stocks\":\"451\",\"price\":\"789.00\",\"freight\":\"3.00\",\"status\":\"1\",\"position\":\"\",\"city_code\":\"\",\"longitude\":\"\",\"latitude\":\"\",\"sales\":\"0\",\"view\":\"0\",\"zan\":\"0\",\"comment\":\"0\",\"created_at\":\"2018-03-22 10:16:40\",\"updated_at\":\"2018-03-22 10:16:40\",\"content\":\"Rerum et voluptas nulla architecto ratione esse non. Quia quae aut similique iure qui in. Sapiente corporis atque dicta ut. Vel nostrum aut quidem soluta velit. Nulla consectetur aliquid consequatur ab. Fugiat necessitatibus commodi esse porro excepturi consequuntur molestiae. Aspernatur eum eum aut deserunt deleniti rerum quam. Et voluptas reprehenderit explicabo quos. Qui temporibus soluta ipsum libero. Minima amet expedita et est. Enim id corporis sequi magni. Sed reiciendis velit occaecati. Ullam assumenda alias molestias in magni numquam. Dolore earum dolorem consequatur consectetur sint officiis praesentium minus. Velit cum sit commodi sapiente. Modi similique rerum doloremque odio. Eum qui eius in debitis. Voluptatibus ratione ut rerum. Quidem vero totam sit placeat rem. Dignissimos tempore voluptas tenetur magnam. Nulla voluptatibus est ea.\",\"pictures\":[\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c8cj14eb1bc314oacahe5q45m8.png\",\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/goods\\/picture\\/1c8cj14eospu11d1kkc1kv6ijva.png\",\"http:\\/\\/p4usze5lk.bkt.clouddn.com\\/FgQAs7qCkAQOv_rTSL-GT8k7C0do\"]}],\"pageinfo\":{\"total\":\"8399\",\"per_page\":\"10\",\"current_page\":\"1\",\"last_page\":\"840\"}}}"
+						}
+					]
+				},
+				{
+					"name": "商品详情",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "prid",
+									"value": "eyJpdiI6IjNYaTRETTVnaWMzdjVYeTlHRWNKc1E9PSIsInZhbHVlIjoia2dYNERXUjUrcERqWnByTUszemI3QT09IiwibWFjIjoiMmRlMjE4NjczNDVhMTFiMzkyNDRhZDk0ZDVjN2I2NGNjYWFkMjRmNzRmOTk4ZDI0MTc3ODZjNjk1OTQ5OWE3ZSJ9",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/goods/31171?",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"goods",
+								"31171"
+							],
+							"query": [
+								{
+									"key": "category_id",
+									"value": "2",
+									"disabled": true
+								}
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "点赞",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "is_zan",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "goods_id",
+									"value": "11",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/goods/zan?",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"goods",
+								"zan"
+							],
+							"query": [
+								{
+									"key": "tag",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "评论",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "goods_id",
+									"value": "11",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "reply_id",
+									"value": "2",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "好东西",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "pictures[]",
+									"value": "123",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "pictures[]",
+									"value": "234",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/goods/comment?",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"goods",
+								"comment"
+							],
+							"query": [
+								{
+									"key": "tag",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "评论列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "is_zan",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "goods_id",
+									"value": "11",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/goods/comment?goods_id=11",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"goods",
+								"comment"
+							],
+							"query": [
+								{
+									"key": "goods_id",
+									"value": "11"
+								}
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "订单",
+			"description": "",
+			"item": [
+				{
+					"name": "提交订单",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"goods\":[\n\t\n\t\t{\"goods_id\":51052,\"spec\":\"绿色\",\"num\":\"1\",\"price\":\"0.01\",\"name\":\"商品\"}\n\t\t\n\t],\n\t\"address_id\":\"2\",\n\t\"total_price\":0.1,\n\t\"remark\":\"备注\",\n\t\"pay_way\":\"ali_app\",\n\t\"shipping_way\":\"快递id,可以不传\"\n\n}"
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/order/submit",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"order",
+								"submit"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "获取支付令牌",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"order_no\":\"E20180329928684147240\",\n\t\"pay_way\":\"ali_app\"\n}"
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/order/payment",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"order",
+								"payment"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "订单列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "prid",
+									"value": "eyJpdiI6IjNYaTRETTVnaWMzdjVYeTlHRWNKc1E9PSIsInZhbHVlIjoia2dYNERXUjUrcERqWnByTUszemI3QT09IiwibWFjIjoiMmRlMjE4NjczNDVhMTFiMzkyNDRhZDk0ZDVjN2I2NGNjYWFkMjRmNzRmOTk4ZDI0MTc3ODZjNjk1OTQ5OWE3ZSJ9",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/order?",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"order"
+							],
+							"query": [
+								{
+									"key": "tag",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "评论",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "order_goods_id",
+									"value": "11",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "好东西",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "pictures[]",
+									"value": "123",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "pictures[]",
+									"value": "234",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/order/comment?",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"order",
+								"comment"
+							],
+							"query": [
+								{
+									"key": "tag",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "取消订单",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "order_id",
+									"value": "11",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/order/cancel",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"order",
+								"cancel"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "发货",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "order_id",
+									"value": "3",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "shipping_way",
+									"value": "23",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "shipping_sn",
+									"value": "23",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/order/deliver",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"order",
+								"deliver"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "订单详情",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "sdf",
+								"value": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "order_id",
+									"value": "11",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/order/detail?order_id=34",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"order",
+								"detail"
+							],
+							"query": [
+								{
+									"key": "order_id",
+									"value": "34"
+								}
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "心动一刻",
+			"description": "",
+			"item": [
+				{
+					"name": "获取附近用户列表",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/user/city-user",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"user",
+								"city-user"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "喜欢一个人",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/user/love?friend_id=5122101&is_love=1",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"user",
+								"love"
+							],
+							"query": [
+								{
+									"key": "friend_id",
+									"value": "5122101"
+								},
+								{
+									"key": "is_love",
+									"value": "1"
+								}
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "其它",
+			"description": "",
+			"item": [
+				{
+					"name": "三级联动",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/other/amap?level=1",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"other",
+								"amap"
+							],
+							"query": [
+								{
+									"key": "level",
+									"value": "1"
+								}
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "获取快递",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/other/express",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"other",
+								"express"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "支付通知",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"disabled": true
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/other/notify/alipay",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"other",
+								"notify",
+								"alipay"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				},
+				{
+					"name": "测试",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"order_id\":\"1\",\n\t\"pay_way\":\"wechat\"\n\t\n}"
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/order/payment",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"order",
+								"payment"
+							]
+						},
+						"description": "该接口需要access_token"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "973bcc60-a904-4c04-9011-e3efd103bd75",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "2e0a1f7f-3ceb-4391-84be-64bb55611188",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
