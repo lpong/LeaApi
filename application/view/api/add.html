@@ -27,21 +27,9 @@
         <div class="layui-form-item">
             <div class="layui-input-inline">
                 <select name="method">
-                    <option value="GET" selected="selected">GET</option>
-                    <option value="POST">POST</option>
-                    <option value="PUT">PUT</option>
-                    <option value="PATCH">PATCH</option>
-                    <option value="DELETE">DELETE</option>
-                    <option value="COPY">COPY</option>
-                    <option value="HEAD">HEAD</option>
-                    <option value="OPTIONS">OPTIONS</option>
-                    <option value="LINK">LINK</option>
-                    <option value="UNLINK">UNLINK</option>
-                    <option value="PUAGE">PUAGE</option>
-                    <option value="LOCK">LOCK</option>
-                    <option value="UNLOCK">UNLOCK</option>
-                    <option value="PROPFIND">PROPFIND</option>
-                    <option value="VIEW">VIEW</option>
+                    <volist name=":config('param.request_mothod')" id="vo">
+                        <option value="{$vo}">{$vo}</option>
+                    </volist>
                 </select>
             </div>
             <div class="layui-input-block" style="margin-left: 200px">
@@ -170,7 +158,9 @@
             <input type="text" name="{{d.field}}[{{d.num}}][description]" placeholder="Description" class="layui-input">
         </td>
         <td>
-            <a href="javascript:;" class="delete"><i class="layui-icon">&#x1006;</i></a>
+            <a href="javascript:;" class="delete">
+                <i class="layui-icon">&#x1006;</i>
+            </a>
         </td>
     </tr>
 </script>
@@ -187,7 +177,8 @@
                 "num": self.data('num')
             }
             laytpl($('#addfield').html()).render(data, function (html) {
-                self.closest('blockquote').nextAll('table:visible').first().find('tbody').append(html);
+                self.closest('blockquote').nextAll('table:visible').first().find('tbody').append(
+                    html);
                 self.data('num', parseInt(data.num) + 1);
             });
             return false;
@@ -203,7 +194,7 @@
             $('#' + data.value).show();
             if (data.value == 'raw') {
                 $('#model_header').show();
-            }else{
+            } else {
                 $('#model_header').hide();
             }
         });

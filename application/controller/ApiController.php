@@ -80,15 +80,23 @@ class ApiController extends BaseController
 
             if (empty($post['params'])) {
                 $post['params'] = array_values($post['params']);
+            } else {
+                $post['params'] = [];
             }
             if (!empty($post['headers'])) {
                 $post['headers'] = array_values($post['headers']);
+            } else {
+                $post['headers'] = [];
             }
             if (!empty($post['formdata'])) {
                 $post['formdata'] = array_values($post['formdata']);
+            } else {
+                $post['formdata'] = [];
             }
             if (!empty($post['urlencode'])) {
                 $post['urlencode'] = array_values($post['urlencode']);
+            } else {
+                $post['urlencode'] = [];
             }
             $post['project_id'] = session('project_id');
             $post['user_id']    = session('user.id');
@@ -116,19 +124,27 @@ class ApiController extends BaseController
                 $this->error($validate->getError());
             }
 
-            if (empty($post['params'])) {
+            if (!empty($post['params'])) {
                 $post['params'] = array_values($post['params']);
+            } else {
+                $post['params'] = [];
             }
             if (!empty($post['headers'])) {
                 $post['headers'] = array_values($post['headers']);
+            } else {
+                $post['headers'] = [];
             }
             if (!empty($post['formdata'])) {
                 $post['formdata'] = array_values($post['formdata']);
+            } else {
+                $post['formdata'] = [];
             }
             if (!empty($post['urlencode'])) {
                 $post['urlencode'] = array_values($post['urlencode']);
+            } else {
+                $post['urlencode'] = [];
             }
-            $api                = new Api();
+            $api = new Api();
             if ($api->allowField(true)->save($post, ['id' => $post['id']]) > 0) {
                 $this->success('发布成功');
             }

@@ -1,5 +1,5 @@
 <div class="layui-card-body">
-    <form class="layui-form layui-form-pane" action="{:url('add')}" style="width: 960px">
+    <form class="layui-form layui-form-pane" action="{:url('edit')}" style="width: 960px">
         <div class="layui-form-item">
             <label class="layui-form-label">接口名称</label>
             <div class="layui-input-block">
@@ -20,7 +20,7 @@
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">接口描述</label>
             <div class="layui-input-block">
-                <textarea placeholder="" name="remark" class="layui-textarea">{$api.remark}</textarea>
+                <textarea placeholder="请输入内容" name="remark" class="layui-textarea">{$api.remark}</textarea>
             </div>
         </div>
         <blockquote class="layui-elem-quote">请求地址</blockquote>
@@ -28,7 +28,7 @@
             <div class="layui-input-inline">
                 <select name="method">
                     <volist name=":config('param.request_mothod')" id="vo">
-                        <option value="{$vo}" <eq name="vo" value="$api['method']">selected="selected"</eq> >{$vo}</option>
+                    <option value="{$vo}" <eq name="vo" value="$api['method']">selected="selected"</eq>>{$vo}</option>
                     </volist>
                 </select>
             </div>
@@ -37,7 +37,7 @@
             </div>
         </div>
         <blockquote class="layui-elem-quote">Params
-            <a href="javascript:;" class="right add-field" data-num="{:count($api['params'])}">
+            <a href="{:url('')}" class="right add-field" data-num="{:count($api['params'])}">
                 <i class="layui-icon">&#xe608;</i>
             </a>
         </blockquote>
@@ -60,13 +60,13 @@
                 <volist name="api.params" id="vo">
                     <tr>
                         <td>
-                            <input type="text" name="params[{$i}]['key']" value="{$vo.key}" placeholder="New Key" class="layui-input">
+                            <input type="text" name="params[{$key}][key]" value="{$vo.key}" placeholder="New Key" class="layui-input">
                         </td>
                         <td>
-                            <input type="text" name="params[{$i}]['value']" value="{$vo.value}" placeholder="Value" class="layui-input">
+                            <input type="text" name="params[{$key}][value]" value="{$vo.value}" placeholder="Value" class="layui-input">
                         </td>
                         <td>
-                            <input type="text" name="params[{$i}]['description']" value="{$vo.description}" placeholder="Description" class="layui-input">
+                            <input type="text" name="params[{$key}][description]" value="{$vo.description|default=''}" placeholder="Description" class="layui-input">
                         </td>
                         <td>
                             <a href="javascript:;" class="delete">
@@ -101,13 +101,13 @@
                 <volist name="api.headers" id="vo">
                     <tr>
                         <td>
-                            <input type="text" name="headers[{$i}]['key']" value="{$vo.key|default=''}" placeholder="New Key" class="layui-input">
+                            <input type="text" name="header[{$key}][key]" value="{$vo.key}" placeholder="New Key" class="layui-input">
                         </td>
                         <td>
-                            <input type="text" name="headers[{$i}]['value']" value="{$vo.value|default=''}" placeholder="Value" class="layui-input">
+                            <input type="text" name="header[{$key}][value]" value="{$vo.value}" placeholder="Value" class="layui-input">
                         </td>
                         <td>
-                            <input type="text" name="headers[{$i}]['description']" value="{$vo.description|default=''}" placeholder="Description" class="layui-input">
+                            <input type="text" name="header[{$key}][description]" value="{$vo.description|default=''}" placeholder="Description" class="layui-input">
                         </td>
                         <td>
                             <a href="javascript:;" class="delete">
@@ -119,7 +119,7 @@
             </tbody>
         </table>
         <blockquote class="layui-elem-quote">BODY
-            <a href="javascript:;" class="right add-field" data-num="1000">
+            <a href="javascript:;" class="right add-field" data-num="999">
                 <i class="layui-icon">&#xe608;</i>
             </a>
         </blockquote>
@@ -129,16 +129,16 @@
                     <input type="radio" name="model" lay-filter="table-radio" value="{$key}" title="{$vo}" <eq name="key" value="$api['model']"> checked</eq> >
                 </volist>
             </div>
-            <div class="layui-input-inline" <neq name="api.model" value="raw"> style="display: none;"</neq> id="model_header">
+            <div class="layui-input-inline" style="display: none;" id="model_header">
                 <select name="model_header" lay-filter="model_header">
                     <volist name=":config('param.request_header')" id="vo">
-                    <option value="{$key}" <eq name="api.model_header" value="{$key}"> selected="selected"</eq>>{$vo}</option>
+                        <option value="{$key}" <eq name="key" value="">selected="selected"</eq> >{$vo}</option>
                     </volist>
                 </select>
             </div>
         </div>
         <hr>
-        <table class="layui-table request-data" id="formdata" data-field="formdata" <neq name="api.model" value="formdata">style="display: none;"</neq> >
+        <table class="layui-table request-data" id="formdata" data-field="formdata" <neq name="api.model" value="formdata">style="display: none;"</neq>>
             <colgroup>
                 <col width="33.333%">
                 <col width="33.333%">
@@ -157,13 +157,13 @@
                 <volist name="api.formdata" id="vo">
                     <tr>
                         <td>
-                            <input type="text" name="formdata[{$i}]['key']" value="{$vo.key|default=''}" placeholder="New Key" class="layui-input">
+                            <input type="text" name="formdata[{$key}][key]" value="{$vo.key}" placeholder="New Key" class="layui-input">
                         </td>
                         <td>
-                            <input type="text" name="formdata[{$i}]['value']" value="{$vo.value|default=''}" placeholder="Value" class="layui-input">
+                            <input type="text" name="formdata[{$key}][value]" value="{$vo.value}" placeholder="Value" class="layui-input">
                         </td>
                         <td>
-                            <input type="text" name="formdata[{$i}]['description']" value="{$vo.description|default=''}" placeholder="Description" class="layui-input">
+                            <input type="text" name="formdata[{$key}][description]" value="{$vo.description|default=''}" placeholder="Description" class="layui-input">
                         </td>
                         <td>
                             <a href="javascript:;" class="delete">
@@ -174,7 +174,7 @@
                 </volist>
             </tbody>
         </table>
-        <table class="layui-table request-data" id="urlencoded" data-field="urlencoded" <neq name="api.model" value="urlencoded">style="display: none;"</neq> >
+        <table class="layui-table request-data" id="urlencoded" data-field="urlencoded" <neq name="api.model" value="urlencoded">style="display: none;"</neq>>
             <colgroup>
                 <col width="33.333%">
                 <col width="33.333%">
@@ -193,13 +193,13 @@
                 <volist name="api.urlencoded" id="vo">
                     <tr>
                         <td>
-                            <input type="text" name="urlencoded[{$i}]['key']" value="{$vo.key|default=''}" placeholder="New Key" class="layui-input">
+                            <input type="text" name="urlencoded[{$key}][key]" value="{$vo.key}" placeholder="New Key" class="layui-input">
                         </td>
                         <td>
-                            <input type="text" name="urlencoded[{$i}]['value']" value="{$vo.value|default=''}" placeholder="Value" class="layui-input">
+                            <input type="text" name="urlencoded[{$key}][value]" value="{$vo.value}" placeholder="Value" class="layui-input">
                         </td>
                         <td>
-                            <input type="text" name="urlencoded[{$i}]['description']" value="{$vo.description|default=''}" placeholder="Description" class="layui-input">
+                            <input type="text" name="urlencoded[{$key}][description]" value="{$vo.description|default=''}" placeholder="Description" class="layui-input">
                         </td>
                         <td>
                             <a href="javascript:;" class="delete">
@@ -210,12 +210,13 @@
                 </volist>
             </tbody>
         </table>
-        <div class="layui-form-item request-data layui-form-text" id="raw" <neq name="api.model" value="raw">style="display: none;"</neq> >
+        <div class="layui-form-item request-data layui-form-text" id="raw" <neq name="api.model" value="raw">style="display: none;"</neq>>
             <label class="layui-form-label">请求内容</label>
             <div class="layui-input-block">
-                <textarea name="raw" class="layui-textarea">{$api.raw}</textarea>
+                <textarea name="raw" class="layui-textarea">{$api.raw|raw}</textarea>
             </div>
         </div>
+        <input type="hidden" name="id" value="{$api.id}">
     </form>
 </div>
 <script id="addfield" type="text/html">
@@ -230,9 +231,7 @@
             <input type="text" name="{{d.field}}[{{d.num}}][description]" placeholder="Description" class="layui-input">
         </td>
         <td>
-            <a href="javascript:;" class="delete">
-                <i class="layui-icon">&#x1006;</i>
-            </a>
+            <a href="javascript:;" class="delete"><i class="layui-icon">&#x1006;</i></a>
         </td>
     </tr>
 </script>
@@ -249,8 +248,7 @@
                 "num": self.data('num')
             }
             laytpl($('#addfield').html()).render(data, function (html) {
-                self.closest('blockquote').nextAll('table:visible').first().find('tbody').append(
-                    html);
+                self.closest('blockquote').nextAll('table:visible').first().find('tbody').append(html);
                 self.data('num', parseInt(data.num) + 1);
             });
             return false;
@@ -266,7 +264,7 @@
             $('#' + data.value).show();
             if (data.value == 'raw') {
                 $('#model_header').show();
-            }else{
+            } else {
                 $('#model_header').hide();
             }
         });
