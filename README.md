@@ -13,6 +13,7 @@ ThinkPHP 5.1
 ### 待加入功能：
 
  + ~~邀请用户加入项目，并设置权限~~
+ + `mongodb` 支持
  + 用户邮箱认证，发送Api
  + 导出到 `Postman`
  + 增量更新，从`Postman`同步更新（目前同步规则是新增不覆盖）
@@ -20,12 +21,13 @@ ThinkPHP 5.1
  + 导出html，pdf
 
 
-> 运行环境要求PHP5.6以上。
+> 安装方法：运行环境要求PHP5.6以上。使用 git 将代码clone到本地，进入目录后 `composer update `，在`config/database.php`配置好数据库即可。可以参考thinkphp5.1部署方式
 
 
 ## 注意
 
-该项目暂时处于测试阶段，并不能保证无bug运行。
+该项目暂时处于测试阶段，并不能保证无bug运行，请等待正式版发布，欢迎`star`，欢迎提需求和bug。
+`postman`导出方式，在collection中选择项目，打开 `...` ，点击export即可。将导出的文件导入。也可以直接在该系统中添加和编辑api。 
 
 ## 界面截图
 ![1](/public/1.png "1")
