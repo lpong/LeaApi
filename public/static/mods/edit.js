@@ -284,20 +284,23 @@ layui.define(['layer', 'form', 'element', 'code', 'util'], function (exports) {
         }
     };
 
-    layui.util.fixbar({
-        bar1: '&#xe7a0',
-        bar2: '&#xe614',
-        bgcolor: '#009688',
-        click: function (type) {
-            if (type === 'bar1') {
-                var url = '/project';
+    if (is_login) {
+        layui.util.fixbar({
+            bar1: '&#xe7a0',
+            bar2: '&#xe614',
+            bgcolor: '#009688',
+            click: function (type) {
+                if (type === 'bar1') {
+                    var url = '/project';
+                }
+                if (type === 'bar2') {
+                    var url = '/user';
+                }
+                edit.open(url, '');
             }
-            if (type === 'bar2') {
-                var url = '/user';
-            }
-            edit.open(url, '');
-        }
-    });
+        });
+    }
+
 
     $(document).on('click', '.ajax-open', function () {
         var self = $(this);
@@ -353,7 +356,7 @@ layui.define(['layer', 'form', 'element', 'code', 'util'], function (exports) {
     });
 
     //滚动事件
-    $(window).scroll(function(){
+    $(window).scroll(function () {
         console.log($(this));
     });
     exports('edit', edit);

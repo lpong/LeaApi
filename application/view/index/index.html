@@ -59,6 +59,7 @@
 <script type="application/javascript" src="__PUBLIC__/js/jquery.json-viewer.js"></script>
 <script type="application/javascript" src="__PUBLIC__/js/clipboard.min.js"></script>
 <script>
+    var is_login = "{:session('user.id')}";
     layui.config({
         base: '__PUBLIC__/mods/'
     }).use('edit');
