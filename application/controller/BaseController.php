@@ -37,7 +37,6 @@ class BaseController extends Controller
 
         $this->user    = $user;
         $this->user_id = $user['id'];
-
     }
 
     //获取一个用户含有编辑项目的权限

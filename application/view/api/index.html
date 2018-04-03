@@ -82,7 +82,7 @@
                             <div class="layui-card-body">
                                 <h1 class="site-h1">
                                     <i class="layui-icon">&#xe600;</i> {$item.title|highLight|raw}
-                                    <if condition="$edit_auth">
+                                    <if ($edit_auth) and ($is_self)>
                                         <div class="layui-btn-group right">
                                             <a href="{:url('category/edit',['id'=>$item['id']])}" class="layui-btn layui-btn-primary layui-btn-sm ajax-edit-api" title="编辑：{$item.title|default=''}">
                                                 <i class="layui-icon">&#xe642;</i>
@@ -105,7 +105,7 @@
                                         <a href="#api-{$vo.id}">
                                             <i class="layui-icon">&#xe600;</i>
                                         </a> {$vo.name|highLight|raw}
-                                        <if condition="$edit_auth">
+                                        <if  ($edit_auth) and ($is_self)>
                                             <div class="layui-btn-group right">
                                                 <a href="{:url('response/add',['id'=>$vo['id']])}" class="layui-btn layui-btn-primary layui-btn-sm ajax-edit-api" title="添加响应内容">
                                                     <i class="layui-icon">&#xe654;</i>
@@ -246,7 +246,7 @@
                                                 <volist name="vo.response" id="v">
                                                     <li lay-id="{$v.id}" <eq name="i" value="1">class="layui-this"</eq> > {$v.name|highLight}
                                                         <span class="copy layui-badge layui-bg-black" data-clipboard-action="copy" data-clipboard-target="#res-{$v.id}">复制</span>
-                                                        <if ($edit_auth) AND ($is_self)>
+                                                        <if ($edit_auth) and ($is_self)>
                                                             &nbsp;
                                                             <span class="layui-badge-rim ajax-edit-api" data-url="{:url('response/edit',['id'=>$v['id']])}"> 编辑 </span>
                                                             <span class="layui-badge-rim ajax-set-api" data-url="{:url('response/delete',['id'=>$v['id']])}"> 删除 </span>
