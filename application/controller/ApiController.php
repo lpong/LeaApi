@@ -102,6 +102,7 @@ class ApiController extends BaseController
             $post['user_id']    = session('user.id');
             $api                = new Api();
             if ($api->allowField(true)->save($post) > 0) {
+                ApiRead::where('api_id', $api->id)->delete();
                 $this->success('发布成功');
             }
             $this->error('发布失败');
