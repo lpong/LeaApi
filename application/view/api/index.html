@@ -105,7 +105,7 @@
                                         <a href="#api-{$vo.id}">
                                             <i class="layui-icon">&#xe600;</i>
                                         </a> {$vo.name|highLight|raw}
-                                        <if  ($edit_auth) and ($is_self)>
+                                        <if ($edit_auth) and ($is_self)>
                                             <div class="layui-btn-group right">
                                                 <a href="{:url('response/add',['id'=>$vo['id']])}" class="layui-btn layui-btn-primary layui-btn-sm ajax-edit-api" title="添加响应内容">
                                                     <i class="layui-icon">&#xe654;</i>
@@ -131,17 +131,18 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="layui-form-item">
                                             <label class="layui-form-label">请求方式</label>
                                             <div class="layui-input-block">
                                                 <input type="text" value="{$vo.method}" readonly class="layui-input code">
                                             </div>
                                         </div>
-                                        <notempty name="vo.headers">
+                                        <php>$headers = json_decode($vo['headers'],true);</php>
+                                        <notempty name="headers">
                                             <fieldset class="layui-elem-field layui-field-title">
                                                 <legend> HEADERS</legend>
                                             </fieldset>
-                                            <php>$headers = json_decode($vo['headers'],true);</php>
                                             <volist name="headers" id="header">
                                                 <div class="layui-form-item">
                                                     <label class="layui-form-label">{$header.key|default=''}</label>
@@ -151,12 +152,11 @@
                                                 </div>
                                             </volist>
                                         </notempty>
-                                        <fieldset class="layui-elem-field layui-field-title">
-                                            <legend> BODY</legend>
-                                        </fieldset>
-                                        <php>$formdata = json_decode($vo['formdata'],true);</php>
-                                        <notempty name="formdata">
-                                            <p style="margin-top: 20px" class="code">form-data:</p>
+                                        <php>$params = json_decode($vo['params'],true);</php>
+                                        <notempty name="params">
+                                            <fieldset class="layui-elem-field layui-field-title">
+                                                <legend> PARAMS </legend>
+                                            </fieldset>
                                             <table class="layui-table" lay-size="sm">
                                                 <colgroup>
                                                     <col>
@@ -173,7 +173,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <volist name="formdata" id="v">
+                                                    <volist name="params" id="v">
                                                         <tr>
                                                             <td>
                                                                 <input type="text" value="{$v.key|default=''}" placeholder="key" class="layui-input">
@@ -190,52 +190,96 @@
                                                 </tbody>
                                             </table>
                                         </notempty>
-                                        <php>$urlencoded = json_decode($vo['urlencoded'],true);</php>
-                                        <notempty name="urlencoded">
-                                            <p style="margin-top: 20px" class="code">x-www-form-urlencode:</p>
-                                            <table class="layui-table" lay-size="sm">
-                                                <colgroup>
-                                                    <col>
-                                                    <col width="10">
-                                                    <col width="33.333%">
-                                                    <col width="33.333%">
-                                                    <col>
-                                                </colgroup>
-                                                <thead>
-                                                    <tr>
-                                                        <th>Key</th>
-                                                        <th style="text-align: center;">类型</th>
-                                                        <th>Value</th>
-                                                        <th>Description</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <volist name="urlencoded" id="v">
+                                        <neq name="vo.method" value="GET">
+                                            <php>$formdata = json_decode($vo['formdata'],true);</php>
+                                            <php>$urlencoded = json_decode($vo['urlencoded'],true);</php>
+                                            <if $formdata ||$urlencoded ||$vo[ 'raw']>
+                                                <fieldset class="layui-elem-field layui-field-title">
+                                                    <legend> BODY</legend>
+                                                </fieldset>
+                                            </if>
+                                            <notempty name="formdata">
+                                                <p style="margin-top: 20px" class="code">form-data:</p>
+                                                <table class="layui-table" lay-size="sm">
+                                                    <colgroup>
+                                                        <col>
+                                                        <col>
+                                                        <col width="33.333%">
+                                                        <col width="33.333%">
+                                                    </colgroup>
+                                                    <thead>
                                                         <tr>
-                                                            <td>
-                                                                <input type="text" value="{$v.key|default=''}" placeholder="key" class="layui-input">
-                                                            </td>
-                                                            <td>{$v.type|default='text'}</td>
-                                                            <td>
-                                                                <input type="text" value="{$v.value|default=''}" placeholder="value" class="layui-input">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" value="{$v.description|default=''|highLight}" placeholder="description" class="layui-input">
-                                                            </td>
+                                                            <th>Key</th>
+                                                            <th style="text-align: center;">类型</th>
+                                                            <th>Value</th>
+                                                            <th>Description</th>
                                                         </tr>
-                                                    </volist>
-                                                </tbody>
-                                            </table>
-                                        </notempty>
-                                        <notempty name="vo.raw">
-                                            <p style="margin-top: 20px" class="code">raw:</p>
-                                            <div class="response" style="margin-top: 20px">
-                                                <pre class="code"></pre>
-                                                <textarea style="height: 1px;width: 1px;">
-                                                    {$vo.raw|raw}
-                                                </textarea>
-                                            </div>
-                                        </notempty>
+                                                    </thead>
+                                                    <tbody>
+                                                        <volist name="formdata" id="v">
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="text" value="{$v.key|default=''}" placeholder="key" class="layui-input">
+                                                                </td>
+                                                                <td style="text-align: center;" class="code">{$v.type|default='text'}</td>
+                                                                <td>
+                                                                    <input type="text" value="{$v.value|default=''}" placeholder="value" class="layui-input">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" value="{$v.description|default=''|highLight}" placeholder="description" class="layui-input">
+                                                                </td>
+                                                            </tr>
+                                                        </volist>
+                                                    </tbody>
+                                                </table>
+                                            </notempty>
+
+                                            <notempty name="urlencoded">
+                                                <p style="margin-top: 20px" class="code">x-www-form-urlencode:</p>
+                                                <table class="layui-table" lay-size="sm">
+                                                    <colgroup>
+                                                        <col>
+                                                        <col width="10">
+                                                        <col width="33.333%">
+                                                        <col width="33.333%">
+                                                        <col>
+                                                    </colgroup>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Key</th>
+                                                            <th style="text-align: center;">类型</th>
+                                                            <th>Value</th>
+                                                            <th>Description</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <volist name="urlencoded" id="v">
+                                                            <tr>
+                                                                <td>
+                                                                    <input type="text" value="{$v.key|default=''}" placeholder="key" class="layui-input">
+                                                                </td>
+                                                                <td>{$v.type|default='text'}</td>
+                                                                <td>
+                                                                    <input type="text" value="{$v.value|default=''}" placeholder="value" class="layui-input">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" value="{$v.description|default=''|highLight}" placeholder="description" class="layui-input">
+                                                                </td>
+                                                            </tr>
+                                                        </volist>
+                                                    </tbody>
+                                                </table>
+                                            </notempty>
+                                            <notempty name="vo.raw">
+                                                <p style="margin-top: 20px" class="code">raw:</p>
+                                                <div class="response" style="margin-top: 20px">
+                                                    <pre class="code"></pre>
+                                                    <textarea style="height: 1px;width: 1px;">
+                                                        {$vo.raw|raw}
+                                                    </textarea>
+                                                </div>
+                                            </notempty>
+                                        </neq>
                                         <!-- 响应内容 -->
                                         <notempty name="vo.response">
                                             <fieldset class="layui-elem-field layui-field-title">
