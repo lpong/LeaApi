@@ -119,9 +119,11 @@
                                             </div>
                                         </if>
                                     </div>
-                                    <blockquote class="layui-elem-quote">
-                                        {$vo.remark|highLight|raw}
-                                    </blockquote>
+                                    <notempty name="vo.remark">
+                                        <blockquote class="layui-elem-quote">
+                                            {$vo.remark|highLight|raw}
+                                        </blockquote>
+                                    </notempty>
                                     <div class="layui-form layui-form-pane">
                                         <div class="layui-form-item">
                                             <label class="layui-form-label">请求地址</label>
