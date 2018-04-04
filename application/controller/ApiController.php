@@ -78,7 +78,7 @@ class ApiController extends BaseController
                 $this->error($validate->getError());
             }
 
-            if (empty($post['params'])) {
+            if (!empty($post['params'])) {
                 $post['params'] = array_values($post['params']);
             } else {
                 $post['params'] = [];
