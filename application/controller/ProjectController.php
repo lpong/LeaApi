@@ -356,7 +356,7 @@ class ProjectController extends BaseController
                     $project = Project::create([
                         'user_id' => $user_id,
                         'name'    => $data['info']['name'],
-                        'remark'  => $data['info']['description'],
+                        'remark'  => isset($data['info']['description']) ? $data['info']['description'] : '',
                         'sort'    => 0,
                         'status'  => 1
                     ]);
