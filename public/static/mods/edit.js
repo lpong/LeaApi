@@ -24,7 +24,7 @@ layui.define(['layer', 'form', 'element', 'code', 'util'], function (exports) {
         about: false
     });
 
-    element.on('tab(*)', function (data) {
+    element.on('tab(*)', function () {
         $(window).resize();
     });
 
@@ -216,20 +216,14 @@ layui.define(['layer', 'form', 'element', 'code', 'util'], function (exports) {
         $.get('/response/delete', 'id=' + id);
     });
 
-    var length = $('.response').length;
-    $('.response').each(function (index, val) {
+    $('.response').each(function () {
         var val = $(this).find('textarea').val()
         if (isJSON(val)) {
             $(this).find('pre').jsonViewer(eval('(' + val + ')'));
         } else {
             $(this).find('pre').addClass('layui-code').html(val);
         }
-        if (length == index + 1) {
-            element.render();
-        }
     });
-
-
 
     function isJSON(str) {
         if (typeof str == 'string') {
@@ -358,5 +352,4 @@ layui.define(['layer', 'form', 'element', 'code', 'util'], function (exports) {
     });
 
     exports('edit', edit);
-
 });
