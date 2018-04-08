@@ -62,7 +62,7 @@ body {
 }
 
 .main {
-    width: 1300px;
+    width: 1200px;
     margin: 0 auto;
 }
 
@@ -81,7 +81,7 @@ body {
 
 .site-content {
     float: right;
-    width: 1020px;
+    width: 920px;
     min-height: 0px;
     padding: 0 10px;
     box-sizing: border-box;
