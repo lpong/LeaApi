@@ -216,15 +216,17 @@ layui.define(['layer', 'form', 'element', 'code', 'util'], function (exports) {
         $.get('/response/delete', 'id=' + id);
     });
 
-
-    $('.response').each(function () {
+    var length = $('.response').length;
+    $('.response').each(function (index, val) {
         var val = $(this).find('textarea').val()
         if (isJSON(val)) {
             $(this).find('pre').jsonViewer(eval('(' + val + ')'));
         } else {
             $(this).find('pre').addClass('layui-code').html(val);
         }
-
+        if (length == index + 1) {
+            element.render();Î
+        }
     });
 
 
@@ -355,10 +357,6 @@ layui.define(['layer', 'form', 'element', 'code', 'util'], function (exports) {
         return false;
     });
 
-    //滚动事件
-    $(window).scroll(function () {
-        console.log($(this));
-    });
     exports('edit', edit);
 
 });
