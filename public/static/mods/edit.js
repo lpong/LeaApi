@@ -225,7 +225,7 @@ layui.define(['layer', 'form', 'element', 'code', 'util'], function (exports) {
             $(this).find('pre').addClass('layui-code').html(val);
         }
         if (length == index + 1) {
-            element.render();Î
+            element.render();
         }
     });
 
