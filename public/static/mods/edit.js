@@ -286,8 +286,8 @@ layui.define(['layer', 'form', 'element', 'code', 'util'], function (exports) {
 
     if (is_login) {
         layui.util.fixbar({
-            bar1: '&#xe7a0',
-            bar2: '&#xe614',
+            bar1: '&#xe857;',
+            bar2: '&#xe612;',
             bgcolor: '#009688',
             click: function (type) {
                 if (type === 'bar1') {
