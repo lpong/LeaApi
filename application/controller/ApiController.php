@@ -63,6 +63,9 @@ class ApiController extends BaseController
         //获取权限
         $auth                 = ProjectUser::where('project_id', $id)->where('user_id', session('user.id'))->where('status', 1)->value('auth');
         $project['edit_auth'] = in_array($auth, ['write', 'self']);
+        if (!$auth) {
+            $this->error('信息不存在');
+        }
 
         $project['is_self'] = $project['user_id'] === session('user.id');
 
