@@ -178,14 +178,14 @@
                                                     <volist name="params" id="v">
                                                         <tr>
                                                             <td>
-                                                                <input type="text" value="{$v.key|default=''}" placeholder="key" class="layui-input">
+                                                                <input type="text" value="{$v.key|default=''|raw}" placeholder="key" class="layui-input">
                                                             </td>
                                                             <td style="text-align: center;" class="code">{$v.type|default='text'}</td>
                                                             <td>
-                                                                <input type="text" value="{$v.value|default=''}" placeholder="value" class="layui-input">
+                                                                <input type="text" value="{$v.value|default=''|raw}" placeholder="value" class="layui-input">
                                                             </td>
                                                             <td>
-                                                                <input type="text" value="{$v.description|default=''|highLight}" placeholder="description" class="layui-input">
+                                                                <input type="text" value="{$v.description|default=''|highLight|raw}" placeholder="description" class="layui-input">
                                                             </td>
                                                         </tr>
                                                     </volist>
@@ -221,14 +221,14 @@
                                                         <volist name="formdata" id="v">
                                                             <tr>
                                                                 <td>
-                                                                    <input type="text" value="{$v.key|default=''}" placeholder="key" class="layui-input">
+                                                                    <input type="text" value="{$v.key|default=''|raw}" placeholder="key" class="layui-input">
                                                                 </td>
                                                                 <td style="text-align: center;" class="code">{$v.type|default='text'}</td>
                                                                 <td>
-                                                                    <input type="text" value="{$v.value|default=''}" placeholder="value" class="layui-input">
+                                                                    <input type="text" value="{$v.value|default=''|raw}" placeholder="value" class="layui-input">
                                                                 </td>
                                                                 <td>
-                                                                    <input type="text" value="{$v.description|default=''|highLight}" placeholder="description" class="layui-input">
+                                                                    <input type="text" value="{$v.description|default=''|highLight|raw}" placeholder="description" class="layui-input">
                                                                 </td>
                                                             </tr>
                                                         </volist>
@@ -262,10 +262,10 @@
                                                                 </td>
                                                                 <td>{$v.type|default='text'}</td>
                                                                 <td>
-                                                                    <input type="text" value="{$v.value|default=''}" placeholder="value" class="layui-input">
+                                                                    <input type="text" value="{$v.value|default=''|raw}" placeholder="value" class="layui-input">
                                                                 </td>
                                                                 <td>
-                                                                    <input type="text" value="{$v.description|default=''|highLight}" placeholder="description" class="layui-input">
+                                                                    <input type="text" value="{$v.description|default=''|highLight|raw}" placeholder="description" class="layui-input">
                                                                 </td>
                                                             </tr>
                                                         </volist>
