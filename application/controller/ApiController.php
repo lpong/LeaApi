@@ -51,7 +51,17 @@ class ApiController extends BaseController
                 }
             }
         }
-        ksort($category);
+        $fun = function ($x, $y) {
+            if (empty($y['sort']) || empty($y['id'])) {
+                return -1;
+            }
+            if ($x['sort'] == $y['sort']) {
+                return $x['id'] < $y['id'] ? -1 : 1;
+            }
+            return $x['sort'] < $y['sort'] ? -1 : 1;
+        };
+
+        uasort($category, $fun);
         $project['items'] = $category;
 
         $project = $project->toArray();
