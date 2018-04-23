@@ -340,6 +340,7 @@ layui.define(['layer', 'form', 'element', 'code', 'util'], function (exports) {
             _pid: window._pId
         });
         $(this).find('.layui-badge-dot').addClass('none');
+        //return false;
     })
 
     //消息点击

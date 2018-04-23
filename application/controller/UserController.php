@@ -85,4 +85,11 @@ class UserController extends BaseController
             'list' => $list
         ]);
     }
+
+    //退出登录
+    public function logout()
+    {
+        session('user', null);
+        $this->success('退出成功', url('index'));
+    }
 }
