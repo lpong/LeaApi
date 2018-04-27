@@ -1,0 +1,1460 @@
+{
+	"info": {
+		"_postman_id": "4592797b-707e-583d-0aab-da408b22d0fd",
+		"name": "智慧社区",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "登录注册",
+			"description": "",
+			"item": [
+				{
+					"name": "注册",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "mobile",
+									"value": "18210881586",
+									"description": "手机号",
+									"type": "text"
+								},
+								{
+									"key": "nickname",
+									"value": "大boss",
+									"description": "昵称",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "e10adc3949ba59abbe56e057f20f883e",
+									"description": "密码（md5）",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "1234",
+									"description": "手机验证码",
+									"type": "text"
+								},
+								{
+									"key": "community_id",
+									"value": "1",
+									"description": "小区id",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/public/signUp",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"public",
+								"signUp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "登录",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "mobile",
+									"value": "18622991098",
+									"description": "手机号",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "e10adc3949ba59abbe56e057f20f883e",
+									"description": "密码（md5）",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/public/login",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"public",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "绑定新手机号",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "mobile",
+									"value": "18210881586",
+									"description": "手机号",
+									"type": "text"
+								},
+								{
+									"key": "new_mobile",
+									"value": "18622991098",
+									"description": "新手机号",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "1234",
+									"description": "新手机号验证码",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/user/editMobile",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"user",
+								"editMobile"
+							]
+						},
+						"description": "需要登录状态下修改"
+					},
+					"response": []
+				},
+				{
+					"name": "忘记密码/修改密码",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "mobile",
+									"value": "18210881586",
+									"description": "手机号",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "e10adc3949ba59abbe56e057f20f883e",
+									"description": "密码（md5）",
+									"type": "text"
+								},
+								{
+									"key": "code",
+									"value": "1234",
+									"description": "手机号",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/public/forgetPassword",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"public",
+								"forgetPassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "发送短信",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "mobile",
+									"value": "18210881586",
+									"description": "手机号",
+									"type": "text"
+								},
+								{
+									"key": "mark",
+									"value": "login",
+									"description": "标识，一般为接口url最后面的方法",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/public/sendSms",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"public",
+								"sendSms"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "个人中心",
+			"description": "",
+			"item": [
+				{
+					"name": "用户信息",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/user",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "入党申请",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "pictures[]",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "pictures[]",
+									"value": "1",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/user/joinParty",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"user",
+								"joinParty"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "入党申请情况",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/user/joinPartyInfo",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"user",
+								"joinPartyInfo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "退出登录",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/user/logout",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"user",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改昵称，头像",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "nickname",
+									"value": "新昵称",
+									"description": "新昵称",
+									"type": "text"
+								},
+								{
+									"key": "face",
+									"value": "新头像",
+									"description": "七牛云key",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "sex",
+									"value": "男",
+									"description": "性别",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/user/editInfo",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"user",
+								"editInfo"
+							]
+						},
+						"description": "三选一"
+					},
+					"response": []
+				},
+				{
+					"name": "获取上传凭证",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/user/getUploadAuth",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"user",
+								"getUploadAuth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "意见反馈",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "content",
+									"value": "111",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/user/feedback",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"user",
+								"feedback"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "我的办理",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "status",
+									"value": "1",
+									"description": "0-审核中 1-审核通过 2-审核失败",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/user/form",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"user",
+								"form"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "我的活动",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "status",
+									"value": "1",
+									"description": "0-审核中 1-审核通过 2-审核失败",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/user/activityAudit",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"user",
+								"activityAudit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "参加过的活动",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/user/activity",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"user",
+								"activity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "机构入驻",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "linkman",
+									"value": "水电费",
+									"description": "联系人，法人",
+									"type": "text"
+								},
+								{
+									"key": "tel",
+									"value": "23423423",
+									"description": "电话",
+									"type": "text"
+								},
+								{
+									"key": "position",
+									"value": "234",
+									"description": "地址",
+									"type": "text"
+								},
+								{
+									"key": "title",
+									"value": "234",
+									"description": "单位名称，商铺名称",
+									"type": "text"
+								},
+								{
+									"key": "cover",
+									"value": "dsfsdfsdfsdf^dsfadsfasfdasf",
+									"description": "图片,多个用^隔开",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/shop/join",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"shop",
+								"join"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "机构列表",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/shop/shop",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"shop",
+								"shop"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "发布商家（机构）新闻",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "2222",
+									"type": "text"
+								},
+								{
+									"key": "cover",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "edit_id",
+									"value": "6",
+									"description": "如果是修改，传修改的id",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/shop/publishArticle",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"shop",
+								"publishArticle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "机构（商家）新闻列表",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "shop_id",
+									"value": "1",
+									"type": "text",
+									"description": "商家（机构）id",
+									"disabled": true
+								},
+								{
+									"key": "user_id",
+									"value": "1",
+									"type": "text",
+									"description": "用户id，获取商家新闻传shop_id或者user_id随便传一个，不穿获取所有的",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/shop/articles",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"shop",
+								"articles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "新闻读取（统计确认数）",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "6",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/shop/articleViews",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"shop",
+								"articleViews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "我发布的新闻列表",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/shop/myArticles",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"shop",
+								"myArticles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "删除我发布的新闻",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "edit_id",
+									"value": "19",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/shop/removeArticle",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"shop",
+								"removeArticle"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "其它",
+			"description": "",
+			"item": [
+				{
+					"name": "获取服务器时间",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/app/getTime",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"app",
+								"getTime"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "首页接口",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/app",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"app"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取广告",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "type",
+									"value": "2",
+									"description": " 1:首页轮播图,2:党建轮播图,99:启动页广告,",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/app/ad",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"app",
+								"ad"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取小区列表",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/public/getCommunity",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"public",
+								"getCommunity"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "内容",
+			"description": "",
+			"item": [
+				{
+					"name": "内容列表",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "category_ids",
+									"value": "19,25,32",
+									"description": "栏目id，多个用,号分割",
+									"type": "text"
+								},
+								{
+									"key": "page_size",
+									"value": "10",
+									"description": "每页显示数量，默认为10",
+									"type": "text"
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"description": "页码，默认为1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/article/lists",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"article",
+								"lists"
+							]
+						},
+						"description": "内容列表也可以看活动列表，但是没有活动列表特有的字段"
+					},
+					"response": []
+				},
+				{
+					"name": "在线课程",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "category_ids",
+									"value": "19,25,32",
+									"description": "栏目id，多个用,号分割",
+									"type": "text"
+								},
+								{
+									"key": "page_size",
+									"value": "10",
+									"description": "每页显示数量，默认为10",
+									"type": "text"
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"description": "页码，默认为1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/office/video",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"office",
+								"video"
+							]
+						},
+						"description": "内容列表也可以看活动列表，但是没有活动列表特有的字段"
+					},
+					"response": []
+				},
+				{
+					"name": "上传学习时间",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "video_id",
+									"value": "1",
+									"description": "视频id",
+									"type": "text"
+								},
+								{
+									"key": "time",
+									"value": "211",
+									"description": "学习时长",
+									"type": "text"
+								},
+								{
+									"key": "sign",
+									"value": "11",
+									"description": "签名 {video_id}{time} 当做字符串拼起来2次sha1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/office/study",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"office",
+								"study"
+							]
+						},
+						"description": "内容列表也可以看活动列表，但是没有活动列表特有的字段"
+					},
+					"response": []
+				},
+				{
+					"name": "学习记录",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "video_id",
+									"value": "1",
+									"description": "视频id",
+									"type": "text"
+								},
+								{
+									"key": "time",
+									"value": "211",
+									"description": "学习时长",
+									"type": "text"
+								},
+								{
+									"key": "sign",
+									"value": "11",
+									"description": "签名 {video_id}{time} 当做字符串拼起来2次sha1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/office/studyRecord",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"office",
+								"studyRecord"
+							]
+						},
+						"description": "内容列表也可以看活动列表，但是没有活动列表特有的字段"
+					},
+					"response": []
+				},
+				{
+					"name": "内容详情",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "article_id",
+									"value": "155",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/article/detail",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"article",
+								"detail"
+							]
+						},
+						"description": "内容列表也可以看活动列表，但是没有活动列表特有的字段"
+					},
+					"response": []
+				},
+				{
+					"name": "表单列表",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "cate_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/office",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"office"
+							]
+						},
+						"description": "内容列表也可以看活动列表，但是没有活动列表特有的字段"
+					},
+					"response": []
+				},
+				{
+					"name": "计划生育列表",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "cate_id",
+									"value": "21",
+									"description": "默认21",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/office/bear",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"office",
+								"bear"
+							]
+						},
+						"description": "内容列表也可以看活动列表，但是没有活动列表特有的字段"
+					},
+					"response": []
+				},
+				{
+					"name": "搜索",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "category_ids",
+									"value": "27,28",
+									"description": "栏目id，多个用,号分割",
+									"type": "text"
+								},
+								{
+									"key": "page_size",
+									"value": "10",
+									"description": "每页显示数量，默认为10",
+									"type": "text"
+								},
+								{
+									"key": "keyword",
+									"value": "党建",
+									"description": "要搜索的关键词",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/article/search",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"article",
+								"search"
+							]
+						},
+						"description": "内容列表也可以看活动列表，但是没有活动列表特有的字段"
+					},
+					"response": []
+				},
+				{
+					"name": "活动列表（已废弃）",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "category_ids",
+									"value": "1",
+									"description": "栏目id，多个用,号分割",
+									"type": "text"
+								},
+								{
+									"key": "page_size",
+									"value": "10",
+									"description": "每页显示数量，默认为10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/article/activity",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"article",
+								"activity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "论坛列表（已废弃）",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "category_id",
+									"value": "4",
+									"description": "论坛栏目为4，可通过首页接口获取,默认也为4",
+									"type": "text"
+								},
+								{
+									"key": "page_size",
+									"value": "10",
+									"description": "每页显示数量，默认为10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/article/bbs",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"article",
+								"bbs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "发布评论",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "article_id",
+									"value": "37",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "阿打算发",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/article/publishComment",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"article",
+								"publishComment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "评论列表",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "article_id",
+									"value": "158",
+									"description": " 查看评论的内容id",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/article/comments",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"article",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "申请参加活动",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "article_id",
+									"value": "45",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/article/joinActivity",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"article",
+								"joinActivity"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "直播",
+			"description": "",
+			"item": [
+				{
+					"name": "直播列表",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "article_id",
+									"value": "45",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://{{ip}}:{{port}}/v1/live/lists",
+							"protocol": "http",
+							"host": [
+								"{{ip}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"v1",
+								"live",
+								"lists"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "74f4ff45-d00f-44cf-b65b-195a59c6aa6b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c5e927d3-13d6-4562-8413-093faa0e8d97",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

@@ -74,16 +74,16 @@
         },
         {
             "name": "topthink/framework",
-            "version": "v5.1.6",
+            "version": "v5.1.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/top-think/framework.git",
-                "reference": "f737a05ec7c21eb77a624478d97a172dade8fa67"
+                "reference": "f879603ee321af8fde56d8855445cf98bc81b042"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/top-think/framework/f737a05ec7c21eb77a624478d97a172dade8fa67.zip",
-                "reference": "f737a05ec7c21eb77a624478d97a172dade8fa67",
+                "url": "https://files.phpcomposer.com/files/top-think/framework/f879603ee321af8fde56d8855445cf98bc81b042.zip",
+                "reference": "f879603ee321af8fde56d8855445cf98bc81b042",
                 "shasum": ""
             },
             "require": {
@@ -121,7 +121,7 @@
                 "orm",
                 "thinkphp"
             ],
-            "time": "2018-03-26T10:43:20+00:00"
+            "time": "2018-04-26T03:46:41+00:00"
         },
         {
             "name": "topthink/think-captcha",
@@ -205,20 +205,20 @@
         },
         {
             "name": "topthink/think-mongo",
-            "version": "v2.0.9",
+            "version": "v2.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/top-think/think-mongo.git",
-                "reference": "c3aed566dfc48e327663eb5c94a7ec339e36d054"
+                "reference": "6e4cb49f04cd6c144ed9918f4dcb433c72cc33a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/top-think/think-mongo/c3aed566dfc48e327663eb5c94a7ec339e36d054.zip",
-                "reference": "c3aed566dfc48e327663eb5c94a7ec339e36d054",
+                "url": "https://files.phpcomposer.com/files/top-think/think-mongo/6e4cb49f04cd6c144ed9918f4dcb433c72cc33a3.zip",
+                "reference": "6e4cb49f04cd6c144ed9918f4dcb433c72cc33a3",
                 "shasum": ""
             },
             "require": {
-                "topthink/framework": "~5.1.5"
+                "topthink/framework": "~5.1.7"
             },
             "type": "library",
             "autoload": {
@@ -238,7 +238,7 @@
                 }
             ],
             "description": "mongodb driver for thinkphp5",
-            "time": "2018-02-05T10:26:14+00:00"
+            "time": "2018-04-04T04:01:41+00:00"
         }
     ],
     "packages-dev": [],
