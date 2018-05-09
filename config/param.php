@@ -8,6 +8,7 @@
 return [
     'secret'         => 'ZFYbTYULnmAKB2eQ1ygNQiVWIELDSI6S',
     'request_mothod' => [
+        'ANY',
         'GET',
         'POST',
         'PUT',
