@@ -1,0 +1,275 @@
+<div class="site-content">
+    <if condition="$edit_auth">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <a href="{:url('category/add')}" class="layui-btn layui-btn-primary ajax-edit-api">
+                    <i class="layui-icon">&#xe608;</i> 添加分类</a>
+                <a href="{:url('api/add')}" class="layui-btn layui-btn-primary ajax-edit-api">
+                    <i class="layui-icon">&#xe608;</i> 添加Api</a>
+            </div>
+        </div>
+    </if>
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <div class="site-h1">
+                <a href="#instruction">
+                    <i class="layui-icon">&#xe600;</i>
+                </a> 文档说明
+            </div>
+            <div class="layui-form-item code">
+                {$remark|default=''|highLight|raw}
+            </div>
+            <hr>
+            <div>
+                {$script|default='无脚本'|raw}
+            </div>
+        </div>
+    </div>
+    <notempty name="items">
+        <volist name="items" id="item">
+            <if condition="$item && !empty($item['title'])">
+                <div class="layui-card" id="item-{$item.id}">
+                    <div class="layui-card-body">
+                        <h1 class="site-h1">
+                            <i class="layui-icon">&#xe600;</i> {$item.title|highLight|raw}
+                            <if ($edit_auth) and ($is_self)>
+                                <div class="layui-btn-group right">
+                                    <a href="{:url('category/edit',['id'=>$item['id']])}" class="layui-btn layui-btn-primary layui-btn-sm ajax-edit-api" title="编辑：{$item.title|default=''}">
+                                        <i class="layui-icon">&#xe642;</i>
+                                    </a>
+                                    <a href="{:url('category/delete',['id'=>$item['id']])}" class="layui-btn layui-btn-primary layui-btn-sm ajax-delete" title="删除：{$item.title|default=''}">
+                                        <i class="layui-icon">&#xe640;</i>
+                                    </a>
+                                </div>
+                            </if>
+                        </h1>
+                        <p> {$item.remark|highLight|raw}</p>
+                    </div>
+                </div>
+            </if>
+            <notempty name="item.request">
+                <volist name="item.request" id="vo">
+                    <div id="api-{$vo.id}" class="layui-card">
+                        <div class="layui-card-body">
+                            <div class="site-h1">
+                                <a href="#api-{$vo.id}">
+                                    <i class="layui-icon">&#xe600;</i>
+                                </a> {$vo.name|highLight|raw}
+                                <if ($edit_auth) and ($is_self)>
+                                    <div class="layui-btn-group right">
+                                        <a href="{:url('response/add',['id'=>$vo['id']])}" class="layui-btn layui-btn-primary layui-btn-sm ajax-edit-api" title="添加响应内容">
+                                            <i class="layui-icon">&#xe654;</i>
+                                        </a>
+                                        <a href="{:url('edit',['id'=>$vo['id']])}" class="layui-btn layui-btn-primary layui-btn-sm ajax-edit-api" title="删除：{$vo.name}">
+                                            <i class="layui-icon">&#xe642;</i>
+                                        </a>
+                                        <a href="{:url('delete',['id'=>$vo['id']])}" class="layui-btn layui-btn-primary layui-btn-sm ajax-delete" title="编辑：{$vo.name}">
+                                            <i class="layui-icon">&#xe640;</i>
+                                        </a>
+                                    </div>
+                                </if>
+                            </div>
+                            <notempty name="vo.remark">
+                                <blockquote class="layui-elem-quote">
+                                    {$vo.remark|highLight|raw}
+                                </blockquote>
+                            </notempty>
+                            <div class="layui-form layui-form-pane">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">请求地址</label>
+                                    <div class="layui-input-block">
+                                        <div class="layui-input code" style="line-height: 38px">
+                                            {$vo.url|highLight|raw}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">请求方式</label>
+                                    <div class="layui-input-block">
+                                        <input type="text" value="{$vo.method}" readonly class="layui-input code">
+                                    </div>
+                                </div>
+                                <php>$headers = json_decode($vo['headers'],true);</php>
+                                <notempty name="headers">
+                                    <fieldset class="layui-elem-field layui-field-title">
+                                        <legend> HEADERS</legend>
+                                    </fieldset>
+                                    <volist name="headers" id="header">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">{$header.key|default=''}</label>
+                                            <div class="layui-input-block">
+                                                <input type="text" value="{$header.value|default=''}" readonly class="layui-input code">
+                                            </div>
+                                        </div>
+                                    </volist>
+                                </notempty>
+                                <php>$params = json_decode($vo['params'],true);</php>
+                                <notempty name="params">
+                                    <fieldset class="layui-elem-field layui-field-title">
+                                        <legend> PARAMS </legend>
+                                    </fieldset>
+                                    <table class="layui-table" lay-size="sm">
+                                        <colgroup>
+                                            <col>
+                                            <col>
+                                            <col width="33.333%">
+                                            <col width="33.333%">
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th>Key</th>
+                                                <th style="text-align: center;">类型</th>
+                                                <th>Value</th>
+                                                <th>Description</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <volist name="params" id="v">
+                                                <tr>
+                                                    <td>
+                                                        <input type="text" value="{$v.key|default=''|raw}" placeholder="key" class="layui-input">
+                                                    </td>
+                                                    <td style="text-align: center;" class="code">{$v.type|default='text'}</td>
+                                                    <td>
+                                                        <input type="text" value="{$v.value|default=''|raw}" placeholder="value" class="layui-input">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" value="{$v.description|default=''|highLight|raw}" placeholder="description" class="layui-input">
+                                                    </td>
+                                                </tr>
+                                            </volist>
+                                        </tbody>
+                                    </table>
+                                </notempty>
+                                <neq name="vo.method" value="GET">
+                                    <php>$formdata = json_decode($vo['formdata'],true);</php>
+                                    <php>$urlencoded = json_decode($vo['urlencoded'],true);</php>
+                                    <if $formdata ||$urlencoded ||$vo[ 'raw']>
+                                        <fieldset class="layui-elem-field layui-field-title">
+                                            <legend> BODY</legend>
+                                        </fieldset>
+                                    </if>
+                                    <notempty name="formdata">
+                                        <p style="margin-top: 20px" class="code">form-data:</p>
+                                        <table class="layui-table" lay-size="sm">
+                                            <colgroup>
+                                                <col>
+                                                <col>
+                                                <col width="33.333%">
+                                                <col width="33.333%">
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th>Key</th>
+                                                    <th style="text-align: center;">类型</th>
+                                                    <th>Value</th>
+                                                    <th>Description</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <volist name="formdata" id="v">
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" value="{$v.key|default=''|raw}" placeholder="key" class="layui-input">
+                                                        </td>
+                                                        <td style="text-align: center;" class="code">{$v.type|default='text'}</td>
+                                                        <td>
+                                                            <input type="text" value="{$v.value|default=''|raw}" placeholder="value" class="layui-input">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" value="{$v.description|default=''|highLight|raw}" placeholder="description" class="layui-input">
+                                                        </td>
+                                                    </tr>
+                                                </volist>
+                                            </tbody>
+                                        </table>
+                                    </notempty>
+
+                                    <notempty name="urlencoded">
+                                        <p style="margin-top: 20px" class="code">x-www-form-urlencode:</p>
+                                        <table class="layui-table" lay-size="sm">
+                                            <colgroup>
+                                                <col>
+                                                <col width="10">
+                                                <col width="33.333%">
+                                                <col width="33.333%">
+                                                <col>
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th>Key</th>
+                                                    <th style="text-align: center;">类型</th>
+                                                    <th>Value</th>
+                                                    <th>Description</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <volist name="urlencoded" id="v">
+                                                    <tr>
+                                                        <td>
+                                                            <input type="text" value="{$v.key|default=''}" placeholder="key" class="layui-input">
+                                                        </td>
+                                                        <td>{$v.type|default='text'}</td>
+                                                        <td>
+                                                            <input type="text" value="{$v.value|default=''|raw}" placeholder="value" class="layui-input">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" value="{$v.description|default=''|highLight|raw}" placeholder="description" class="layui-input">
+                                                        </td>
+                                                    </tr>
+                                                </volist>
+                                            </tbody>
+                                        </table>
+                                    </notempty>
+                                    <notempty name="vo.raw">
+                                        <p style="margin-top: 20px" class="code">raw:</p>
+                                        <div class="response" style="margin-top: 20px">
+                                            <pre class="code"></pre>
+                                            <textarea style="height: 1px;width: 1px;">
+                                                {$vo.raw|raw}
+                                            </textarea>
+                                        </div>
+                                    </notempty>
+                                </neq>
+                                <!-- 响应内容 -->
+                                <notempty name="vo.response">
+                                    <fieldset class="layui-elem-field layui-field-title">
+                                        <legend> EXAMPLE RESPONSE</legend>
+                                    </fieldset>
+                                    <div class="layui-tab" lay-filter="response" <if condition="session('user.id')==$user_id">lay-allowClose="true"</if> >
+                                        <ul class="layui-tab-title">
+                                            <volist name="vo.response" id="v">
+                                                <li lay-id="{$v.id}" <eq name="i" value="1">class="layui-this"</eq> > {$v.name|highLight}
+                                                    <span class="copy layui-badge layui-bg-black" data-clipboard-action="copy" data-clipboard-target="#res-{$v.id}">复制</span>
+                                                    <if ($edit_auth) and ($is_self)>
+                                                        &nbsp;
+                                                        <span class="layui-badge-rim ajax-edit-api" data-url="{:url('response/edit',['id'=>$v['id']])}"> 编辑 </span>
+                                                        <span class="layui-badge-rim ajax-set-api" data-url="{:url('response/delete',['id'=>$v['id']])}"> 删除 </span>
+                                                    </if>
+                                                </li>
+                                            </volist>
+                                        </ul>
+                                        <div class="layui-tab-content">
+                                            <volist name="vo.response" id="v">
+                                                <div class="layui-tab-item <eq name='i' value='1'>layui-show</eq>">
+                                                    <div class="response">
+                                                        <pre class="code"></pre>
+                                                        <textarea style="height: 1px;width: 1px;" id="res-{$v.id}"> {$v.body|default=''|raw}</textarea>
+                                                    </div>
+                                                    <notempty name="v.remark">
+                                                        <blockquote class="layui-elem-quote">{$v.remark|highLight|raw}</blockquote>
+                                                    </notempty>
+                                                </div>
+                                            </volist>
+                                        </div>
+                                    </div>
+                                </notempty>
+                            </div>
+                        </div>
+                    </div>
+                </volist>
+            </notempty>
+        </volist>
+    </notempty>
+</div>

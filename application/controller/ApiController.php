@@ -16,6 +16,8 @@ use app\model\ApiResponse;
 use app\model\Category;
 use app\model\Project;
 use app\model\ProjectUser;
+use PhpOffice\PhpWord\Element\Bookmark;
+use PhpOffice\PhpWord\PhpWord;
 use think\Db;
 use think\Request;
 
@@ -80,6 +82,20 @@ class ApiController extends BaseController
         $project['is_self'] = $project['user_id'] === session('user.id');
 
         return $this->fetch('index', $project);
+    }
+
+    //导出
+    public function export(Request $request)
+    {
+        $type    = $request->get('type', 'word');
+        $id      = $request->get('id', '', 'decrypt');
+        $project = Project::find($id);
+        if (!$project || $project['user_id'] != session('user.id')) {
+            $this->error('信息不存在');
+        }
+
+
+
     }
 
     public function add(Request $request)
