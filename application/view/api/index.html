@@ -287,32 +287,32 @@
                                             <fieldset class="layui-elem-field layui-field-title">
                                                 <legend> EXAMPLE RESPONSE</legend>
                                             </fieldset>
-                                            <div class="layui-tab layui-tab-brief" lay-filter="response" <if condition="session('user.id')==$user_id">lay-allowClose="true"</if> >
-                                            </div>
-                                            <ul class="layui-tab-title">
-                                                <volist name="vo.response" id="v">
-                                                    <li lay-id="{$v.id}" <eq name="i" value="1">class="layui-this"</eq> > {$v.name|highLight}
-                                                        <span class="copy layui-badge layui-bg-black" data-clipboard-action="copy" data-clipboard-target="#res-{$v.id}">复制</span>
-                                                        <if ($edit_auth) and ($is_self)>
-                                                            &nbsp;
-                                                            <span class="layui-badge-rim ajax-edit-api" data-url="{:url('response/edit',['id'=>$v['id']])}"> 编辑 </span>
-                                                            <span class="layui-badge-rim ajax-set-api" data-url="{:url('response/delete',['id'=>$v['id']])}"> 删除 </span>
-                                                        </if>
-                                                    </li>
-                                                </volist>
-                                            </ul>
-                                            <div class="layui-tab-content">
-                                                <volist name="vo.response" id="v">
-                                                    <div class="layui-tab-item <eq name='i' value='1'>layui-show</eq>">
-                                                        <div class="response">
-                                                            <pre class="code"></pre>
-                                                            <textarea style="height: 1px;width: 1px;" id="res-{$v.id}"> {$v.body|default=''|raw}</textarea>
+                                            <div class="layui-tab" lay-filter="response" <if condition="session('user.id')==$user_id">lay-allowClose="true"</if> >
+                                                <ul class="layui-tab-title">
+                                                    <volist name="vo.response" id="v">
+                                                        <li lay-id="{$v.id}" <eq name="i" value="1">class="layui-this"</eq> > {$v.name|highLight}
+                                                            <span class="copy layui-badge layui-bg-black" data-clipboard-action="copy" data-clipboard-target="#res-{$v.id}">复制</span>
+                                                            <if ($edit_auth) and ($is_self)>
+                                                                &nbsp;
+                                                                <span class="layui-badge-rim ajax-edit-api" data-url="{:url('response/edit',['id'=>$v['id']])}"> 编辑 </span>
+                                                                <span class="layui-badge-rim ajax-set-api" data-url="{:url('response/delete',['id'=>$v['id']])}"> 删除 </span>
+                                                            </if>
+                                                        </li>
+                                                    </volist>
+                                                </ul>
+                                                <div class="layui-tab-content">
+                                                    <volist name="vo.response" id="v">
+                                                        <div class="layui-tab-item <eq name='i' value='1'>layui-show</eq>">
+                                                            <div class="response">
+                                                                <pre class="code"></pre>
+                                                                <textarea style="height: 1px;width: 1px;" id="res-{$v.id}"> {$v.body|default=''|raw}</textarea>
+                                                            </div>
+                                                            <notempty name="v.remark">
+                                                                <blockquote class="layui-elem-quote">{$v.remark|highLight|raw}</blockquote>
+                                                            </notempty>
                                                         </div>
-                                                        <notempty name="v.remark">
-                                                            <blockquote class="layui-elem-quote">{$v.remark|highLight|raw}</blockquote>
-                                                        </notempty>
-                                                    </div>
-                                                </volist>
+                                                    </volist>
+                                                </div>
                                             </div>
                                         </notempty>
                                     </div>

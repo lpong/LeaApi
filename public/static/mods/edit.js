@@ -333,6 +333,10 @@ layui.define(['layer', 'form', 'element', 'code', 'util'], function (exports) {
 
     });
 
+    element.on('tab', function (data) {
+        console.log(data.elem);
+    });
+
     //自动已读
     $('.site-tree').on('click', 'a', function () {
         $.get('/api/read', {
