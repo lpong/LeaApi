@@ -286,7 +286,7 @@ layui.define(['layer', 'form', 'element', 'code', 'util'], function (exports) {
             bgcolor: '#009688',
             click: function (type) {
                 if (type === 'bar1') {
-                    dit.open('/project', '');
+                    edit.open('/project', '');
                 }
                 if (type === 'bar2') {
                     edit.open('/user', '');
