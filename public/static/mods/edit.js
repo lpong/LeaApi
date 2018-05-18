@@ -61,11 +61,11 @@ layui.define(['layer', 'form', 'element', 'code', 'util'], function (exports) {
         }
         param = 'limit=' + limit + '&page=' + page + '&' + param;
         $.ajax({
-                url: url,
-                type: 'POST',
-                dataType: 'html',
-                data: param,
-            })
+            url: url,
+            type: 'POST',
+            dataType: 'html',
+            data: param,
+        })
             .done(function (html) {
                 that.find('.data').empty().html(html);
                 form.render();
@@ -234,7 +234,7 @@ layui.define(['layer', 'form', 'element', 'code', 'util'], function (exports) {
                 return false;
             }
         }
-    }　
+    }
 
     var clipboard = new Clipboard('.copy');
     clipboard.on('success', function (e) {
@@ -251,9 +251,8 @@ layui.define(['layer', 'form', 'element', 'code', 'util'], function (exports) {
     });
 
 
-
     /**
-     * edit 
+     * edit
      */
     var edit = {
         open: function (url, title, callback) {
@@ -287,12 +286,12 @@ layui.define(['layer', 'form', 'element', 'code', 'util'], function (exports) {
             bgcolor: '#009688',
             click: function (type) {
                 if (type === 'bar1') {
-                    var url = '/project';
+                    dit.open('/project', '');
                 }
                 if (type === 'bar2') {
-                    var url = '/user';
+                    edit.open('/user', '');
                 }
-                edit.open(url, '');
+                return false;
             }
         });
     }
