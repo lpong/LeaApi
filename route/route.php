@@ -14,6 +14,7 @@ Route::get('think', function () {
 });
 
 Route::get('p/:id', 'api/index');
+Route::get('share/:id', 'share/index');
 
 return [
 

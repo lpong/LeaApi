@@ -108,7 +108,7 @@ class ProjectController extends BaseController
     public function edit(Request $request)
     {
         if ($request->isPost()) {
-            $post           = $request->only(['_id', 'name', 'cover', 'remark', 'description', 'status'], 'post');
+            $post           = $request->only(['_id', 'name', 'cover', 'remark', 'description', 'status', 'is_public'], 'post');
             $post['script'] = $request->post('script', '', 'trim');
             $validate       = new \app\validate\Project();
             if (!$validate->check($post)) {

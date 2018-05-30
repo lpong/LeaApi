@@ -22,6 +22,15 @@
                 >
             </div>
         </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">公开访问</label>
+            <div class="layui-input-block">
+                <input type="radio" name="is_public" value="1" title="是" <php>if(!isset($info)||$info['is_public']==1):echo 'checked';endif</php>
+                >
+                <input type="radio" name="is_public" value="0" title="否" <php>if(isset($info)&&$info['is_public']==0):echo 'checked';endif</php>
+                >
+            </div>
+        </div>
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">接口说明</label>
             <div class="layui-input-block">

@@ -33,11 +33,7 @@
                                 <li>
                                     <a href="#api-{$vo.id}" data-id="{$vo.id}">
                                         <cite>
-                                            <notin name="vo.id" value="$read">
-                                                <span class="layui-badge-dot"></span>
-                                                <else />
-                                                <span class="layui-badge-dot none"></span>
-                                            </notin> {$vo.name}
+                                           &nbsp; {$vo.name}
                                         </cite>
                                         <em>{$vo.method}</em>
                                     </a>
@@ -49,16 +45,6 @@
             </ul>
         </div>
         <div class="site-content">
-            <if condition="$edit_auth">
-                <div class="layui-card">
-                    <div class="layui-card-body">
-                        <a href="{:url('category/add')}" class="layui-btn layui-btn-primary ajax-edit-api">
-                            <i class="layui-icon">&#xe608;</i> 添加分类</a>
-                        <a href="{:url('api/add')}" class="layui-btn layui-btn-primary ajax-edit-api">
-                            <i class="layui-icon">&#xe608;</i> 添加Api</a>
-                    </div>
-                </div>
-            </if>
             <div class="layui-card">
                 <div class="layui-card-body">
                     <div class="site-h1">
@@ -73,12 +59,6 @@
                     <div>
                         {$script|default='无脚本'|raw}
                     </div>
-                    <if condition="$is_public">
-                        <hr>
-                        <div style="color: #FF5722" class="code">
-                            <i class="layui-icon">&#xe641;</i> <span>{$Request.domain}/share/{$id|encrypt}</span>
-                        </div>
-                    </if>
                 </div>
             </div>
             <notempty name="items">
@@ -88,16 +68,6 @@
                             <div class="layui-card-body">
                                 <h1 class="site-h1">
                                     <i class="layui-icon">&#xe600;</i> {$item.title|highLight|raw}
-                                    <if ($edit_auth) and ($is_self)>
-                                        <div class="layui-btn-group right">
-                                            <a href="{:url('category/edit',['id'=>$item['id']])}" class="layui-btn layui-btn-primary layui-btn-sm ajax-edit-api" title="编辑：{$item.title|default=''}">
-                                                <i class="layui-icon">&#xe642;</i>
-                                            </a>
-                                            <a href="{:url('category/delete',['id'=>$item['id']])}" class="layui-btn layui-btn-primary layui-btn-sm ajax-delete" title="删除：{$item.title|default=''}">
-                                                <i class="layui-icon">&#xe640;</i>
-                                            </a>
-                                        </div>
-                                    </if>
                                 </h1>
                                 <p> {$item.remark|highLight|raw}</p>
                             </div>
@@ -111,19 +81,6 @@
                                         <a href="#api-{$vo.id}">
                                             <i class="layui-icon">&#xe600;</i>
                                         </a> {$vo.name|highLight|raw}
-                                        <if ($edit_auth) and ($is_self)>
-                                            <div class="layui-btn-group right">
-                                                <a href="{:url('response/add',['id'=>$vo['id']])}" class="layui-btn layui-btn-primary layui-btn-sm ajax-edit-api" title="添加响应内容">
-                                                    <i class="layui-icon">&#xe654;</i>
-                                                </a>
-                                                <a href="{:url('edit',['id'=>$vo['id']])}" class="layui-btn layui-btn-primary layui-btn-sm ajax-edit-api" title="删除：{$vo.name}">
-                                                    <i class="layui-icon">&#xe642;</i>
-                                                </a>
-                                                <a href="{:url('delete',['id'=>$vo['id']])}" class="layui-btn layui-btn-primary layui-btn-sm ajax-delete" title="编辑：{$vo.name}">
-                                                    <i class="layui-icon">&#xe640;</i>
-                                                </a>
-                                            </div>
-                                        </if>
                                     </div>
                                     <notempty name="vo.remark">
                                         <blockquote class="layui-elem-quote">
@@ -296,11 +253,6 @@
                                                     <volist name="vo.response" id="v">
                                                         <li lay-id="{$v.id}" <eq name="i" value="1">class="layui-this"</eq> > {$v.name|highLight}
                                                             <span class="copy layui-badge layui-bg-black" data-clipboard-action="copy" data-clipboard-target="#res-{$v.id}">复制</span>
-                                                            <if ($edit_auth) and ($is_self)>
-                                                                &nbsp;
-                                                                <span class="layui-badge-rim ajax-edit-api" data-url="{:url('response/edit',['id'=>$v['id']])}"> 编辑 </span>
-                                                                <span class="layui-badge-rim ajax-set-api" data-url="{:url('response/delete',['id'=>$v['id']])}"> 删除 </span>
-                                                            </if>
                                                         </li>
                                                     </volist>
                                                 </ul>
@@ -334,7 +286,7 @@
     <script type="application/javascript" src="__PUBLIC__/js/clipboard.min.js"></script>
     <script>
     var _pId = window._pId = '{$id|encrypt}'
-    var is_login = 1;
+    var is_login = 0;
     layui.config({
         base: '__PUBLIC__/mods/'
     }).use('edit');
