@@ -5,9 +5,9 @@
 # http://www.sequelpro.com/
 # https://github.com/sequelpro/sequelpro
 #
-# Host: 192.168.66.10 (MySQL 5.7.21)
-# Database: api
-# Generation Time: 2018-04-03 10:24:56 +0000
+# Host: 47.104.167.110 (MySQL 5.7.21)
+# Database: leaapi
+# Generation Time: 2018-05-30 09:50:20 +0000
 # ************************************************************
 
 
@@ -18,6 +18,25 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+# Dump of table agent
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `agent`;
+
+CREATE TABLE `agent` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `domain` varchar(64) COLLATE utf8mb4_bin DEFAULT NULL,
+  `url` varchar(128) COLLATE utf8mb4_bin DEFAULT NULL,
+  `method` varchar(20) COLLATE utf8mb4_bin DEFAULT NULL,
+  `body` text COLLATE utf8mb4_bin,
+  `time` timestamp NULL DEFAULT NULL,
+  `ip` varchar(16) COLLATE utf8mb4_bin DEFAULT NULL,
+  `agent` varchar(300) COLLATE utf8mb4_bin DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
 
 
 # Dump of table api
@@ -142,6 +161,7 @@ CREATE TABLE `project` (
   `script` text,
   `status` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `view` int(10) unsigned NOT NULL DEFAULT '0',
+  `is_public` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `create_time` timestamp NULL DEFAULT NULL,
   `update_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),

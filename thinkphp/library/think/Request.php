@@ -22,10 +22,16 @@ class Request
     protected $instance;
 
     /**
-     * 配置对象
-     * @var Config
+     * 应用对象实例
+     * @var App
      */
-    protected $config;
+    protected $app;
+
+    /**
+     * 配置参数
+     * @var array
+     */
+    protected $config = [];
 
     /**
      * 请求类型
@@ -262,22 +268,35 @@ class Request
      * @access public
      * @param  array  $options 参数
      */
-    public function __construct($options = [])
+    public function __construct(App $app, array $options = [])
     {
-        foreach ($options as $name => $item) {
-            if (property_exists($this, $name)) {
-                $this->$name = $item;
-            }
-        }
-
-        $this->config = Container::get('config');
-
-        if (is_null($this->filter)) {
-            $this->filter = $this->config->get('default_filter');
-        }
+        $this->app = $app;
+        $this->init($options);
 
         // 保存 php://input
         $this->input = file_get_contents('php://input');
+    }
+
+    public function init(array $options = [])
+    {
+        $this->config = array_merge($this->config, $options);
+
+        if (is_null($this->filter) && !empty($this->config['default_filter'])) {
+            $this->filter = $this->config['default_filter'];
+        }
+    }
+
+    public function config($name = null)
+    {
+        if (is_null($name)) {
+            return $this->config;
+        }
+        return isset($this->config[$name]) ? $this->config[$name] : null;
+    }
+
+    public static function __make(App $app, Config $config)
+    {
+        return new static($app, $config->pull('app'));
     }
 
     public function __call($method, $args)
@@ -404,19 +423,24 @@ class Request
     /**
      * 设置或获取当前包含协议的域名
      * @access public
-     * @param  string $domain 域名
+     * @param  string|bool $domain 域名
      * @return string|$this
      */
     public function domain($domain = null)
     {
-        if (!is_null($domain)) {
-            $this->domain = $domain;
-            return $this;
-        } elseif (!$this->domain) {
-            $this->domain = $this->scheme() . '://' . $this->host();
+        if (is_null($domain)) {
+            if (!$this->domain) {
+                $this->domain = $this->scheme() . '://' . $this->host();
+            }
+            return $this->domain;
         }
 
-        return $this->domain;
+        if (true === $domain) {
+            return $this->scheme() . '://' . $this->host(true);
+        }
+
+        $this->domain = $domain;
+        return $this;
     }
 
     /**
@@ -426,10 +450,10 @@ class Request
      */
     public function rootDomain()
     {
-        $root = $this->config->get('app.url_domain_root');
+        $root = $this->config['url_domain_root'];
 
         if (!$root) {
-            $item  = explode('.', $this->host());
+            $item  = explode('.', $this->host(true));
             $count = count($item);
             $root  = $count > 1 ? $item[$count - 2] . '.' . $item[$count - 1] : $item[0];
         }
@@ -446,13 +470,13 @@ class Request
     {
         if (is_null($this->subDomain)) {
             // 获取当前主域名
-            $rootDomain = $this->config->get('app.url_domain_root');
+            $rootDomain = $this->config['url_domain_root'];
 
             if ($rootDomain) {
                 // 配置域名根 例如 thinkphp.cn 163.com.cn 如果是国家级域名 com.cn net.cn 之类的域名需要配置
-                $domain = explode('.', rtrim(stristr($this->host(), $rootDomain, true), '.'));
+                $domain = explode('.', rtrim(stristr($this->host(true), $rootDomain, true), '.'));
             } else {
-                $domain = explode('.', $this->host(), -2);
+                $domain = explode('.', $this->host(true), -2);
             }
 
             $this->subDomain = implode('.', $domain);
@@ -604,10 +628,10 @@ class Request
     public function pathinfo()
     {
         if (is_null($this->pathinfo)) {
-            if (isset($_GET[$this->config->get('var_pathinfo')])) {
+            if (isset($_GET[$this->config['var_pathinfo']])) {
                 // 判断URL里面是否有兼容模式参数
-                $_SERVER['PATH_INFO'] = $_GET[$this->config->get('var_pathinfo')];
-                unset($_GET[$this->config->get('var_pathinfo')]);
+                $_SERVER['PATH_INFO'] = $_GET[$this->config['var_pathinfo']];
+                unset($_GET[$this->config['var_pathinfo']]);
             } elseif ($this->isCli()) {
                 // CLI模式下 index.php module/controller/action/params/...
                 $_SERVER['PATH_INFO'] = isset($_SERVER['argv'][1]) ? $_SERVER['argv'][1] : '';
@@ -617,7 +641,7 @@ class Request
 
             // 分析PATHINFO信息
             if (!isset($_SERVER['PATH_INFO'])) {
-                foreach ($this->config->get('pathinfo_fetch') as $type) {
+                foreach ($this->config['pathinfo_fetch'] as $type) {
                     if (!empty($_SERVER[$type])) {
                         $_SERVER['PATH_INFO'] = (0 === strpos($_SERVER[$type], $_SERVER['SCRIPT_NAME'])) ?
                         substr($_SERVER[$type], strlen($_SERVER['SCRIPT_NAME'])) : $_SERVER[$type];
@@ -640,7 +664,7 @@ class Request
     public function path()
     {
         if (is_null($this->path)) {
-            $suffix   = $this->config->get('url_html_suffix');
+            $suffix   = $this->config['url_html_suffix'];
             $pathinfo = $this->pathinfo();
             if (false === $suffix) {
                 // 禁止伪静态访问
@@ -731,8 +755,8 @@ class Request
             // 获取原始请求类型
             return $this->isCli() ? 'GET' : (isset($this->server['REQUEST_METHOD']) ? $this->server['REQUEST_METHOD'] : $_SERVER['REQUEST_METHOD']);
         } elseif (!$this->method) {
-            if (isset($_POST[$this->config->get('var_method')])) {
-                $this->method = strtoupper($_POST[$this->config->get('var_method')]);
+            if (isset($_POST[$this->config['var_method']])) {
+                $this->method = strtoupper($_POST[$this->config['var_method']]);
                 $this->{$this->method}($_POST);
             } elseif (isset($_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'])) {
                 $this->method = strtoupper($_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE']);
@@ -1028,7 +1052,7 @@ class Request
     public function session($name = '', $default = null, $filter = '')
     {
         if (empty($this->session)) {
-            $this->session = Container::get('session')->get();
+            $this->session = $this->app['session']->get();
         }
 
         if (is_array($name)) {
@@ -1048,7 +1072,7 @@ class Request
      */
     public function cookie($name = '', $default = null, $filter = '')
     {
-        $cookie = Container::get('cookie');
+        $cookie = $this->app['cookie'];
 
         if (empty($this->cookie)) {
             $this->cookie = $cookie->get();
@@ -1185,7 +1209,7 @@ class Request
     public function env($name = '', $default = null, $filter = '')
     {
         if (empty($this->env)) {
-            $this->env = Container::get('env')->get();
+            $this->env = $this->app['env']->get();
         }
 
         if (is_array($name)) {
@@ -1509,7 +1533,7 @@ class Request
             return true;
         } elseif (isset($server['HTTP_X_FORWARDED_PROTO']) && 'https' == $server['HTTP_X_FORWARDED_PROTO']) {
             return true;
-        } elseif ($this->config->get('https_agent_name') && isset($server[$this->config->get('https_agent_name')])) {
+        } elseif ($this->config['https_agent_name'] && isset($server[$this->config['https_agent_name']])) {
             return true;
         }
 
@@ -1531,7 +1555,7 @@ class Request
             return $result;
         }
 
-        return $this->param($this->config->get('var_ajax')) ? true : $result;
+        return $this->param($this->config['var_ajax']) ? true : $result;
     }
 
     /**
@@ -1548,7 +1572,7 @@ class Request
             return $result;
         }
 
-        return $this->param($this->config->get('var_pjax')) ? true : $result;
+        return $this->param($this->config['var_pjax']) ? true : $result;
     }
 
     /**
@@ -1567,7 +1591,7 @@ class Request
             return $ip[$type];
         }
 
-        $httpAgentIp = $this->config->get('http_agent_ip');
+        $httpAgentIp = $this->config['http_agent_ip'];
 
         if ($httpAgentIp && isset($_SERVER[$httpAgentIp])) {
             $ip = $_SERVER[$httpAgentIp];
@@ -1647,15 +1671,18 @@ class Request
     /**
      * 当前请求的host
      * @access public
+     * @param bool $strict  true 仅仅获取HOST
      * @return string
      */
-    public function host()
+    public function host($strict = false)
     {
         if (isset($_SERVER['HTTP_X_REAL_HOST'])) {
-            return $_SERVER['HTTP_X_REAL_HOST'];
+            $host = $_SERVER['HTTP_X_REAL_HOST'];
+        } else {
+            $host = $this->server('HTTP_HOST');
         }
 
-        return $this->server('HTTP_HOST');
+        return true === $strict && strpos($host, ':') ? strstr($host, ':', true) : $host;
     }
 
     /**
@@ -1858,7 +1885,7 @@ class Request
             header($name . ': ' . $token);
         }
 
-        Container::get('session')->set($name, $token);
+        $this->app['session']->set($name, $token);
 
         return $token;
     }
@@ -1926,7 +1953,7 @@ class Request
         if (isset($fun)) {
             $key = $fun($key);
         }
-        $cache = Container::get('cache');
+        $cache = $this->app['cache'];
 
         if (strtotime($this->server('HTTP_IF_MODIFIED_SINCE')) + $expire > $_SERVER['REQUEST_TIME']) {
             // 读取缓存

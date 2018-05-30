@@ -20,6 +20,7 @@ use think\db\exception\BindParamException;
 use think\Debug;
 use think\Exception;
 use think\exception\PDOException;
+use think\Loader;
 
 abstract class Connection
 {
@@ -182,22 +183,18 @@ abstract class Connection
         }
 
         if (true === $name || !isset(self::$instance[$name])) {
-            // 解析连接参数 支持数组和字符串
-            $options = self::parseConfig($config);
-
-            if (empty($options['type'])) {
+            if (empty($config['type'])) {
                 throw new InvalidArgumentException('Undefined db type');
             }
 
-            $class = false !== strpos($options['type'], '\\') ? $options['type'] : '\\think\\db\\connector\\' . ucwords($options['type']);
             // 记录初始化信息
-            Container::get('app')->log('[ DB ] INIT ' . $options['type']);
+            Container::get('app')->log('[ DB ] INIT ' . $config['type']);
 
             if (true === $name) {
                 $name = md5(serialize($config));
             }
 
-            self::$instance[$name] = new $class($options);
+            self::$instance[$name] = Loader::factory($config['type'], '\\think\\db\\connector\\', $config);
         }
 
         return self::$instance[$name];
@@ -814,11 +811,8 @@ abstract class Connection
         $options = $query->getOptions();
         $pk      = $query->getPk($options);
 
-        if (!empty($options['cache']) && true === $options['cache']['key'] && is_string($pk) && isset($options['where']['AND'][$pk])) {
-            $key = $this->getCacheKey($query, $options['where']['AND'][$pk]);
-        }
-
         $data = $options['data'];
+        $query->setOption('limit', 1);
 
         if (empty($options['fetch_sql']) && !empty($options['cache'])) {
             // 判断查询缓存
@@ -826,7 +820,7 @@ abstract class Connection
 
             if (is_string($cache['key'])) {
                 $key = $cache['key'];
-            } elseif (!isset($key)) {
+            } else {
                 $key = $this->getCacheKey($query, $data);
             }
 
@@ -848,7 +842,6 @@ abstract class Connection
         }
 
         $query->setOption('data', $data);
-        $query->setOption('limit', 1);
 
         // 生成查询SQL
         $sql = $this->builder->select($query);
@@ -983,7 +976,7 @@ abstract class Connection
         }
 
         // 执行操作
-        $result = $this->execute($sql, $bind, $query);
+        $result = '' == $sql ? 0 : $this->execute($sql, $bind, $query);
 
         if ($result) {
             $sequence  = $sequence ?: (isset($options['sequence']) ? $options['sequence'] : null);
@@ -1145,8 +1138,12 @@ abstract class Connection
                 $options['where']['AND'] = $where;
                 $query->setOption('where', ['AND' => $where]);
             }
-        } elseif (!isset($key) && is_string($pk) && isset($options['where']['AND'][$pk])) {
-            $key = $this->getCacheKey($query, $options['where']['AND'][$pk]);
+        } elseif (!isset($key) && is_string($pk) && isset($options['where']['AND'])) {
+            foreach ($options['where']['AND'] as $val) {
+                if (is_array($val) && $val[0] == $pk) {
+                    $key = $this->getCacheKey($query, $val);
+                }
+            }
         }
 
         // 更新数据
@@ -1208,8 +1205,12 @@ abstract class Connection
             $key = $options['cache']['key'];
         } elseif (!is_null($data) && true !== $data && !is_array($data)) {
             $key = $this->getCacheKey($query, $data);
-        } elseif (is_string($pk) && isset($options['where']['AND'][$pk])) {
-            $key = $this->getCacheKey($query, $options['where']['AND'][$pk]);
+        } elseif (is_string($pk) && isset($options['where']['AND'])) {
+            foreach ($options['where']['AND'] as $val) {
+                if (is_array($val) && $val[0] == $pk) {
+                    $key = $this->getCacheKey($query, $val);
+                }
+            }
         }
 
         if (true !== $data && empty($options['where'])) {
@@ -1269,7 +1270,7 @@ abstract class Connection
 
         if (empty($options['fetch_sql']) && !empty($options['cache'])) {
             $cache  = $options['cache'];
-            $result = $this->getCacheData($query, $cache, $field, $key);
+            $result = $this->getCacheData($query, $cache, null, $key);
 
             if (false !== $result) {
                 return $result;
@@ -1621,6 +1622,42 @@ abstract class Connection
             throw $e;
         }
     }
+
+    /**
+     * 启动XA事务
+     * @access public
+     * @param  string $xid XA事务id
+     * @return void
+     */
+    public function startTransXa($xid)
+    {}
+
+    /**
+     * 预编译XA事务
+     * @access public
+     * @param  string $xid XA事务id
+     * @return void
+     */
+    public function prepareXa($xid)
+    {}
+
+    /**
+     * 提交XA事务
+     * @access public
+     * @param  string $xid XA事务id
+     * @return void
+     */
+    public function commitXa($xid)
+    {}
+
+    /**
+     * 回滚XA事务
+     * @access public
+     * @param  string $xid XA事务id
+     * @return void
+     */
+    public function rollbackXa($xid)
+    {}
 
     /**
      * 启动事务
@@ -2107,62 +2144,6 @@ abstract class Connection
         } catch (\Exception $e) {
             throw new Exception('closure not support cache(true)');
         }
-    }
-
-    /**
-     * 数据库连接参数解析
-     * @access private
-     * @param  mixed $config
-     * @return array
-     */
-    private static function parseConfig($config)
-    {
-        if (empty($config)) {
-            $config = Container::get('config')->pull('database');
-        } elseif (is_string($config) && false === strpos($config, '/')) {
-            // 支持读取配置参数
-            $config = Container::get('config')->get('database.' . $config);
-        }
-
-        if (is_string($config)) {
-            return self::parseDsnConfig($config);
-        } else {
-            return $config;
-        }
-    }
-
-    /**
-     * DSN解析
-     * 格式： mysql://username:passwd@localhost:3306/DbName?param1=val1&param2=val2#utf8
-     * @access private
-     * @param  string $dsnStr
-     * @return array
-     */
-    private static function parseDsnConfig($dsnStr)
-    {
-        $info = parse_url($dsnStr);
-
-        if (!$info) {
-            return [];
-        }
-
-        $dsn = [
-            'type'     => $info['scheme'],
-            'username' => isset($info['user']) ? $info['user'] : '',
-            'password' => isset($info['pass']) ? $info['pass'] : '',
-            'hostname' => isset($info['host']) ? $info['host'] : '',
-            'hostport' => isset($info['port']) ? $info['port'] : '',
-            'database' => !empty($info['path']) ? ltrim($info['path'], '/') : '',
-            'charset'  => isset($info['fragment']) ? $info['fragment'] : 'utf8',
-        ];
-
-        if (isset($info['query'])) {
-            parse_str($info['query'], $dsn['params']);
-        } else {
-            $dsn['params'] = [];
-        }
-
-        return $dsn;
     }
 
 }

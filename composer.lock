@@ -269,21 +269,21 @@
         },
         {
             "name": "topthink/framework",
-            "version": "v5.1.12",
+            "version": "v5.1.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/top-think/framework.git",
-                "reference": "f879603ee321af8fde56d8855445cf98bc81b042"
+                "reference": "6448c4b42599d58125ba1307aa6d3defa044aeb9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/top-think/framework/f879603ee321af8fde56d8855445cf98bc81b042.zip",
-                "reference": "f879603ee321af8fde56d8855445cf98bc81b042",
+                "url": "https://files.phpcomposer.com/files/top-think/framework/6448c4b42599d58125ba1307aa6d3defa044aeb9.zip",
+                "reference": "6448c4b42599d58125ba1307aa6d3defa044aeb9",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.6.0",
-                "topthink/think-installer": "~1.0"
+                "topthink/think-installer": "2.*"
             },
             "require-dev": {
                 "johnkary/phpunit-speedtrap": "^1.0",
@@ -316,7 +316,7 @@
                 "orm",
                 "thinkphp"
             ],
-            "time": "2018-04-26T03:46:41+00:00"
+            "time": "2018-05-19T13:37:11+00:00"
         },
         {
             "name": "topthink/think-captcha",
@@ -359,16 +359,16 @@
         },
         {
             "name": "topthink/think-installer",
-            "version": "v1.0.12",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/top-think/think-installer.git",
-                "reference": "1be326e68f63de4e95977ed50f46ae75f017556d"
+                "reference": "f5400a12c60e513911aef41fe443fa6920952675"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/top-think/think-installer/1be326e68f63de4e95977ed50f46ae75f017556d.zip",
-                "reference": "1be326e68f63de4e95977ed50f46ae75f017556d",
+                "url": "https://files.phpcomposer.com/files/top-think/think-installer/f5400a12c60e513911aef41fe443fa6920952675.zip",
+                "reference": "f5400a12c60e513911aef41fe443fa6920952675",
                 "shasum": ""
             },
             "require": {
@@ -396,7 +396,7 @@
                     "email": "448901948@qq.com"
                 }
             ],
-            "time": "2017-05-27T06:58:09+00:00"
+            "time": "2018-05-11T06:45:42+00:00"
         },
         {
             "name": "topthink/think-mongo",
