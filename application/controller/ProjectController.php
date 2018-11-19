@@ -372,7 +372,7 @@ class ProjectController extends BaseController
                 //添加分类
                 if ($data['item']) {
                     foreach ($data['item'] as $ca) {
-                        $cate = Category::where('title', $ca['name'])->find();
+                        $cate = Category::where('project_id',$project_id)->where('title', $ca['name'])->find();
                         if (!$cate) {
                             $category    = Category::create([
                                 'project_id' => $project_id,
